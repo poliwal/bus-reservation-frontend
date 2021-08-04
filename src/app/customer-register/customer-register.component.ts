@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { AbstractControl,Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl,FormBuilder,Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,19 +10,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class CustomerRegisterComponent implements OnInit {
 
   [x: string]: any;
-  signinform: any;
 
-  constructor(private fb:FormBuilder) {
+  loginform;
+
+  constructor(private fb:FormBuilder)
+  {
     this.loginform=this.fb.group({
-      Fname:['',[Validators.required]],
-      Lname:['',[Validators.required]],
+      fname:['',[Validators.required]],
+      lname:['',[Validators.required]],
       mailid:['',[Validators.required,Validators.email]],
       pwd:['',[Validators.required]],
-      confirmpwd:['',[Validators.required]],
-      Contact:['',[Validators.required]],
-      Wallet:['',[Validators.required]]
-      
+      cpwd:['',[Validators.required]],
+      wallet:['',[Validators.required]],
+     // contact:['',[Validators.required]]
+     contact:['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]  
     })
+
+
    }
 
   ngOnInit(): void {

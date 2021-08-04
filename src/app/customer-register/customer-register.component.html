@@ -1,13 +1,36 @@
 <h2 class="text-center">Register</h2>
 <div class="border mx-auto w-50 p-3">
-    <form [formGroup]="siginform">
+    <div class="text-center">
+        <label>Already have an account?</label>
+        &nbsp;
+        <button class="btn btn-success" type="submit">Login</button>
+        <hr />
+    </div>
+
+    <form [formGroup]="loginform" >
         <div class="mb-2">
             <label>Enter FirstName</label>
-            <input class="form-control" type="text" formControlName="Fname" />
+            <input class="form-control" type="text" formControlName="fname" />
+        </div>
+        <div *ngIf="
+        !loginform.get('fname')?.valid &&
+        (loginform.get('fname')?.dirty || loginform.get('fname')?.touched)
+      " class="error">
+            <div *ngIf="loginform.get('fname')?.errors?.required">
+                <small class="text-danger">First Name is required</small>
+            </div>
         </div>
         <div class="mb-2">
             <label>Enter LastName</label>
-            <input class="form-control" type="text" formControlName="Lname" />
+            <input class="form-control" type="text" formControlName="lname" />
+        </div>
+        <div *ngIf="
+        !loginform.get('lname')?.valid &&
+        (loginform.get('lname')?.dirty || loginform.get('lname')?.touched)
+      " class="error">
+            <div *ngIf="loginform.get('lname')?.errors?.required">
+                <small class="text-danger">Last Name is required</small>
+            </div>
         </div>
 
         <div class="mb-2">
@@ -15,13 +38,13 @@
             <input class="form-control" type="text" formControlName="mailid" />
         </div>
         <div *ngIf="
-        !signinform.get('mailid')?.valid &&
-        (signinform.get('mailid')?.dirty || signinform.get('mailid')?.touched)
+        !loginform.get('mailid')?.valid &&
+        (loginform.get('mailid')?.dirty || loginform.get('mailid')?.touched)
       " class="error">
-            <div *ngIf="signinform.get('mailid')?.errors?.required">
+            <div *ngIf="loginform.get('mailid')?.errors?.required">
                 <small class="text-danger">Email is required</small>
             </div>
-            <div *ngIf="signinform.get('mailid')?.errors?.email">
+            <div *ngIf="loginform.get('mailid')?.errors?.email">
                 <small class="text-danger">Email is invalid</small>
             </div>
         </div>
@@ -30,43 +53,55 @@
             <input class="form-control" type="password" formControlName="pwd" />
         </div>
         <div *ngIf="
-        !siginform.get('pwd')?.valid &&
-        (signinform.get('pwd')?.dirty || signinform.get('pwd')?.touched)
+        !loginform.get('pwd')?.valid &&
+        (loginform.get('pwd')?.dirty || loginform.get('pwd')?.touched)
       " class="error">
-            <div *ngIf="signinform.get('pwd')?.errors?.required">
+            <div *ngIf="loginform.get('pwd')?.errors?.required">
                 <small class="text-danger">password is required</small>
             </div>
         </div>
         <div class="mb-2">
             <label>Confirm Password</label>
-            <input class="form-control" type="password" formControlName="confirmpwd" />
+            <input class="form-control" type="password" formControlName="cpwd" />
         </div>
         <div *ngIf="
-        !siginform.get('confirmpwd')?.valid &&
-        (signinform.get('confirmpwd')?.dirty ||
-          signinform.get('confirmpwd')?.touched)
+        !loginform.get('cpwd')?.valid &&
+        (loginform.get('cpwd')?.dirty || loginform.get('cpwd')?.touched)
       " class="error">
-            <div *ngIf="signinform.get('confirmpwd')?.errors?.required">
+            <div *ngIf="loginform.get('cpwd')?.errors?.required">
                 <small class="text-danger">password is required</small>
             </div>
         </div>
 
         <div class="mb-2">
-            <label>Enter Contact</label>
-            <input class="form-control" type="number" formControlName="Contact" />
+            <label>Enter Contact Number</label>
+            <input class="form-control" type="number" formControlName="contact" />
+        </div>
+        <div *ngIf="
+        !loginform.get('contact')?.valid &&
+        (loginform.get('contact')?.dirty || loginform.get('contact')?.touched)
+      " class="error">
+            <div *ngIf="loginform.get('contact')?.errors?.required">
+                <small class="text-danger">Contact Number is required</small>
+            </div>
         </div>
 
         <div class="mb-2">
-            <label>Enter WalletAmount</label>
-            <input class="form-control" type="number" formControlName="Wallet" />
+            <label>Enter Wallet Amount</label>
+            <input class="form-control" type="number" formControlName="wallet" />
         </div>
-
-        <div class="mt-3">
-            <button class="btn btn-success" type="submit" [disabled]="!signinform.valid">
-                Signin
+        <div *ngIf="
+        !loginform.get('wallet')?.valid &&
+        (loginform.get('wallet')?.dirty || loginform.get('wallet')?.touched)
+      " class="error">
+            <div *ngIf="loginform.get('wallet')?.errors?.required">
+                <small class="text-danger">Wallet amount is required</small>
+            </div>
+        </div>
+        <div class="mt-5 text-center">
+            <button class="btn btn-success" type="submit" [disabled]="!loginform.valid">
+                Register
             </button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-success" type="submit">Cancel</button>
         </div>
         
     </form>

@@ -1,16 +1,9 @@
-<h2 class="text-center">Login</h2>
+<h2 class="text-center">Admin Login</h2>
 <div class="border mx-auto w-50 p-3">
-    <div class="text-center">
-        <label>Don't have an account?</label>
-        &nbsp;
-        <button class="btn btn-success" type="submit">Register</button>
-        <hr />
-    </div>
-    
 
     <form [formGroup]="loginform">
         <div class="mb-2">
-            <label>Enter Emailid</label>
+            <label>Enter Username</label>
             <input class="form-control" type="text" formControlName="mailid" />
         </div>
         <div *ngIf="
@@ -37,22 +30,6 @@
             </div>
         </div>
 
-        <button class="btn btn-success" type="submit">Forgot Password?</button>
-        <!--<div>
-    <label>Enter Age</label>
-    <input type="number" formControlName="age">
-</div>
-  <div *ngIf="!loginform.get('age')?.valid && (loginform.get('age')?.dirty || loginform.get('age')?.touched)"
-  class="error">
-   <div *ngIf="loginform.get('age')?.errors?.ageRange">
-      <small class="text-danger">Age should be btw 18 and 45</small>
-    </div>
- </div>-->
-        <div class="mt-2">
-            <input type="checkbox" />
-            &nbsp;
-            <label>Remember Me</label>
-        </div>
         <div class="mt-5 text-center">
             <button class="btn btn-success" type="submit" [disabled]="!loginform.valid">
                 Login

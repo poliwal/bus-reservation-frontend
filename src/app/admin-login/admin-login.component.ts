@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl,FormBuilder,Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-customer-login',
-  templateUrl: './customer-login.component.html',
-  styleUrls: ['./customer-login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class CustomerLoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   [x: string]: any;
   //to represent form group elements
@@ -26,5 +26,4 @@ export class CustomerLoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

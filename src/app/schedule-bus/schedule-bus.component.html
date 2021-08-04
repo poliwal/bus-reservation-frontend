@@ -1,14 +1,11 @@
-<header class="header">
-    <h2 id="heading">Add Schedule</h2>
- </header>
- <body class="body">
- <div class="container">
+<h2 class="text-center">Schedule Bus</h2>
+<div class="border mx-auto w-50 p-3">
      
-    <form [formGroup]="scheduleform" class="form-horizontal">
+    <form [formGroup]="scheduleform" >
 
     <div class="form-group"> 
-        <p><label class="label">Date</label>
-            <input class="input" type="date" formControlName="date" id="date">
+        <p><label >Date</label>
+            <input class="form-control" type="date" formControlName="date" id="date">
         </p>
       <div *ngIf="!scheduleform.get('busname')?.valid && (scheduleform.get('busname')?.dirty || scheduleform.get('busname')?.touched)" class="error">
         <div *ngIf="scheduleform.get('busname')?.errors?.required">
@@ -19,8 +16,8 @@
     </div> 
 
     <div class="form-group">
-        <p><label class="label">Bus ID</label>
-            <input class="input" type="number" formControlName="busid" id="busid">
+        <p><label >Bus ID</label>
+            <input class="form-control" type="number" formControlName="busid" id="busid">
         </p>
         <div *ngIf="!scheduleform.get('source')?.valid && (scheduleform.get('source')?.dirty || scheduleform.get('source')?.touched)" class="error">
             <div *ngIf="scheduleform.get('source')?.errors?.required">
@@ -39,9 +36,3 @@
     </form>
     
  </div>
-
-</body>
-
-<footer class="footer"> 
-
-</footer>

@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BusSearchComponent } from './bus-search/bus-search.component';
 import { AddBusComponent } from './add-bus/add-bus.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
+import { HomeComponent } from './home/home.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
     CustomerRegisterComponent,
     BusSearchComponent,
     AddBusComponent,
-    ScheduleBusComponent
+    ScheduleBusComponent,
+    HomeComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

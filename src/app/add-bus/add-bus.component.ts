@@ -22,7 +22,6 @@ export class AddBusComponent implements OnInit {
        seatsavail:new FormControl(null,Validators.required),
        via:new FormControl(null,Validators.required),
        fare:new FormControl(null,Validators.required),
-       driverid:new FormControl(null,Validators.required),
        drivername:new FormControl(null,Validators.required),
        driverage:new FormControl(null,Validators.required),
        driverexp:new FormControl(null,Validators.required)
