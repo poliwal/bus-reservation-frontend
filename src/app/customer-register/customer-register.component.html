@@ -1,0 +1,73 @@
+<h2 class="text-center">Register</h2>
+<div class="border mx-auto w-50 p-3">
+    <form [formGroup]="siginform">
+        <div class="mb-2">
+            <label>Enter FirstName</label>
+            <input class="form-control" type="text" formControlName="Fname" />
+        </div>
+        <div class="mb-2">
+            <label>Enter LastName</label>
+            <input class="form-control" type="text" formControlName="Lname" />
+        </div>
+
+        <div class="mb-2">
+            <label>Enter Emailid</label>
+            <input class="form-control" type="text" formControlName="mailid" />
+        </div>
+        <div *ngIf="
+        !signinform.get('mailid')?.valid &&
+        (signinform.get('mailid')?.dirty || signinform.get('mailid')?.touched)
+      " class="error">
+            <div *ngIf="signinform.get('mailid')?.errors?.required">
+                <small class="text-danger">Email is required</small>
+            </div>
+            <div *ngIf="signinform.get('mailid')?.errors?.email">
+                <small class="text-danger">Email is invalid</small>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label>Enter Password</label>
+            <input class="form-control" type="password" formControlName="pwd" />
+        </div>
+        <div *ngIf="
+        !siginform.get('pwd')?.valid &&
+        (signinform.get('pwd')?.dirty || signinform.get('pwd')?.touched)
+      " class="error">
+            <div *ngIf="signinform.get('pwd')?.errors?.required">
+                <small class="text-danger">password is required</small>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label>Confirm Password</label>
+            <input class="form-control" type="password" formControlName="confirmpwd" />
+        </div>
+        <div *ngIf="
+        !siginform.get('confirmpwd')?.valid &&
+        (signinform.get('confirmpwd')?.dirty ||
+          signinform.get('confirmpwd')?.touched)
+      " class="error">
+            <div *ngIf="signinform.get('confirmpwd')?.errors?.required">
+                <small class="text-danger">password is required</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label>Enter Contact</label>
+            <input class="form-control" type="number" formControlName="Contact" />
+        </div>
+
+        <div class="mb-2">
+            <label>Enter WalletAmount</label>
+            <input class="form-control" type="number" formControlName="Wallet" />
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-success" type="submit" [disabled]="!signinform.valid">
+                Signin
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="btn btn-success" type="submit">Cancel</button>
+        </div>
+        
+    </form>
+</div>

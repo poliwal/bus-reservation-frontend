@@ -1,0 +1,101 @@
+<div class="text-center mt-3">
+    <h2>Profile</h2>
+</div>
+
+<!-- form -->
+<div class="border mx-auto w-50 p-3">
+    <form #custProfile="ngForm" (ngSubmit)="updateProfile()" class="mt-2">
+        <div>
+            <!-- Fname -->
+            <div class="mb-2">
+                <label for="">Enter First Name<span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="fName" name="fName" [(ngModel)]="customer.fName"
+                 #fName="ngModel" required minlength="5">
+                <!-- <div *ngIf="!cname?.valid && (cname?.dirty||cname?.touched)" class="error">
+                    <div *ngIf="cname.errors?.required">
+                        <small class="text-danger">Customer Name is Required</small>
+                    </div>
+                    <div *ngIf="cname.errors?.minlength">
+                        <small class="text-danger">Customer Name should be of minimumlength:{{cname.errors?.minlength.requiredLength}}</small>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Lname -->
+            <div class="mb-2">
+                <label for="">Enter Last Name<span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="lName" name="lName" [(ngModel)]="customer.lName" 
+                #lName="ngModel" required minlength="5">
+                <!-- <div *ngIf="!cname?.valid && (cname?.dirty||cname?.touched)" class="error">
+                    <div *ngIf="cname.errors?.required">
+                        <small class="text-danger">Customer Name is Required</small>
+                    </div>
+                    <div *ngIf="cname.errors?.minlength">
+                        <small class="text-danger">Customer Name should be of minimumlength:{{cname.errors?.minlength.requiredLength}}</small>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- dob -->
+            <div class="mb-2">
+                <label for="birthday">Date of Birth</label>
+                <input class="form-control" type="date" id="birthday" name="birthday" [(ngModel)]="customer.dob">
+            </div>
+
+            <!-- Gender -->
+            <div class="mb-2">
+                <label for="">Gender</label>
+                <select class="form-control" name="gender" id="" [(ngModel)]="customer.gender">
+                    <option value="" disabled>--Select--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <!-- contactNo -->
+            <div class="mb-2">
+                <label for="">Phone Number<span class="text-danger">*</span></label>
+                <input class="form-control" name="contactNo" #contactNo="ngModel" [(ngModel)]="customer.contactNo" type="text" 
+                placeholder="Phone Number" required min=7000000000 max=9999999999>
+                <!-- <div *ngIf="!contactNo?.valid && (contactNo?.dirty || contactNo?.touched)" class="error">
+                    <div *ngIf="contactNo.errors?.required">
+                        <small class="text-danger">Phone Number required</small>
+                    </div>
+                    <div *ngIf="contactNo.errors?.min || contactNo.errors?.max">
+                        <small class="text-danger">Phone Number must be 10 digit number</small>
+                    </div>
+                </div> -->
+
+            </div>
+
+            <!-- Email -->
+            <div class="mb-2">
+                <label for="">Email address<span class="text-danger">*</span></label>
+                <input class="form-control" type="email" name="email" #email="ngModel" [(ngModel)]="customer.email" 
+                aria-describedby="emailHelp" placeholder="Enter valid email" required email>
+                <!-- <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+                    <div *ngIf="email.errors?.required">
+                        <small class="text-danger">Email required</small>
+                    </div>
+                    <div *ngIf="email.errors?.email">
+                        <small class="text-danger">Invalid email format</small>
+                    </div>
+                </div> -->
+            </div>
+
+            
+
+            <!-- Address -->
+            <div class="mb-2">
+                <label for="">Address</label>
+                <textarea class="form-control" name="address" id="" cols="30" rows="2" [(ngModel)]="customer.address"></textarea>
+            </div>
+
+        </div>
+        <!-- Submit button -->
+        <div class="text-center mt-5">
+            <button [disabled]="custProfile.invalid" type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>

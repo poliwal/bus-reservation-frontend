@@ -1,0 +1,89 @@
+.container{
+    margin: 75px;
+    size: em;
+    padding: 45px;
+    margin-left:530px;
+    border-style:ridge;
+    border-color: whitesmoke;
+    width:470px;
+    background-color: whitesmoke;
+    
+}
+
+
+.container .form-horizontal .form-group .label{
+    color: black;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
+}
+
+.container .form-horizontal .form-group .input{
+    margin-left:20px;
+    text-align: justify;
+    block-size: 30px;
+}
+
+#businput{
+    margin-left:131px;
+}
+
+#sourceinput{
+    margin-left:153px;
+}
+#destinput{
+    margin-left:118px;
+}
+#depinput{
+    margin-left:88px;
+    width: 123px;
+}
+#arrinput{
+    margin-left:111px;
+    width: 123px;
+}
+#seatinput{
+    margin-left:21px;
+}
+#viainput{
+    margin-left:176px;
+}
+#fareinput{
+    margin-left:168px;
+}
+
+#driveridinput{
+    margin-left:135px;
+}
+
+#drivernameinput{
+    margin-left:112px;
+
+}
+
+#driverageinput{
+    margin-left:126px;
+}
+
+#driverexpinput{
+    margin-left:74px;
+}
+
+.text-danger{
+    font-size: 15px;
+}
+
+#button{
+    margin-top:20px;
+    margin-left:7px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: -20px;
+}
+
+#heading{
+    text-align: center;
+    margin-right: 18px;
+    margin-bottom: -40px;
+    margin-top: 40px;
+    font-size: 30px;
+}

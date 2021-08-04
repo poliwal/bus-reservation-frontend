@@ -1,0 +1,47 @@
+<header class="header">
+    <h2 id="heading">Add Schedule</h2>
+ </header>
+ <body class="body">
+ <div class="container">
+     
+    <form [formGroup]="scheduleform" class="form-horizontal">
+
+    <div class="form-group"> 
+        <p><label class="label">Date</label>
+            <input class="input" type="date" formControlName="date" id="date">
+        </p>
+      <div *ngIf="!scheduleform.get('busname')?.valid && (scheduleform.get('busname')?.dirty || scheduleform.get('busname')?.touched)" class="error">
+        <div *ngIf="scheduleform.get('busname')?.errors?.required">
+            <small class="text-danger">Date is required</small>
+        </div>
+            
+      </div>
+    </div> 
+
+    <div class="form-group">
+        <p><label class="label">Bus ID</label>
+            <input class="input" type="number" formControlName="busid" id="busid">
+        </p>
+        <div *ngIf="!scheduleform.get('source')?.valid && (scheduleform.get('source')?.dirty || scheduleform.get('source')?.touched)" class="error">
+            <div *ngIf="scheduleform.get('source')?.errors?.required">
+                <small class="text-danger">Bus ID is required</small>
+            </div>
+                
+        </div>
+    </div>
+
+
+    
+    <div class="form-group">
+        <button id="button" class="btn btn-success" type="submit" [disabled]="!scheduleform.valid">Add</button>
+    </div>
+        
+    </form>
+    
+ </div>
+
+</body>
+
+<footer class="footer"> 
+
+</footer>
