@@ -14,6 +14,14 @@ import { AddBusComponent } from './add-bus/add-bus.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
 import { HomeComponent } from './home/home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminBusListComponent } from './admin-bus-list/admin-bus-list.component';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { EditBusComponent } from './edit-bus/edit-bus.component';
+import { BusSearchDetailsComponent } from './bus-search-details/bus-search-details.component';
+import { SeatSelectComponent } from './seat-select/seat-select.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminServiceService } from './shared/services/admin-service.service';
 
 @NgModule({
   declarations: [
@@ -26,15 +34,22 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     AddBusComponent,
     ScheduleBusComponent,
     HomeComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    AdminBusListComponent,
+    CustomerDashboardComponent,
+    EditBusComponent,
+    BusSearchDetailsComponent,
+    SeatSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AdminServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

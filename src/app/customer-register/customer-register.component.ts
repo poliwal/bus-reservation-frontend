@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl,FormBuilder,Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { Register } from '../shared/models/register';
 
 
 @Component({
@@ -9,27 +10,17 @@ import { AbstractControl,FormBuilder,Validators } from '@angular/forms';
 })
 export class CustomerRegisterComponent implements OnInit {
 
-  [x: string]: any;
-
-  loginform;
-
-  constructor(private fb:FormBuilder)
-  {
-    this.loginform=this.fb.group({
-      fname:['',[Validators.required]],
-      lname:['',[Validators.required]],
-      mailid:['',[Validators.required,Validators.email]],
-      pwd:['',[Validators.required]],
-      cpwd:['',[Validators.required]],
-      wallet:['',[Validators.required]],
-     // contact:['',[Validators.required]]
-     contact:['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]]  
-    })
-
-
-   }
+  constructor() { }
+  cust:Register={};
 
   ngOnInit(): void {
+  }
+  onRegister(cformdata:NgForm)
+  {
+    //ngform data
+    console.log(cformdata.value);
+    //object
+    console.log(this.cust);
   }
 
 }

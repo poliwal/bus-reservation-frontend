@@ -1,3 +1,4 @@
+
 <h2 class="text-center">Register</h2>
 <div class="border mx-auto w-50 p-3">
     <div class="text-center">
@@ -6,103 +7,110 @@
         <button class="btn btn-success" type="submit">Login</button>
         <hr />
     </div>
+    <form #custform="ngForm" (ngSubmit)="onRegister(custform)" novalidate>
+        <!--novalidate is used to disable browser validation -->
+        <div class="mb-2">
+            <label for="name">Enter First Name</label>
+            <input class="form-control" type="text" id="name" name="cname" [(ngModel)]="cust.cname" #cname="ngModel" required minlength="5">
+        </div>
+        <div *ngIf="!cname?.valid && (cname?.dirty || cname?.touched)" class="error">
+            <div *ngIf="cname.errors?.required">
+                <small class="text-danger">Customer name is required</small>
+            </div>
 
-    <form [formGroup]="loginform" >
-        <div class="mb-2">
-            <label>Enter FirstName</label>
-            <input class="form-control" type="text" formControlName="fname" />
-        </div>
-        <div *ngIf="
-        !loginform.get('fname')?.valid &&
-        (loginform.get('fname')?.dirty || loginform.get('fname')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('fname')?.errors?.required">
-                <small class="text-danger">First Name is required</small>
+            <div *ngIf="cname.errors?.minlength">
+                <small class="text-danger">Customer name should be of
+                    minimumlength:{{cname.errors?.minlength.requiredLength}}</small>
             </div>
-        </div>
-        <div class="mb-2">
-            <label>Enter LastName</label>
-            <input class="form-control" type="text" formControlName="lname" />
-        </div>
-        <div *ngIf="
-        !loginform.get('lname')?.valid &&
-        (loginform.get('lname')?.dirty || loginform.get('lname')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('lname')?.errors?.required">
-                <small class="text-danger">Last Name is required</small>
-            </div>
-        </div>
-
-        <div class="mb-2">
-            <label>Enter Emailid</label>
-            <input class="form-control" type="text" formControlName="mailid" />
-        </div>
-        <div *ngIf="
-        !loginform.get('mailid')?.valid &&
-        (loginform.get('mailid')?.dirty || loginform.get('mailid')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('mailid')?.errors?.required">
-                <small class="text-danger">Email is required</small>
-            </div>
-            <div *ngIf="loginform.get('mailid')?.errors?.email">
-                <small class="text-danger">Email is invalid</small>
-            </div>
-        </div>
-        <div class="mb-2">
-            <label>Enter Password</label>
-            <input class="form-control" type="password" formControlName="pwd" />
-        </div>
-        <div *ngIf="
-        !loginform.get('pwd')?.valid &&
-        (loginform.get('pwd')?.dirty || loginform.get('pwd')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('pwd')?.errors?.required">
-                <small class="text-danger">password is required</small>
-            </div>
-        </div>
-        <div class="mb-2">
-            <label>Confirm Password</label>
-            <input class="form-control" type="password" formControlName="cpwd" />
-        </div>
-        <div *ngIf="
-        !loginform.get('cpwd')?.valid &&
-        (loginform.get('cpwd')?.dirty || loginform.get('cpwd')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('cpwd')?.errors?.required">
-                <small class="text-danger">password is required</small>
-            </div>
-        </div>
-
-        <div class="mb-2">
-            <label>Enter Contact Number</label>
-            <input class="form-control" type="number" formControlName="contact" />
-        </div>
-        <div *ngIf="
-        !loginform.get('contact')?.valid &&
-        (loginform.get('contact')?.dirty || loginform.get('contact')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('contact')?.errors?.required">
-                <small class="text-danger">Contact Number is required</small>
-            </div>
-        </div>
-
-        <div class="mb-2">
-            <label>Enter Wallet Amount</label>
-            <input class="form-control" type="number" formControlName="wallet" />
-        </div>
-        <div *ngIf="
-        !loginform.get('wallet')?.valid &&
-        (loginform.get('wallet')?.dirty || loginform.get('wallet')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('wallet')?.errors?.required">
-                <small class="text-danger">Wallet amount is required</small>
-            </div>
-        </div>
-        <div class="mt-5 text-center">
-            <button class="btn btn-success" type="submit" [disabled]="!loginform.valid">
-                Register
-            </button>
         </div>
         
+
+        <div class="mb-2">
+            <label for="name">Enter Last Name</label>
+            <input class="form-control" type="text" id="name" name="lname" [(ngModel)]="cust.lname" #lname="ngModel" required minlength="5">
+        </div>
+        <div *ngIf="!lname?.valid && (lname?.dirty || lname?.touched)" class="error">
+            <div *ngIf="lname.errors?.required">
+                <small class="text-danger">Customer name is required</small>
+            </div>
+
+            <div *ngIf="lname.errors?.minlength">
+                <small class="text-danger">Customer name should be of
+                    minimumlength:{{lname.errors?.minlength.requiredLength}}</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="wallet">Enter Wallet Amount</label>
+            <input class="form-control" type="number" id="wallet" name="wallet" [(ngModel)]="cust.wallet" #cwallet="ngModel" required>
+        </div>
+        <div *ngIf="!cwallet?.valid && (cwallet?.dirty || cwallet?.touched)" class="error">
+            <div *ngIf="cwallet.errors?.required">
+                <small class="text-danger">Wallet Amount is required</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="phoneno">Enter Mobileno</label>
+            <input class="form-control" type="text" id="phno" name="phoneno" [(ngModel)]="cust.phoneno" #cphoneno="ngModel" required
+                pattern="^\d{10}$">
+        </div>
+        <div *ngIf="!cphoneno?.valid &&(cphoneno?.dirty || cphoneno?.touched)" class="error">
+            <div *ngIf="cphoneno.errors?.required">
+                <small class="text-danger">phoneno is required</small>
+            </div>
+            <div *ngIf="cphoneno.errors?.pattern">
+                <small class="text-danger">Follow correct pattern(10 digits)</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="mailid">Enter Email</label>
+            <input class="form-control" type="text" id="mailid" name="mailid" [(ngModel)]="cust.mailid" #cmailid="ngModel" email required>
+        </div>
+        <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
+            <div *ngIf="cmailid.errors?.required">
+                <small class="text-danger">email is required</small>
+            </div>
+            <div *ngIf="cmailid.errors?.email">
+                <small class="text-danger">Incorrect Email Pattern</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="password">Enter Password</label>
+            <input class="form-control" type="password" id="pwd" name="password" [(ngModel)]="cust.pwd" #cpassword="ngModel" required
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+        </div>
+        <div *ngIf="!cpassword?.valid &&(cpassword?.dirty || cpassword?.touched)" class="error">
+            <div *ngIf="cpassword.errors?.required">
+                <small class="text-danger">Password is required</small>
+            </div>
+            <div *ngIf="cpassword.errors?.pattern">
+                <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
+                    special characters</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label for="conpassword">Confirm Password</label>
+            <input class="form-control" type="password" id="conpwd" name="conpassword" [(ngModel)]="cust.conpwd" #cconpassword="ngModel"
+                required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+        </div>
+        <div *ngIf="!cconpassword?.valid &&(cconpassword?.dirty || cconpassword?.touched)" class="error">
+            <div *ngIf="cconpassword.errors?.required">
+                <small class="text-danger">Password is required</small>
+            </div>
+            <div *ngIf="cconpassword.errors?.pattern">
+                <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
+                    special characters</small>
+            </div>
+        </div>
+
+        <div class="mt-5 text-center">
+            <button class="btn btn-primary" type="submit" [disabled]="!custform.valid">Submit</button>
+        </div>
+
     </form>
+
 </div>

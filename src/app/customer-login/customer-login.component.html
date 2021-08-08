@@ -1,3 +1,4 @@
+
 <h2 class="text-center">Login</h2>
 <div class="border mx-auto w-50 p-3">
     <div class="text-center">
@@ -6,58 +7,53 @@
         <button class="btn btn-success" type="submit">Register</button>
         <hr />
     </div>
-    
 
-    <form [formGroup]="loginform">
+    <form #custform="ngForm" (ngSubmit)="onRegister(custform)" novalidate>
         <div class="mb-2">
-            <label>Enter Emailid</label>
-            <input class="form-control" type="text" formControlName="mailid" />
+            <label for="mailid">Enter Email</label>
+            <input class="form-control" type="text" id="mailid" name="mailid" [(ngModel)]="cust.mailid" #cmailid="ngModel" email required>
         </div>
-        <div *ngIf="
-        !loginform.get('mailid')?.valid &&
-        (loginform.get('mailid')?.dirty || loginform.get('mailid')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('mailid')?.errors?.required">
-                <small class="text-danger">Email is required</small>
+        <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
+            <div *ngIf="cmailid.errors?.required">
+                <small class="text-danger">email is required</small>
             </div>
-            <div *ngIf="loginform.get('mailid')?.errors?.email">
-                <small class="text-danger">Email is invalid</small>
-            </div>
-        </div>
-        <div class="mb-2">
-            <label>Enter Password</label>
-            <input class="form-control" type="password" formControlName="pwd" />
-        </div>
-        <div *ngIf="
-        !loginform.get('pwd')?.valid &&
-        (loginform.get('pwd')?.dirty || loginform.get('pwd')?.touched)
-      " class="error">
-            <div *ngIf="loginform.get('pwd')?.errors?.required">
-                <small class="text-danger">password is required</small>
+            <div *ngIf="cmailid.errors?.email">
+                <small class="text-danger">Incorrect email pattern</small>
             </div>
         </div>
 
-        <button class="btn btn-success" type="submit">Forgot Password?</button>
-        <!--<div>
-    <label>Enter Age</label>
-    <input type="number" formControlName="age">
-</div>
-  <div *ngIf="!loginform.get('age')?.valid && (loginform.get('age')?.dirty || loginform.get('age')?.touched)"
-  class="error">
-   <div *ngIf="loginform.get('age')?.errors?.ageRange">
-      <small class="text-danger">Age should be btw 18 and 45</small>
-    </div>
- </div>-->
-        <div class="mt-2">
-            <input type="checkbox" />
-            &nbsp;
-            <label>Remember Me</label>
+
+
+        <div class="mb-2">
+            <label for="password">Enter password</label>
+            <input class="form-control" type="password" id="pwd" name="password" [(ngModel)]="cust.pwd" #cpassword="ngModel" required
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
         </div>
-        <div class="mt-5 text-center">
-            <button class="btn btn-success" type="submit" [disabled]="!loginform.valid">
-                Login
-            </button>
+        <div *ngIf="!cpassword?.valid &&(cpassword?.dirty || cpassword?.touched)" class="error">
+            <div *ngIf="cpassword.errors?.required">
+                <small class="text-danger">Password is required</small>
+            </div>
+            <div *ngIf="cpassword.errors?.pattern">
+                <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
+                    special characters</small>
+            </div>
         </div>
+
         
+        <div>
+            <input type="checkbox" id="rememberme" name="rememberme" [(ngModel)]="cust.rememberme">
+            &nbsp;
+            <label for="rememberme">Remember Me</label>
+
+            <a class="float-end" type="submit" >Forgot Password?</a>
+        </div>
+
+        <div class="mt-5 text-center">
+            <button class="btn btn-primary" type="submit" [disabled]="!custform.valid">Submit</button>
+        </div>
+
+
     </form>
+
+
 </div>

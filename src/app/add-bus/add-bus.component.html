@@ -1,15 +1,15 @@
 <h2 class="text-center">Add Bus</h2>
 <div class="border mx-auto w-50 p-3">
 
-    <form [formGroup]="addform">
+    <form [formGroup]="addform" (submit)="addBus(addform)">
 
         <div class="form-group mb-2">
             <div><label>Bus Name</label>
-                <input class="form-control" type="text" formControlName="busname" id="businput">
+                <input class="form-control" type="text" formControlName="busName" id="businput">
             </div>
-            <div *ngIf="!addform.get('busname')?.valid && (addform.get('busname')?.dirty || addform.get('busname')?.touched)"
+            <div *ngIf="!addform.get('busName')?.valid && (addform.get('busName')?.dirty || addform.get('busName')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('busname')?.errors?.required">
+                <div *ngIf="addform.get('busName')?.errors?.required">
                     <small class="text-danger">Bus Name is required</small>
                 </div>
 
@@ -46,11 +46,11 @@
 
         <div class="form-group mb-2">
             <div><label>Departure Time</label>
-                <input class="form-control" type="time" formControlName="deptime" id="depinput">
+                <input class="form-control" type="time" formControlName="departure" id="depinput">
             </div>
-            <div *ngIf="!addform.get('deptime')?.valid && (addform.get('deptime')?.dirty || addform.get('deptime')?.touched)"
+            <div *ngIf="!addform.get('departure')?.valid && (addform.get('departure')?.dirty || addform.get('departure')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('deptime')?.errors?.required">
+                <div *ngIf="addform.get('departure')?.errors?.required">
                     <small class="text-danger">Departure time is required</small>
                 </div>
 
@@ -59,11 +59,11 @@
 
         <div class="form-group mb-2">
             <div><label>Arrival Time</label>
-                <input class="form-control" type="time" formControlName="arrtime" id="arrinput">
+                <input class="form-control" type="time" formControlName="arrival" id="arrinput">
             </div>
-            <div *ngIf="!addform.get('arrtime')?.valid && (addform.get('arrtime')?.dirty || addform.get('arrtime')?.touched)"
+            <div *ngIf="!addform.get('arrival')?.valid && (addform.get('arrival')?.dirty || addform.get('arrival')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('arrtime')?.errors?.required">
+                <div *ngIf="addform.get('arrival')?.errors?.required">
                     <small class="text-danger">Arrival Time is required</small>
                 </div>
 
@@ -73,11 +73,11 @@
 
         <div class="form-group mb-2">
             <div><label>Number of seats available</label>
-                <input class="form-control" type="number" formControlName="seatsavail" id="seatinput">
+                <input class="form-control" type="number" formControlName="seatsAvailable" id="seatinput">
             </div>
-            <div *ngIf="!addform.get('seatsavail')?.valid && (addform.get('seatsavail')?.dirty || addform.get('seatsavail')?.touched)"
+            <div *ngIf="!addform.get('seatsAvailable')?.valid && (addform.get('seatsAvailable')?.dirty || addform.get('seatsAvailable')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('seatsavail')?.errors?.required">
+                <div *ngIf="addform.get('seatsAvailable')?.errors?.required">
                     <small class="text-danger">Number of seats is required</small>
                 </div>
 
@@ -113,11 +113,11 @@
 
         <div class="form-group mb-2">
             <div><label>Driver Name</label>
-                <input class="form-control" type="text" formControlName="drivername" id="drivernameinput">
+                <input class="form-control" type="text" formControlName="driverName" id="driverNameinput">
             </div>
-            <div *ngIf="!addform.get('drivername')?.valid && (addform.get('drivername')?.dirty || addform.get('drivername')?.touched)"
+            <div *ngIf="!addform.get('driverName')?.valid && (addform.get('driverName')?.dirty || addform.get('driverName')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('drivername')?.errors?.required">
+                <div *ngIf="addform.get('driverName')?.errors?.required">
                     <small class="text-danger">Driver name is required</small>
                 </div>
 
@@ -126,11 +126,11 @@
 
         <div class="form-group mb-2">
             <div><label>Driver Age</label>
-                <input class="form-control" type="number" formControlName="driverage" id="driverageinput">
+                <input class="form-control" type="number" formControlName="driverAge" id="driverAgeinput">
             </div>
-            <div *ngIf="!addform.get('driverage')?.valid && (addform.get('driverage')?.dirty || addform.get('driverage')?.touched)"
+            <div *ngIf="!addform.get('driverAge')?.valid && (addform.get('driverAge')?.dirty || addform.get('driverAge')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('driverage')?.errors?.required">
+                <div *ngIf="addform.get('driverAge')?.errors?.required">
                     <small class="text-danger">Driver age is required</small>
                 </div>
 
@@ -139,11 +139,11 @@
 
         <div class="form-group mb-2">
             <div><label>Driver Experience</label>
-                <input class="form-control" type="number" formControlName="driverexp" id="driverexpinput">
+                <input class="form-control" type="number" formControlName="driverExperience" id="driverExperienceinput">
             </div>
-            <div *ngIf="!addform.get('driverexp')?.valid && (addform.get('driverexp')?.dirty || addform.get('driverexp')?.touched)"
+            <div *ngIf="!addform.get('driverExperience')?.valid && (addform.get('driverExperience')?.dirty || addform.get('driverExperience')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('driverexp')?.errors?.required">
+                <div *ngIf="addform.get('driverExperience')?.errors?.required">
                     <small class="text-danger">Driver experience is required</small>
                 </div>
 

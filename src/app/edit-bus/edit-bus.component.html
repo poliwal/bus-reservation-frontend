@@ -1,0 +1,73 @@
+<h1 class="text-center">Edit Bus</h1>
+
+<hr />
+<div class="container border mx-auto w-50 p-3">
+        <form asp-action="Edit" (ngSubmit)="updateBusDetails()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BusId" />
+            <div class="form-group">
+                <label class="control-label">BusName</label>
+                <input class="form-control" name="busName" [(ngModel)]="busDetails.busName"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">ToSource</label>
+                <input class="form-control" name="source" [(ngModel)]="busDetails.source"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">ToDestination</label>
+                <input class="form-control" name="destination" [(ngModel)]="busDetails.destination"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Departure</label>
+                <input type="time" class="form-control" name="departure" [(ngModel)]="busDetails.departure"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Arrival</label>
+                <input type="time" class="form-control" name="arrival" [(ngModel)]="busDetails.arrival"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">SeatsAvailable</label>
+                <input class="form-control" name="seatsAvailable" [(ngModel)]="busDetails.seatsAvailable"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Via</label>
+                <input class="form-control" name="via" [(ngModel)]="busDetails.via"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Fare</label>
+                <input class="form-control" name="fare" [(ngModel)]="busDetails.fare"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">DriverName</label>
+                <input class="form-control" name="driverName" [(ngModel)]="busDetails.driverName"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Age</label>
+                <input class="form-control" name="driverAge" [(ngModel)]="busDetails.driverAge"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Experience</label>
+                <input class="form-control" name="driverAge" [(ngModel)]="busDetails.driverAge"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2 text-center">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+
+<div>
+    <a routerLink="/admin-dashboard">Back to List</a>
+</div>
+
+

@@ -1,0 +1,94 @@
+
+    <h1>Bus List</h1>
+    
+    <!-- <p>
+        <a routerLink="/add-bus">Create New</a>
+    </p> -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    BusId
+                </th>
+                <th>
+                    BusName
+                </th>
+                <th>
+                    ToSource
+                </th>
+                <th>
+                    ToDestination
+                </th>
+                <th>
+                    Departure
+                </th>
+                <th>
+                    Arrival
+                </th>
+                <th>
+                    SeatsAvailable
+                </th>
+                <th>
+                    Via
+                </th>
+                <th>
+                    Fare
+                </th>
+                <th>
+                    Dname
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Experience
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let b of busList ">
+            <tr>
+                <td>
+                    {{b.busId}}
+                </td>
+                <td>
+                    {{b.busName}}
+                </td>
+                <td>
+                    {{b.source}}
+                </td>
+                <td>
+                    {{b.destination}}
+                </td>
+                <td>
+                    {{b.departure}}
+                </td>
+                <td>
+                    {{b.arrival}}
+                </td>
+                <td>
+                    {{b.seatsAvailable}}
+                </td>
+                <td>
+                    {{b.via}}
+                </td>
+                <td>
+                    {{b.fare}}
+                </td>
+                <td>
+                    {{b.driverName}}
+                </td>
+                <td>
+                    {{b.driverAge}}
+                </td>
+                <td>
+                    {{b.driverExperience}}
+                </td>
+                <td>
+                    <button class="btn btn-primary" (click)="editBus(b)"><i class="fas fa-edit"></i></button> |
+                    <button class="btn btn-danger" (click)="deleteBus(b.busId)"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
