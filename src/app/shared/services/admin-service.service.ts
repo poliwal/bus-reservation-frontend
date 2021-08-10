@@ -10,6 +10,7 @@ export class AdminServiceService {
 
   readonly Url = "http://localhost:43836/api/buses"
   readonly UrlBs = "http://localhost:43836/api/BusSeatNoes"
+  readonly UrlSch = "​http://localhost:43836/api​/Schedules"
 
   editBusDetails:Bus;
   
