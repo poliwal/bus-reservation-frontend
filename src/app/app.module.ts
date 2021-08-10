@@ -23,6 +23,7 @@ import { SeatSelectComponent } from './seat-select/seat-select.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminServiceService } from './shared/services/admin-service.service';
 import { BookingService } from './shared/services/booking.service';
+import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { BookingService } from './shared/services/booking.service';
     CustomerDashboardComponent,
     EditBusComponent,
     BusSearchDetailsComponent,
-    SeatSelectComponent
+    SeatSelectComponent,
+    BusBookingDetailsComponent
   ],
   imports: [
     BrowserModule,

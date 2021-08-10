@@ -1,0 +1,52 @@
+.container-fluid{
+    margin-top:400px;
+    margin:10px;
+    margin-left:170px;
+    font-size: large;
+    
+}
+
+.container{
+    height:100px;
+}
+
+.row{
+    height:30px;
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.heading{text-align: center;
+margin-top: 40px;
+font-size: 30px;
+font-family:Verdana, Geneva, Tahoma, sans-serif}
+
+.button{
+    float: right;
+    margin-top: -20px;
+    
+       
+}
+
+#button{
+    margin-top:-45px;
+    margin-right:160px;
+    font-size: 20px;
+    
+}
+
+.NumSeat{
+    margin-top: 20px;
+    font-size: 15px;
+    margin-left: 180px;
+}
+
+.col-sm-6{
+    font-weight: bold;
+}
+
+/* .NumSeat .checkbox{
+    margin-left: 135px;
+    margin-top:-20px;
+    margin-bottom: 20px;
+} */

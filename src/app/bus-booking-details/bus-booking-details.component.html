@@ -1,0 +1,130 @@
+<div class="container">
+    <h2 class="heading">Booking Details</h2>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Bus Name</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.busName}}</div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Source</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.source}}</div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Destination</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.destination}}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Departure</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.departure}}</div>
+
+        <!--  -->
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Arrival</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.arrival}}</div>
+
+        <!--  -->
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Seats Available</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.seatsAvailable}}</div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Via</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.via}}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Fare</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.fare}}</div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Driver Name</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.driverName}}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Driver Age</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.driverAge}}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Driver Experience</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.driverExperience}} years</div>
+    </div>
+</div>
+
+
+
+
+<div class="NumSeat mb-5">
+    <div>
+        <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Book all seats?</label>
+        <input type="checkbox" (change)="onWholeBusDeselect()" [(ngModel)]="booking.wholeBus">
+    </div>
+
+
+    <div style="margin-top: 3px;">
+        <div *ngIf="booking.wholeBus==true">
+            <label for="checkbox" style="font-weight: 600;margin-right: 5px;">With Driver</label>
+            <input type="checkbox" [(ngModel)]="booking.withDriver">
+
+
+            <div *ngIf="booking.withDriver==true">
+                <small class="text text-danger" for="booking.securityDeposit">*Security Deposit Amount of 30000 INR will
+                    be charged</small> &nbsp;
+                <!-- <input type="number" id="booking.securityDeposit" name="booking.securityDeposit" [(ngModel)]="booking.securityDeposit"> -->
+            </div>
+
+        </div>
+        <!--       
+      <div  style="margin-top:10px;">
+        <label>Number of passengers : </label>
+        <span>
+          <input  [disabled]="booking.wholeBus" style="margin-left: 5px;" type="number" min="1"
+          [(ngModel)]="booking.noOfPassengers">
+          
+        </span>
+      </div>
+    </div> -->
+
+
+        <div style="margin-top: 2px;">
+            <div>
+                <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Return Ticket?</label>
+                <input type="checkbox" (change)="onReturnDeselect()"
+                        [(ngModel)]="booking.isReturn">
+            </div>
+
+            <div>
+                <label style="font-weight: 600; margin-right: 10px;">Return Date</label> <input style="margin-top:10px"
+                    type="date" [disabled]="!booking.isReturn" [(ngModel)]="booking.returnDate">
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="button">
+        <button id="button" type="submit" (click)="onSubmit()" class="btn btn-success">Proceed</button>
+    </div>
+
+</div>

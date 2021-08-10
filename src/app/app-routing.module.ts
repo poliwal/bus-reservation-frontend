@@ -4,6 +4,7 @@ import { AddBusComponent } from './add-bus/add-bus.component';
 import { AdminBusListComponent } from './admin-bus-list/admin-bus-list.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
 import { BusSearchComponent } from './bus-search/bus-search.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:"cust-login", component:CustomerLoginComponent},
   {path:"cust-register", component:CustomerRegisterComponent},
   {path:"bus-search", component:BusSearchComponent},
+  {path:"bus-booking-details", component:BusBookingDetailsComponent},
   {path:"add-bus", component:AddBusComponent},
   // {path:"edit-bus", component:EditBusComponent},
   {path:"schedule-bus", component:ScheduleBusComponent},

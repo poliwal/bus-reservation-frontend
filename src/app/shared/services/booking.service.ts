@@ -7,7 +7,7 @@ import { BusSeats } from '../models/bus-seats';
 })
 export class BookingService {
 
-  readonly UrlBs = "http://localhost:43836/api/BusSeatNoes"
+  readonly UrlBs = "http://localhost:43836/api/buses"
 
   constructor(private http:HttpClient) { }
 
@@ -17,5 +17,9 @@ export class BookingService {
 
   updateBusSeats(seats:BusSeats){
     return this.http.put(this.UrlBs+'/'+seats.seatId,seats);
+  }
+
+  getBusbyid(id?:number){
+    return this.http.get(this.UrlBs+"/"+id);
   }
 }
