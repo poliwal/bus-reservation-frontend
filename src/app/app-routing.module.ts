@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddBusComponent } from './add-bus/add-bus.component';
+import { AddPassengerDetailsComponent } from './add-passenger-details/add-passenger-details.component';
 import { AdminBusListComponent } from './admin-bus-list/admin-bus-list.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
+import { BusSearchDetailsComponent } from './bus-search-details/bus-search-details.component';
 import { BusSearchComponent } from './bus-search/bus-search.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
@@ -43,6 +45,9 @@ const routes: Routes = [
   // {path:"edit-bus", component:EditBusComponent},
   {path:"schedule-bus", component:ScheduleBusComponent},
   {path:"seat-select", component:SeatSelectComponent},
+
+  {path:"bus-search-details",component:BusSearchDetailsComponent},
+  {path:"add-passenger-details",component:AddPassengerDetailsComponent}
 ];
 
 @NgModule({

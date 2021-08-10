@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminServiceService } from './shared/services/admin-service.service';
 import { BookingService } from './shared/services/booking.service';
 import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
+import { AddPassengerDetailsComponent } from './add-passenger-details/add-passenger-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-de
     EditBusComponent,
     BusSearchDetailsComponent,
     SeatSelectComponent,
-    BusBookingDetailsComponent
+    BusBookingDetailsComponent,
+    AddPassengerDetailsComponent
   ],
   imports: [
     BrowserModule,
