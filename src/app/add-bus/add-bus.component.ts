@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup, NgForm, Validator, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Bus } from '../shared/models/bus';
+import { BusSeats } from '../shared/models/bus-seats';
 import { AdminServiceService } from '../shared/services/admin-service.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class AddBusComponent implements OnInit {
 
   addform:FormGroup;
   bus:Bus;
+  busSeats:BusSeats[] = [];
   constructor(private adminService:AdminServiceService, private router:Router) {
 
     this.addform=new FormGroup(
@@ -38,6 +40,8 @@ export class AddBusComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addedBus:Bus;
+
   addBus(addform:FormGroup){
     this.bus = addform.value;
     // console.log(addform.value.departure);
@@ -45,12 +49,30 @@ export class AddBusComponent implements OnInit {
     // console.log(this.bus.departure);
     this.adminService.addBus(this.bus).subscribe(
       data=>{
-        console.log(data);
+        this.addedBus = data as Bus;
+        // console.log(this.addedBus.busId);
+        this.createBusSeatNo(this.addedBus)
         alert("Bus Added");
         this.router.navigate(["admin-dashboard"]);
       },
       err=>{console.log(err)}
     );
+  }
+
+  createBusSeatNo(addedBus:Bus){
+    for (let i = 0; i < addedBus.seatsAvailable; i++) {
+      this.busSeats.push({busId:addedBus.busId,seatNo:i+1,isAvailable:true})
+      
+    }
+    console.log(this.busSeats);
+    this.adminService.addBusSeatNos(this.busSeats).subscribe(
+        data=>{
+          console.log(data);
+        },
+        err=>{
+          console.log(err);
+        }
+      );
   }
 
 }

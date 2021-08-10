@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Bus } from '../models/bus';
+import { BusSeats } from '../models/bus-seats';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Bus } from '../models/bus';
 export class AdminServiceService {
 
   readonly Url = "http://localhost:43836/api/buses"
+  readonly UrlBs = "http://localhost:43836/api/BusSeatNoes"
 
   editBusDetails:Bus;
   
@@ -41,4 +43,9 @@ export class AdminServiceService {
     return this.http.put(this.Url+'/'+bus.busId, bus);
   }
 
+  addBusSeatNos(busSeats:BusSeats[]){
+    return this.http.post(this.UrlBs,busSeats,{responseType:'text'});
+  }
+
+  
 }

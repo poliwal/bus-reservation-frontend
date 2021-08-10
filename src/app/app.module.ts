@@ -22,6 +22,7 @@ import { BusSearchDetailsComponent } from './bus-search-details/bus-search-detai
 import { SeatSelectComponent } from './seat-select/seat-select.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminServiceService } from './shared/services/admin-service.service';
+import { BookingService } from './shared/services/booking.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { AdminServiceService } from './shared/services/admin-service.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AdminServiceService],
+  providers: [AdminServiceService,BookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

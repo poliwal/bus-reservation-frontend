@@ -1,67 +1,114 @@
-
 <div class="container mt-5">
-    
+
 
     <div class="row">
         <div class="col-md-6 container border pb-3 bg-light">
             <h2 class="text-center mb-3">Select Seats</h2>
             <div class="row text-center">
                 <div class="col">
-                    <a (click)="onClick(0)" class="mx-3"><i [ngClass]="seatSelect[0].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(1)" class="mx-3"><i [ngClass]="seatSelect[1].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(0)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(0) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[0].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(1)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(1) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[1].isAvailable ? emptySeat : filledSeat"></i></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="onClick(2)" class="mx-3"><i [ngClass]="seatSelect[2].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(3)" class="mx-3"><i [ngClass]="seatSelect[3].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(2)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(2) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[2].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(3)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(3) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[3].isAvailable ? emptySeat : filledSeat"></i></a>
                 </div>
             </div>
-        
+
             <div class="row text-center">
                 <div class="col">
-                    <a (click)="onClick(4)" class="mx-3"><i [ngClass]="seatSelect[4].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(5)" class="mx-3"><i [ngClass]="seatSelect[5].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(4)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(4) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[4].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(5)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(5) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[5].isAvailable ? emptySeat : filledSeat"></i></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="onClick(6)" class="mx-3"><i [ngClass]="seatSelect[6].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(7)" class="mx-3"><i [ngClass]="seatSelect[7].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(6)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(6) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[6].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(7)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(7) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[7].isAvailable ? emptySeat : filledSeat"></i></a>
                 </div>
             </div>
-        
+
             <div class="row text-center">
                 <div class="col">
-                    <a (click)="onClick(8)" class="mx-3"><i [ngClass]="seatSelect[8].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(9)" class="mx-3"><i [ngClass]="seatSelect[9].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(8)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(8) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[8].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(9)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(9) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[9].isAvailable ? emptySeat : filledSeat"></i></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="onClick(10)" class="mx-3"><i [ngClass]="seatSelect[10].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(11)" class="mx-3"><i [ngClass]="seatSelect[11].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(10)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(10) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[10].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(11)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(11) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[11].isAvailable ? emptySeat : filledSeat"></i></a>
                 </div>
             </div>
-        
+
             <div class="row text-center">
                 <div class="col">
-                    <a (click)="onClick(12)" class="mx-3"><i [ngClass]="seatSelect[12].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(13)" class="mx-3"><i [ngClass]="seatSelect[13].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(12)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(12) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[12].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(13)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(13) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[13].isAvailable ? emptySeat : filledSeat"></i></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="onClick(14)" class="mx-3"><i [ngClass]="seatSelect[14].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(15)" class="mx-3"><i [ngClass]="seatSelect[15].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(14)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(14) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[14].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(15)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(15) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[15].isAvailable ? emptySeat : filledSeat"></i></a>
                 </div>
             </div>
-        
+
             <div class="row text-center">
                 <div class="col">
-                    <a (click)="onClick(16)" class="mx-3"><i [ngClass]="seatSelect[16].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(17)" class="mx-3"><i [ngClass]="seatSelect[17].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(16)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(16) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[16].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(17)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(17) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[17].isAvailable ? emptySeat : filledSeat"></i></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="onClick(18)" class="mx-3"><i [ngClass]="seatSelect[18].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(19)" class="mx-3"><i [ngClass]="seatSelect[19].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(18)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(18) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[18].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(19)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(19) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[19].isAvailable ? emptySeat : filledSeat"></i></a>
                 </div>
             </div>
-        
+
             <div class="row text-center">
                 <div class="col">
-                    <a (click)="onClick(20)" class="mx-3"><i [ngClass]="seatSelect[20].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(21)" class="mx-3"><i [ngClass]="seatSelect[21].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(20)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(20) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[20].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(21)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(21) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[21].isAvailable ? emptySeat : filledSeat"></i></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="onClick(22)" class="mx-3"><i [ngClass]="seatSelect[22].isAvailable ? emptySeat : filledSeat"></i></a>
-                    <a (click)="onClick(23)" class="mx-3"><i [ngClass]="seatSelect[23].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(22)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(22) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[22].isAvailable ? emptySeat : filledSeat"></i></a>
+                    <a (click)="onClick(23)" class="mx-3"
+                        [ngClass]="notAvailableSeats.has(23) ? 'text-danger' : 'text-primary'"><i
+                            [ngClass]="seatSelect[23].isAvailable ? emptySeat : filledSeat"></i></a>
                 </div>
             </div>
         </div>
@@ -72,9 +119,12 @@
                     <h3>{{s+1}}</h3>
                 </div>
             </div>
-            
+
         </div>
     </div>
-
+    <div class="mt-3 text-center btn-lg">
+        <button (click)="updateBusSeats()" class="btn btn-primary">Proceed</button>
+    </div>
     
+
 </div>
