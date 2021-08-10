@@ -1,0 +1,44 @@
+<h1 class="text-center">Add Passenger</h1>
+<div class="container">
+    
+    <div class="mx-auto w-50 p-3" *ngIf="i">
+        <form class="mt-2" name="myForm" #myForm="ngForm">    
+                <h4>Passenger {{passengerList.length + 1}} </h4>
+                <label >Name</label>
+                <input class="form-control" [(ngModel)] = "pName" name="pName" required #pname="ngModel">
+                <div *ngIf="pname.touched && pname.invalid" class="alert alert-danger">
+                    <div *ngIf="pname.errors?.required">Name is required.</div>
+                </div>
+                
+                <label >Age</label>
+                <input class="form-control" type="number" [(ngModel)] = "pAge" name="pAge" required #page="ngModel">
+                <div *ngIf="page.touched && page.invalid" class="alert alert-danger">
+                    <div *ngIf="page.errors?.required">Age is required.</div>
+                </div>
+                
+                <div class="d-grid gap-2 mt-2">
+                    <button class="btn btn-primary" (click)=fill() type="submit">Add</button>
+                </div>   
+        </form>  
+    </div>
+
+    <div class="container">
+        <table class="table table-primary table-bordered" *ngIf="passengerList.length">
+            <thead >
+                <tr>
+                    <th>Passenger Name</th>
+                    <th>Age</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody *ngFor = "let p of passengerList">
+                <tr>
+                    <td>{{p.pName}}</td>
+                    <td>{{p.pAge}}</td>
+                    <td><button class="btn btn-primary">Update</button></td>
+                </tr>
+            </tbody>
+            <button class="btn btn-success" [disabled]="i" (click)="onFinalize()" [routerLink]="">Done</button>
+        </table>
+    </div>
+</div>

@@ -14,6 +14,13 @@ import { AddBusComponent } from './add-bus/add-bus.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
 import { HomeComponent } from './home/home.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { BusSearchDetailsComponent } from './bus-search-details/bus-search-details.component';
+import { BusService } from 'src/Service/busService';
+import { HttpClientModule } from '@angular/common/http';
+import { AddPassengerDetailsComponent } from './add-passenger-details/add-passenger-details.component';
+import { BusBookingService } from 'src/Service/busBookingService';
+import { BusSearchListComponent } from './bus-search-list/bus-search-list.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +33,20 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     AddBusComponent,
     ScheduleBusComponent,
     HomeComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    CustomerDashboardComponent,
+    BusSearchDetailsComponent,
+    AddPassengerDetailsComponent,
+    BusSearchListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [BusService,BusBookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
