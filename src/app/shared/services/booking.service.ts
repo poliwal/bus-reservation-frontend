@@ -15,6 +15,7 @@ export class BookingService {
 
   readonly UrlBusSeat = "http://localhost:43836/api/BusSeatNoes"
   readonly UrlBus = "http://localhost:43836/api/buses"
+  readonly UrlBusSearch = "http://localhost:43836/api/BusSchedules/searchBuses"
 
   constructor(private http: HttpClient) { 
     this.busDetails = new BusDetails();
@@ -23,7 +24,7 @@ export class BookingService {
   }
 
   busList: BusDetails[] = [{
-    busScId:4,departureDate:"2021-08-12",
+    busScId:6,departureDate:"2021-08-12",
     busNo: 101, busName: "Velocity", source: "Mumbai",
     destination: "Delhi",
     departureTime: "22:10",
@@ -36,7 +37,7 @@ export class BookingService {
   },
 
   {
-    busScId:4,departureDate:"2021-08-12",
+    busScId:6,departureDate:"2021-08-12",
     busNo: 101, busName: "PanExpress", source: "Delhi",
     destination: "Mumbai",
     departureTime: "20:00",
@@ -69,5 +70,9 @@ export class BookingService {
 
   getBusbyid(id?: number) {
     return this.http.get(this.UrlBus + "/" + id);
+  }
+
+  searchBuses(source:string, destination:string, date:string){
+    return this.http.get(`${this.UrlBusSearch}?source=${source}&destination=${destination}&date=${date}`)
   }
 }

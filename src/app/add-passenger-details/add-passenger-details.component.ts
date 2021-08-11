@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BookingService } from '../shared/services/booking.service';
 import { Passenger } from '../shared/models/Passenger';
+import { BusDetails } from '../shared/models/busDetails';
+import { Bus } from '../shared/models/bus';
 
 @Component({
   selector: 'app-add-passenger-details',
@@ -12,12 +14,9 @@ import { Passenger } from '../shared/models/Passenger';
 })
 export class AddPassengerDetailsComponent implements OnInit {
 
-
-
-
   passenger: Passenger;
   passengerList: Passenger[] = [];
-
+  returnBusSearchResult:BusDetails[];
 
   constructor(private bookingService: BookingService, private router: Router) {
     this.passenger = new Passenger();
@@ -29,6 +28,7 @@ export class AddPassengerDetailsComponent implements OnInit {
   pAge: number;
 
   i = this.bookingService.bookedseats.length;
+
   fill() {
 
     this.passenger.pName = this.pName;
@@ -59,7 +59,19 @@ export class AddPassengerDetailsComponent implements OnInit {
     console.log(this.bookingService.passengerlist);
 
     if(this.bookingService.booking.isReturn){
-      this.router.navigate(["bus-search-list"])
+      let source = this.bookingService.busDetails.destination;
+      let destination = this.bookingService.busDetails.source;
+      let date = this.bookingService.booking.returnDate;
+      this.bookingService.searchBuses(source,destination,date).subscribe(
+        data=>{
+          this.returnBusSearchResult = data as BusDetails[];
+          this.navigateToReturnBusSearchList(this.returnBusSearchResult);
+        },
+        err=>{
+          console.log(err);
+        }
+      );
+      
     }
     else{
       this.router.navigate(["booking-confirmation"]);
@@ -67,7 +79,10 @@ export class AddPassengerDetailsComponent implements OnInit {
     
   }
 
-
+  navigateToReturnBusSearchList(returnBusSearchResult:BusDetails[]){
+    localStorage.setItem("returnBusSearchResult",JSON.stringify(returnBusSearchResult));
+    this.router.navigate(["bus-search-list"]);
+  }
 
   ngOnInit(): void {
   }

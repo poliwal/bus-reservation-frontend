@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BusBookingDetailsComponent } from '../bus-booking-details/bus-booking-details.component';
+import { Booking } from '../shared/models/booking';
 import { BusSeats } from '../shared/models/bus-seats';
 import { SeatSelect } from '../shared/models/seat-select';
 import { BookingService } from '../shared/services/booking.service';
@@ -18,6 +20,7 @@ export class SeatSelectComponent implements OnInit {
   selectedSeats:number[]=[];
   notAvailableSeats:Set<number> = new Set<number>();  
   count:number;
+  booking:Booking;
 
   constructor(private bookingService:BookingService, private router:Router) { 
     // this.seatSelect = [
@@ -39,6 +42,8 @@ export class SeatSelectComponent implements OnInit {
   }
 
   fillSeats(){
+    // console.log(this.bookingService.busDetails.busScId)
+    // console.log(this.bookingService.returnBusDetails.busScId)
     if(this.bookingService.returnBusDetails.busScId){
       this.bookingService.getBusSeatNos(this.bookingService.returnBusDetails.busScId).subscribe(
         data => {
@@ -63,11 +68,12 @@ export class SeatSelectComponent implements OnInit {
         }
       )
     }
-    
+    // console.log(this.seatSelect);
   }
 
   starterPack(){
     this.count = this.bookingService.booking.noOfPassengers ? this.bookingService.booking.noOfPassengers : 0;
+    this.booking = this.bookingService.booking;
     this.seatSelect.forEach(element => {
       if(!element.isAvailable){
         this.notAvailableSeats.add(element.seatNo-1);
@@ -78,21 +84,29 @@ export class SeatSelectComponent implements OnInit {
 
   onClick(i:number){
     // console.log(this.notAvailableSeats.has(i),this.notAvailableSeats);
-    // if(this.bookingService.booking.noOfPassengers){
-    //   if(this.count>0){
-    //     if(!this.notAvailableSeats.has(i)){
-    //       this.count -= 1;
-    //       this.seatSelect[i].isAvailable = !this.seatSelect[i].isAvailable;
-    //       if(!this.seatSelect[i].isAvailable){
-    //         this.selectedSeats.push(i);
-    //       }
-    //       else{
-    //         this.selectedSeats = this.selectedSeats.filter(item => item !== i)
-    //       }
-    //     }
-    //   }
-    // }
-    // else{
+    if(this.booking.noOfPassengers){
+      if(this.count>0 || this.selectedSeats.includes(i)){
+        if(!this.notAvailableSeats.has(i)){
+          if(this.selectedSeats.includes(i)){
+            this.count += 1;
+            console.log("inside **********************");
+          }
+          else if(this.count>0){
+            this.count -= 1;
+          }
+          
+          this.seatSelect[i].isAvailable = !this.seatSelect[i].isAvailable;
+          if(!this.seatSelect[i].isAvailable){
+            this.selectedSeats.push(i);
+          }
+          else{
+            this.selectedSeats = this.selectedSeats.filter(item => item !== i)
+            // this.count += 1;
+          }
+        }
+      }
+    }
+    else{
       if(!this.notAvailableSeats.has(i)){
         this.seatSelect[i].isAvailable = !this.seatSelect[i].isAvailable;
         if(!this.seatSelect[i].isAvailable){
@@ -102,7 +116,7 @@ export class SeatSelectComponent implements OnInit {
           this.selectedSeats = this.selectedSeats.filter(item => item !== i)
         }
       }
-    // }
+    }
 
     
     

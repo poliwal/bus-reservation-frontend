@@ -1,40 +1,43 @@
 <h2 class="text-center">Search</h2>
 
 <div class="border mx-auto w-50 p-3">
-    <form [formGroup]="bussearchform">
-        <div>
+    <form [formGroup]="bussearchform" (submit)="onSearch(bussearchform)">
+        <!-- <div>
             <label>Trip</label>&nbsp;
             <select class="form-control custom-select" (change)="changeTrip($event)" formControlName="trip">
                 <option value="" disabled>Choose one way/return</option>
                 <option *ngFor="let trip of triptype" [ngValue]="trip">{{ trip }}</option>
             </select>
-        </div>
+        </div> -->
 
         <div>
             <label>From</label>&nbsp;
-            <input class="form-control" type="text" formControlName="from" />
+            <input class="form-control" type="text" formControlName="source" />
         </div>
 
         <div>
             <label>To</label> &nbsp;
-            <input class="form-control" type="text" formControlName="to" />
+            <input class="form-control" type="text" formControlName="destination" />
         </div>
 
         <div>
-            <label>Departure Date</label> &nbsp;
-            <input class="form-control" type="date" formControlName="departure" />
+            <label>From Date</label> &nbsp;
+            <input class="form-control" type="date" formControlName="date" />
         </div>
 
-        <div>
-            <label>Return Date</label> &nbsp;
-            <input class="form-control" type="date" formControlName="returndate" />
-        </div>
+        <!-- <div>
+            <label>To Date</label> &nbsp;
+            <input class="form-control" type="date" formControlName="toDate" />
+        </div> -->
 
-        <div>
+        <!-- <div>
             <label>Number of Passengers</label> &nbsp;
             <input class="form-control" type="number" formcontrolName="passengers" />
-        </div>
+        </div> -->
 
-        <button class="btn btn-success" type="submit">Search</button>
+        <div class="text-center mt-3">
+            <button class="btn btn-success" type="submit">Search</button>
+        </div>
+        
     </form>
 </div>

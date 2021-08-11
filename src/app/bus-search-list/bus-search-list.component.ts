@@ -14,10 +14,11 @@ import { BookingService } from '../shared/services/booking.service';
 export class BusSearchListComponent implements OnInit {
 
   busList:BusDetails[]=[];
+  resultToGet:string;
 
   constructor(private bookingService:BookingService,private router:Router) { 
-
-    this.busList=this.bookingService.busList;
+    this.resultToGet = this.bookingService.booking.isReturn ? 'returnBusSearchResult' : 'busSearchResult'
+    this.busList=JSON.parse(localStorage.getItem(this.resultToGet)!);
   }
 
   bus:Bus[];

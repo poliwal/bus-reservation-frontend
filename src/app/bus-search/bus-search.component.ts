@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BusDetails } from '../shared/models/busDetails';
+import { BookingService } from '../shared/services/booking.service';
 
 @Component({
   selector: 'app-bus-search',
@@ -9,26 +12,49 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 export class BusSearchComponent implements OnInit {
 
   bussearchform;
-  triptype:any=['one way','round trip']
+  // triptype:any=['one way','round trip']
 
-  constructor(private fb:FormBuilder) { 
+  constructor(private fb:FormBuilder, private bookingService:BookingService, private router:Router) { 
 
     this.bussearchform = this.fb.group({
-      trip:[''],
-      from:['',Validators.required],
-      to:['',Validators.required],
-      departure:['',Validators.required],
-      returndate:[''],
-      passengers:['']
+      source:['',Validators.required],
+      destination:['',Validators.required],
+      date:['',Validators.required],
+      // toDate:[''],
     })
   }
 
-  changeTrip(e:any) {
-    this.triptype.setValue(e.target.value, {
-      onlySelf: true
-    })
-  }
+  // changeTrip(e:any) {
+  //   this.triptype.setValue(e.target.value, {
+  //     onlySelf: true
+  //   })
+  // }
 
   ngOnInit(): void {
   }
+
+  busSearchResult:BusDetails[];
+
+  onSearch(bussearchform:FormGroup){
+    // console.log(bussearchform)
+    let source = bussearchform.value.source;
+    let destination = bussearchform.value.destination;
+    let date = bussearchform.value.date;
+    // console.log(source,destination,date)
+    this.bookingService.searchBuses(source,destination,date).subscribe(
+      data=>{
+        console.log(data);
+        this.busSearchResult = data as BusDetails[];
+        this.navigateToBusSearchList(this.busSearchResult);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
+  navigateToBusSearchList(busSearchResult:BusDetails[]){
+    localStorage.setItem("busSearchResult",JSON.stringify(busSearchResult));
+    this.router.navigate(["bus-search-list"]);
+  } 
 }
