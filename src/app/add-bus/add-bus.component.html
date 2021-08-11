@@ -46,11 +46,11 @@
 
         <div class="form-group mb-2">
             <div><label>Departure Time</label>
-                <input class="form-control" type="time" formControlName="departure" id="depinput">
+                <input class="form-control" type="time" formControlName="departureTime" id="depinput">
             </div>
-            <div *ngIf="!addform.get('departure')?.valid && (addform.get('departure')?.dirty || addform.get('departure')?.touched)"
+            <div *ngIf="!addform.get('departureTime')?.valid && (addform.get('departureTime')?.dirty || addform.get('departureTime')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('departure')?.errors?.required">
+                <div *ngIf="addform.get('departureTime')?.errors?.required">
                     <small class="text-danger">Departure time is required</small>
                 </div>
 
@@ -59,11 +59,11 @@
 
         <div class="form-group mb-2">
             <div><label>Arrival Time</label>
-                <input class="form-control" type="time" formControlName="arrival" id="arrinput">
+                <input class="form-control" type="time" formControlName="arrivalTime" id="arrinput">
             </div>
-            <div *ngIf="!addform.get('arrival')?.valid && (addform.get('arrival')?.dirty || addform.get('arrival')?.touched)"
+            <div *ngIf="!addform.get('arrivalTime')?.valid && (addform.get('arrivalTime')?.dirty || addform.get('arrivalTime')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('arrival')?.errors?.required">
+                <div *ngIf="addform.get('arrivalTime')?.errors?.required">
                     <small class="text-danger">Arrival Time is required</small>
                 </div>
 
@@ -73,11 +73,11 @@
 
         <div class="form-group mb-2">
             <div><label>Number of seats available</label>
-                <input class="form-control" type="number" formControlName="seatsAvailable" id="seatinput">
+                <input class="form-control" type="number" formControlName="noOfSeats" id="seatinput">
             </div>
-            <div *ngIf="!addform.get('seatsAvailable')?.valid && (addform.get('seatsAvailable')?.dirty || addform.get('seatsAvailable')?.touched)"
+            <div *ngIf="!addform.get('noOfSeats')?.valid && (addform.get('noOfSeats')?.dirty || addform.get('noOfSeats')?.touched)"
                 class="error">
-                <div *ngIf="addform.get('seatsAvailable')?.errors?.required">
+                <div *ngIf="addform.get('noOfSeats')?.errors?.required">
                     <small class="text-danger">Number of seats is required</small>
                 </div>
 

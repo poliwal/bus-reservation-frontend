@@ -18,13 +18,14 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminBusListComponent } from './admin-bus-list/admin-bus-list.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { EditBusComponent } from './edit-bus/edit-bus.component';
-import { BusSearchDetailsComponent } from './bus-search-details/bus-search-details.component';
 import { SeatSelectComponent } from './seat-select/seat-select.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminServiceService } from './shared/services/admin-service.service';
 import { BookingService } from './shared/services/booking.service';
 import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
 import { AddPassengerDetailsComponent } from './add-passenger-details/add-passenger-details.component';
+import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
+import { BusSearchListComponent } from './bus-search-list/bus-search-list.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +43,11 @@ import { AddPassengerDetailsComponent } from './add-passenger-details/add-passen
     AdminBusListComponent,
     CustomerDashboardComponent,
     EditBusComponent,
-    BusSearchDetailsComponent,
     SeatSelectComponent,
     BusBookingDetailsComponent,
-    AddPassengerDetailsComponent
+    AddPassengerDetailsComponent,
+    BookingConfirmationComponent,
+    BusSearchListComponent
   ],
   imports: [
     BrowserModule,

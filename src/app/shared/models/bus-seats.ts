@@ -1,6 +1,6 @@
 export class BusSeats{
     seatId?:number;
-    busId:number;
+    busScId:number;
     seatNo:number;
     isAvailable:boolean;
 }

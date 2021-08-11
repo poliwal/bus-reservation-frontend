@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Booking } from '../shared/models/booking';
+
 import { Bus } from '../shared/models/bus';
+import { BusDetails } from '../shared/models/busDetails';
 import { BookingService } from '../shared/services/booking.service';
 
 @Component({
@@ -10,18 +13,20 @@ import { BookingService } from '../shared/services/booking.service';
 })
 export class BusBookingDetailsComponent implements OnInit {
 
-  constructor(private bookingService:BookingService) {
+  constructor(private bookingService:BookingService, private router:Router) {
     this.booking=new Booking();
    }
 
   ngOnInit(): void {
-    this.fetchBus(101);
+    // this.fetchBus(123);
+    this.fetchBuslocal();
   }
 
   //static - this will be implemented when user books for a bus ticket from the prev list of buses
 
-  // bus1:any;
-  bus: Bus;
+  bus: BusDetails;
+  returnBusDetails:BusDetails;
+
   fetchBus(id?: number) {
     this.bookingService.getBusbyid(id).subscribe((data) => {
       console.log(data);
@@ -32,7 +37,14 @@ export class BusBookingDetailsComponent implements OnInit {
     );
   }
 
-
+  
+  fetchBuslocal()
+  {
+    this.bus=this.bookingService.busDetails;
+    console.log(this.bus);
+    this.returnBusDetails = this.bookingService.returnBusDetails;
+    console.log(this.returnBusDetails)
+  } 
 
   booking: Booking;
 
@@ -53,19 +65,41 @@ export class BusBookingDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.booking.busId = this.bus.busId;
-    this.booking.status = "Booking";
-
-    if (this.booking.wholeBus == true) {
-      this.booking.totalFare = (this.bus.fare * 24) + 3000;
-      this.booking.securityDeposit = 3000;
+    if(this.returnBusDetails.busScId){
+      this.router.navigate(["seat-select"]);
     }
-    else {
-      this.booking.totalFare = this.booking.noOfPassengers * this.bus.fare;
+    else{
+      this.bookingService.busDetails = this.bus;
+      
+      if (this.booking.wholeBus == true) {
+        this.booking.totalFare = (this.bus.fare * 24) + 3000;
+        this.booking.securityDeposit = 30000;
+      }
+
+      // this.booking.busId = this.bus.busScId;
+      this.booking.status = "Booked";
+
+      this.bookingService.booking = this.booking;
+
+      if(this.booking.wholeBus){
+        this.router.navigate(["booking-confirmation"]);
+      }
+      else{
+        this.router.navigate(["seat-select"])
+      }
     }
+    
 
+    
+    // else {
+    //    this.booking.totalFare = this.booking.noOfPassengers * this.bus.fare;
+    // }
 
-    console.log(this.booking);
+    
+
+    // console.log(this.booking);
+    // console.log(this.bookingService.booking);
+
   }
 
 }

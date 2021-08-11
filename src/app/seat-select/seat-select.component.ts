@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BusSeats } from '../shared/models/bus-seats';
 import { SeatSelect } from '../shared/models/seat-select';
 import { BookingService } from '../shared/services/booking.service';
@@ -16,8 +17,9 @@ export class SeatSelectComponent implements OnInit {
   filledSeat:string;
   selectedSeats:number[]=[];
   notAvailableSeats:Set<number> = new Set<number>();  
+  count:number;
 
-  constructor(private bookingService:BookingService) { 
+  constructor(private bookingService:BookingService, private router:Router) { 
     // this.seatSelect = [
     //   {seatNo:1,isAvailable:true},{seatNo:2,isAvailable:true},{seatNo:3,isAvailable:true},{seatNo:4,isAvailable:false},
     //   {seatNo:5,isAvailable:true},{seatNo:6,isAvailable:true},{seatNo:7,isAvailable:true},{seatNo:8,isAvailable:true},
@@ -37,18 +39,35 @@ export class SeatSelectComponent implements OnInit {
   }
 
   fillSeats(){
-    this.bookingService.getBusSeatNos(122).subscribe(
-      data => {
-        this.seatSelect = data as BusSeats[];
-        this.starterPack()
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    if(this.bookingService.returnBusDetails.busScId){
+      this.bookingService.getBusSeatNos(this.bookingService.returnBusDetails.busScId).subscribe(
+        data => {
+          this.seatSelect = data as BusSeats[];
+          console.log(data);
+          this.starterPack();
+        },
+        err => {
+          console.log(err)
+        }
+      )
+    }
+    else{
+      this.bookingService.getBusSeatNos(this.bookingService.busDetails.busScId).subscribe(
+        data => {
+          this.seatSelect = data as BusSeats[];
+          console.log(data);
+          this.starterPack();
+        },
+        err => {
+          console.log(err)
+        }
+      )
+    }
+    
   }
 
   starterPack(){
+    this.count = this.bookingService.booking.noOfPassengers ? this.bookingService.booking.noOfPassengers : 0;
     this.seatSelect.forEach(element => {
       if(!element.isAvailable){
         this.notAvailableSeats.add(element.seatNo-1);
@@ -59,15 +78,33 @@ export class SeatSelectComponent implements OnInit {
 
   onClick(i:number){
     // console.log(this.notAvailableSeats.has(i),this.notAvailableSeats);
-    if(!this.notAvailableSeats.has(i)){
-      this.seatSelect[i].isAvailable = !this.seatSelect[i].isAvailable;
-      if(!this.seatSelect[i].isAvailable){
-        this.selectedSeats.push(i);
+    // if(this.bookingService.booking.noOfPassengers){
+    //   if(this.count>0){
+    //     if(!this.notAvailableSeats.has(i)){
+    //       this.count -= 1;
+    //       this.seatSelect[i].isAvailable = !this.seatSelect[i].isAvailable;
+    //       if(!this.seatSelect[i].isAvailable){
+    //         this.selectedSeats.push(i);
+    //       }
+    //       else{
+    //         this.selectedSeats = this.selectedSeats.filter(item => item !== i)
+    //       }
+    //     }
+    //   }
+    // }
+    // else{
+      if(!this.notAvailableSeats.has(i)){
+        this.seatSelect[i].isAvailable = !this.seatSelect[i].isAvailable;
+        if(!this.seatSelect[i].isAvailable){
+          this.selectedSeats.push(i);
+        }
+        else{
+          this.selectedSeats = this.selectedSeats.filter(item => item !== i)
+        }
       }
-      else{
-        this.selectedSeats = this.selectedSeats.filter(item => item !== i)
-      }
-    }
+    // }
+
+    
     
   }
 
@@ -82,7 +119,27 @@ export class SeatSelectComponent implements OnInit {
         }
       )
     });
-    
+    if(this.bookingService.returnBusDetails.busScId){
+      this.navigateToBookingConfirmation();
+    }
+    else{
+      this.navigateToAddPassengers();
+    }
+  }
+
+  navigateToBookingConfirmation(){
+    this.bookingService.booking.totalFare = this.bookingService.booking.totalFare * 2;
+    this.selectedSeats.forEach((element,index) => {
+      this.bookingService.passengerlist[index].returnSeatNo = element+1;
+    });
+    this.router.navigate(["booking-confirmation"]);
+  }
+
+  navigateToAddPassengers(){
+    this.bookingService.booking.totalFare = this.bookingService.busDetails.fare * this.selectedSeats.length;
+    this.bookingService.bookedseats = this.selectedSeats;
+    this.bookingService.booking.noOfPassengers = this.selectedSeats.length;
+    this.router.navigate(["add-passenger-details"]);
   }
 
 }

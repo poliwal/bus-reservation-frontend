@@ -1,13 +1,13 @@
 export class Booking{
     cid:number;
-    busId:number;
+    busScId:number;
     noOfPassengers:number;
     totalFare:number;
     status:string;
     dateOfBooking:string;
-    isReturn:boolean;
+    isReturn:boolean = false;
     returnDate:string;
-    withDriver:boolean;
+    withDriver:boolean = false;
     securityDeposit:number;
-    wholeBus:boolean;
+    wholeBus:boolean = false;
 }

@@ -1,4 +1,6 @@
-export class Bus{
+export class BusDetails{
+    busScId?:number;
+    departureDate?:string;
     busNo:number;
     busName:string;
     source:string;

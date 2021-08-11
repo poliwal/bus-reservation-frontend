@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Bus } from '../models/bus';
 import { BusSeats } from '../models/bus-seats';
+import { BusSchedule } from '../models/busSchedule';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,9 @@ import { BusSeats } from '../models/bus-seats';
 export class AdminServiceService {
 
   readonly Url = "http://localhost:43836/api/buses"
-  readonly UrlBs = "http://localhost:43836/api/BusSeatNoes"
-  readonly UrlSch = "​http://localhost:43836/api​/Schedules"
+  readonly UrlSeat = "http://localhost:43836/api/BusSeatNoes"
+  readonly UrlSchedule = "http://localhost:43836/api/BusSchedules"
+
 
   editBusDetails:Bus;
   
@@ -20,16 +22,16 @@ export class AdminServiceService {
     return this.http.post(this.Url,bus);
   }
 
-  getBus(busId:number){
-    return this.http.get(this.Url+'/'+busId);
+  getBus(busNo:number){
+    return this.http.get(this.Url+'/'+busNo);
   }
 
   getAllBus(){
     return this.http.get(this.Url);
   }
 
-  deleteBus(busId:number){
-    return this.http.delete(this.Url+'/'+busId);
+  deleteBus(busNo:number){
+    return this.http.delete(this.Url+'/'+busNo);
   }
 
   setEditBusDetails(busDetails:Bus){
@@ -41,12 +43,15 @@ export class AdminServiceService {
   }
 
   updateBusDetailsService(bus:Bus){
-    return this.http.put(this.Url+'/'+bus.busId, bus);
+    return this.http.put(this.Url+'/'+bus.busNo, bus);
   }
 
   addBusSeatNos(busSeats:BusSeats[]){
-    return this.http.post(this.UrlBs,busSeats,{responseType:'text'});
+    return this.http.post(this.UrlSeat,busSeats,{responseType:'text'});
   }
 
+  addBusSchedule(busSchedule:BusSchedule){
+    return this.http.post(this.UrlSchedule,busSchedule);
+  }
   
 }

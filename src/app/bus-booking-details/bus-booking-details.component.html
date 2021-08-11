@@ -23,7 +23,7 @@
     <br>
     <div class="row">
         <div class="col-sm-3" style="background-color:lavender;">Departure</div>
-        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.departure}}</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.departureTime}}</div>
 
         <!--  -->
 
@@ -31,14 +31,14 @@
     <br>
     <div class="row">
         <div class="col-sm-3" style="background-color:lavender;">Arrival</div>
-        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.arrival}}</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.arrivalTime}}</div>
 
         <!--  -->
     </div>
     <br>
     <div class="row">
         <div class="col-sm-3" style="background-color:lavender;">Seats Available</div>
-        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.seatsAvailable}}</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.noOfSeats}}</div>
     </div>
 
     <br>
@@ -72,7 +72,8 @@
 
 
 
-<div class="NumSeat mb-5">
+<div *ngIf="!returnBusDetails.busScId" class="container NumSeat mb-5">
+<!-- <div class="container NumSeat mb-5"> -->
     <div>
         <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Book all seats?</label>
         <input type="checkbox" (change)="onWholeBusDeselect()" [(ngModel)]="booking.wholeBus">
@@ -120,11 +121,8 @@
 
 
     </div>
+</div>
 
-
-
-    <div class="button">
-        <button id="button" type="submit" (click)="onSubmit()" class="btn btn-success">Proceed</button>
-    </div>
-
+<div class="container text-center">
+    <button id="button" type="submit" (click)="onSubmit()" class="btn btn-success">Proceed</button>
 </div>

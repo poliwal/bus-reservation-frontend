@@ -1,0 +1,26 @@
+<div class="container border w-50 mx-auto mt-5">
+
+    <div>
+        <p>Whole bus : {{booking.wholeBus}}</p>
+    </div>
+    <div *ngIf="!booking.wholeBus">
+        <p>No. of Passengers : {{booking.noOfPassengers}}</p>
+    </div>
+    <div>
+        <p>Total Fare : {{booking.totalFare}}</p>
+    </div>
+    <div>
+        <p>Is a return ticket : {{booking.isReturn}}</p>
+    </div>
+    <div *ngIf="booking.isReturn">
+        <p>Return Date : {{booking.returnDate}}</p>
+    </div>
+    <div *ngIf="booking.wholeBus">
+        <p>Booked with a personal driver : {{booking.withDriver}}</p>
+    </div>
+    <div *ngIf="booking.withDriver">
+        <p>Security Deposit (exclusive of total fare) : {{booking.securityDeposit}}</p>
+    </div>
+
+    <button class="btn btn-primary" (click)="pay()">Confirm & Pay</button>
+</div>

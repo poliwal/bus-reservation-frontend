@@ -28,14 +28,14 @@
                 <tr>
                     <th>Passenger Name</th>
                     <th>Age</th>
-                    <th>Option</th>
+                    <!-- <th>Option</th> -->
                 </tr>
             </thead>
             <tbody *ngFor = "let p of passengerList">
                 <tr>
                     <td>{{p.pName}}</td>
                     <td>{{p.pAge}}</td>
-                    <td><button class="btn btn-primary">Update</button></td>
+                    <!-- <td><button class="btn btn-primary">Update</button></td> -->
                 </tr>
             </tbody>
             <button class="btn btn-success" [disabled]="i" (click)="onFinalize()" [routerLink]="">Done</button>

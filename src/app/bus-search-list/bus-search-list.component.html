@@ -1,1 +1,33 @@
-<p>bus-search-list works!</p>
+<h1>List Of Buses</h1>
+<div class="container">
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Bus Name</td>
+                    <td>Source</td>
+                    <td>Destination</td>
+                    <td>Departure</td>
+                    <td>Arrival</td>
+                    <td>Seats Available</td>
+                    <td>Via</td>
+                    <td>Fare</td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let b of busList">
+
+                <tr>
+                    <td>{{b.busName}}</td>
+                    <td>{{b.source}}</td>
+                    <td>{{b.destination}}</td>
+                    <td>{{b.departureTime}}</td>
+                    <td>{{b.arrivalTime}}</td>
+                    <td>{{b.noOfSeats}}</td>
+                    <td>{{b.via}}</td>
+                    <td>{{b.fare}}</td>
+                    <td><button class="btn btn-primary" (click)="onBook(b)">Book</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
