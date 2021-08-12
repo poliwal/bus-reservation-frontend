@@ -1,7 +1,7 @@
 export class Customer{
     cid?:number;
-    fName?:string;
-    lName?:string;
+    fname?:string;
+    lname?:string;
     email?:string;
     password?:string;
     contactNo?:string;

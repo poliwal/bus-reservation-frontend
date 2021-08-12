@@ -5,6 +5,7 @@ import { Passenger } from '../models/Passenger';
 import { Booking } from '../models/booking';
 import { BusDetails } from '../models/busDetails';
 import { ReturnBooking } from '../models/return-booking';
+import { Customer } from '../models/customer';
 
 
 
@@ -20,7 +21,8 @@ export class BookingService {
   readonly UrlBooking = "http://localhost:43836/api/Bookings"
   readonly UrlPassenger = "http://localhost:43836/api/PassengerDetails"
   readonly UrlReturn = "http://localhost:43836/api/ReturnBookings"
-  readonly UrlCustomer = "http://localhost:43836/api/Customers/deductFare"
+  readonly UrlCustomerDeduct = "http://localhost:43836/api/Customers/deductFare"
+  readonly UrlCustomer = "http://localhost:43836/api/Customers"
 
   constructor(private http: HttpClient) { 
     this.busDetails = new BusDetails();
@@ -37,6 +39,8 @@ export class BookingService {
   bookedseats: number[] = [];
 
   passengerlist: Passenger[];
+
+  unAuthCust: Customer;
 
   // busList: BusDetails[] = [{
   //   busScId:6,departureDate:"2021-08-12",
@@ -100,10 +104,14 @@ export class BookingService {
   }
 
   deductWalletAmount(cid:number,totalFare:number){
-    return this.http.put(`${this.UrlCustomer}?cid=${cid}&fare=${totalFare}`,null,{responseType:'text'});
+    return this.http.put(`${this.UrlCustomerDeduct}?cid=${cid}&fare=${totalFare}`,null,{responseType:'text'});
   }
 
   reduceAvailableSeats(busNo:number,num:number){
     return this.http.put(`${this.UrlBus}?busNo=${busNo}&num=${num}`,null,{responseType:'text'});
+  }
+
+  addCustomer(cust:Customer){
+    return this.http.post(this.UrlCustomer,cust);
   }
 }

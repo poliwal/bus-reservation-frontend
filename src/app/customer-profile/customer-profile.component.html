@@ -9,7 +9,7 @@
             <!-- Fname -->
             <div class="mb-2">
                 <label for="">Enter First Name<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="fName" name="fName" [(ngModel)]="customer.fName"
+                <input class="form-control" type="text" id="fName" name="fName" [(ngModel)]="customer.fname"
                  #fName="ngModel" required minlength="5">
                 <!-- <div *ngIf="!cname?.valid && (cname?.dirty||cname?.touched)" class="error">
                     <div *ngIf="cname.errors?.required">
@@ -24,7 +24,7 @@
             <!-- Lname -->
             <div class="mb-2">
                 <label for="">Enter Last Name<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="lName" name="lName" [(ngModel)]="customer.lName" 
+                <input class="form-control" type="text" id="lName" name="lName" [(ngModel)]="customer.lname" 
                 #lName="ngModel" required minlength="5">
                 <!-- <div *ngIf="!cname?.valid && (cname?.dirty||cname?.touched)" class="error">
                     <div *ngIf="cname.errors?.required">
@@ -45,8 +45,8 @@
             <!-- Gender -->
             <div class="mb-2">
                 <label for="">Gender</label>
-                <select class="form-control" name="gender" id="" [(ngModel)]="customer.gender">
-                    <option value="" disabled>--Select--</option>
+                <select class="form-select" name="gender" id="" [(ngModel)]="customer.gender">
+                    <option value="" hidden selected disabled>--Select--</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>

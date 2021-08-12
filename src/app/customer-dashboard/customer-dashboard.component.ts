@@ -25,7 +25,8 @@ export class CustomerDashboardComponent implements OnInit {
 
   logOff(){
     localStorage.removeItem("cust");
-    this.router.navigate(["home"])
+    localStorage.removeItem("cid");
+    this.router.navigate(["home"]);
   }
 
 }

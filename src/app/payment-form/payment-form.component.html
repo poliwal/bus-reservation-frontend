@@ -1,0 +1,140 @@
+<div class="container py-5">
+    <!-- For demo purpose -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-6">Payment Form</h1>
+        </div>
+    </div>
+    <!-- End -->
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                        <!-- Credit card form tabs -->
+                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                            <li class="nav-item">
+                                <p href="#" class="nav-link active">
+                                    <i class="fas fa-credit-card mr-2"></i> Credit Card
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End -->
+                    <!-- Credit card form content -->
+                    <div class="tab-content">
+                        <!-- credit card info-->
+                        <div id="credit-card" class="tab-pane fade show active pt-3">
+                            <form #ccform="ngForm" (submit)="onSubmit()">
+                                <div class="form-group">
+                                    <label for="username">
+                                        <h6>Card Owner</h6>
+                                    </label>
+                                    <input type="text" name="username" placeholder="Card Owner Name" [(ngModel)]="ccInfo.name" #name="ngModel" required minlength="5"
+                                        class="form-control" />
+                                </div>
+                                <div *ngIf="!name?.valid && (name?.dirty || name?.touched)" class="error">
+                                    <div *ngIf="name.errors?.required">
+                                        <small class="text-danger">Customer name is required</small>
+                                    </div>
+                        
+                                    <div *ngIf="name.errors?.minlength">
+                                        <small class="text-danger">Customer name should be of
+                                            minimumlength: {{name.errors?.minlength.requiredLength}}</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardNumber">
+                                        <h6>Card number</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" name="cardNumber" [(ngModel)]="ccInfo.ccNo" #ccNo="ngModel"
+                                            required pattern="^\d{16}$" placeholder="Valid card number"
+                                            class="form-control" />
+
+                                        <div class="input-group-append">
+                                            <span class="input-group-text text-muted">
+                                                <i class="fab fa-cc-visa mx-1"></i>
+                                                <i class="fab fa-cc-mastercard mx-1"></i>
+                                                <i class="fab fa-cc-amex mx-1"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!ccNo?.valid && (ccNo?.dirty || ccNo?.touched)" class="error">
+                                        <div *ngIf="ccNo.errors?.required">
+                                            <small class="text-danger">Card Number is required</small>
+                                        </div>
+                                        <div *ngIf="ccNo.errors?.pattern">
+                                            <small class="text-danger">Follow correct pattern(16 digits)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">
+                                                    <h6>Expiration Date</h6>
+                                                </span></label>
+                                            <div class="input-group">
+                                                <input type="number" placeholder="MM" name="month" class="form-control" min="1" max="12"
+                                                 [(ngModel)]="ccInfo.month" #month="ngModel" required />
+                                                    <div *ngIf="!month?.valid && (month?.dirty || month?.touched)" class="error">
+                                                        <div *ngIf="month.errors?.required">
+                                                            <small class="text-danger">Month is required</small>
+                                                        </div>
+                                            
+                                                        <!-- <div *ngIf="month.errors?.min">
+                                                            <small class="text-danger">Customer month should be of
+                                                                minimumlength: {{month.errors?.minlength.requiredLength}}</small>
+                                                        </div> -->
+                                                    </div>
+                                                <input type="number" placeholder="YY" name="year" class="form-control"
+                                                [(ngModel)]="ccInfo.year" #year="ngModel" required />
+                                                <div *ngIf="!year?.valid && (year?.dirty || year?.touched)" class="error">
+                                                    <div *ngIf="year.errors?.required">
+                                                        <small class="text-danger">Year is required</small>
+                                                    </div>
+                                        
+                                                    <!-- <div *ngIf="year.errors?.min">
+                                                        <small class="text-danger">Customer year should be of
+                                                            minimumlength: {{year.errors?.minlength.requiredLength}}</small>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-4">
+                                            <label data-toggle="tooltip"
+                                                title="Three digit CV code on the back of your card">
+                                                <h6>
+                                                    CVV <i class="fa fa-question-circle d-inline"></i>
+                                                </h6>
+                                            </label>
+                                            <input type="number" required name="cvv" class="form-control" [(ngModel)]="ccInfo.cvv" #cvv="ngModel" pattern="^\d{3}$"/>
+                                            <div *ngIf="!cvv?.valid && (cvv?.dirty || cvv?.touched)" class="error">
+                                                <div *ngIf="cvv.errors?.required">
+                                                    <small class="text-danger">CVV is required</small>
+                                                </div>
+                                                <div *ngIf="cvv.errors?.pattern">
+                                                    <small class="text-danger">Follow correct pattern(3 digits)</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm">
+                                        Confirm Payment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End -->
+                    <!-- End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

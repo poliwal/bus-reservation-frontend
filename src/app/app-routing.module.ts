@@ -16,6 +16,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { CustomerRegisterComponent } from './customer-register/customer-register.component';
 import { EditBusComponent } from './edit-bus/edit-bus.component';
 import { HomeComponent } from './home/home.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
 import { SeatSelectComponent } from './seat-select/seat-select.component';
 import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
   {path:"cust-register", component:CustomerRegisterComponent},
   
   
+  {path:"payment-form", component:PaymentFormComponent},
   {path:"add-bus", component:AddBusComponent},
   // {path:"edit-bus", component:EditBusComponent},
   {path:"schedule-bus", component:ScheduleBusComponent},

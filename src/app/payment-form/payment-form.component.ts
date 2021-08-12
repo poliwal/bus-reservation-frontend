@@ -1,25 +1,21 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Booking } from '../shared/models/booking';
-import { Bus } from '../shared/models/bus';
 import { BusDetails } from '../shared/models/busDetails';
+import { CreditCard } from '../shared/models/creditcard';
+import { Customer } from '../shared/models/customer';
 import { Passenger } from '../shared/models/Passenger';
 import { ReturnBooking } from '../shared/models/return-booking';
 import { BookingService } from '../shared/services/booking.service';
 
 @Component({
-  selector: 'app-booking-confirmation',
-  templateUrl: './booking-confirmation.component.html',
-  styleUrls: ['./booking-confirmation.component.css']
+  selector: 'app-payment-form',
+  templateUrl: './payment-form.component.html',
+  styleUrls: ['./payment-form.component.css']
 })
-export class BookingConfirmationComponent implements OnInit {
+export class PaymentFormComponent implements OnInit {
 
-  booking:Booking;
-  bus:BusDetails;
-  passengerList:Passenger[];
-  returnBusDetails:BusDetails;
-  returnBooking:ReturnBooking;
+  ccInfo:CreditCard={}
 
   constructor(private bookingService:BookingService, private router:Router) {
     this.booking = new Booking();
@@ -27,30 +23,53 @@ export class BookingConfirmationComponent implements OnInit {
     this.returnBooking = new ReturnBooking();
   }
 
+  unAuthCust:Customer = {};
+  booking:Booking;
+  bus:BusDetails;
+  passengerList:Passenger[];
+  returnBusDetails:BusDetails;
+  returnBooking:ReturnBooking;
+
   ngOnInit(): void {
-    this.onLoading();
+    this.onLoading()
   }
 
   onLoading(){
     this.booking = this.bookingService.booking;
-    this.booking.cid = 1;
+    this.unAuthCust = this.bookingService.unAuthCust;
+    // this.booking.cid = 1;
     this.bus = this.bookingService.busDetails;
     this.passengerList = this.bookingService.passengerlist;
     this.returnBusDetails = this.bookingService.returnBusDetails;
-    // console.log(this.bookingService.booking);
-    // console.log(this.bookingService.busDetails);
-    // console.log(this.bookingService.returnBusDetails);
-    // console.log(this.bookingService.passengerlist);
-
-    
   }
 
-  pay(){
-    this.addBookingToDb(this.booking);
+  onSubmit()
+  {
+    console.log(this.unAuthCust);
+    console.log(this.bookingService.booking);
+    console.log(this.bookingService.busDetails);
+    console.log(this.bookingService.returnBusDetails);
+    console.log(this.bookingService.passengerlist);
+    this.addUnAuthCustomer(this.unAuthCust);
+    // this.addBookingToDb(this.booking);
     alert("Payment Done");
   }
 
-  addBookingToDb(booking:Booking){
+  addUnAuthCustomer(unAuthCust:Customer){
+    this.bookingService.addCustomer(unAuthCust).subscribe(
+      data=>{
+        console.log(data);
+        this.unAuthCust = data as Customer;
+        this.addBookingToDb(this.unAuthCust.cid!, this.booking)
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
+  addBookingToDb(cid:number,booking:Booking){
+    booking.cid = cid;
     this.bookingService.addBooking(booking).subscribe(
       data=>{
         this.booking = data as Booking;
@@ -69,7 +88,7 @@ export class BookingConfirmationComponent implements OnInit {
       }
     );
 
-    this.deductFare(this.booking.cid,this.booking.totalFare);
+    // this.deductFare(this.booking.cid,this.booking.totalFare);
 
     // this.getBusNoByBusScId(this.booking.busScId,this.booking.noOfPassengers);
     // if(this.booking.isReturn){
@@ -110,16 +129,16 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
 
-  deductFare(cid:number,totalFare:number){
-    this.bookingService.deductWalletAmount(cid,totalFare).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  // deductFare(cid:number,totalFare:number){
+  //   this.bookingService.deductWalletAmount(cid,totalFare).subscribe(
+  //     data => {
+  //       console.log(data);
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
 
   busSch:any;
@@ -146,4 +165,3 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
 }
-

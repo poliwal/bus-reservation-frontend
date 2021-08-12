@@ -27,6 +27,8 @@ import { AddPassengerDetailsComponent } from './add-passenger-details/add-passen
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { BusSearchListComponent } from './bus-search-list/bus-search-list.component';
 import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { CustomerService } from './shared/services/customer.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { UnauthBookingComponent } from './unauth-booking/unauth-booking.componen
     AddPassengerDetailsComponent,
     BookingConfirmationComponent,
     BusSearchListComponent,
-    UnauthBookingComponent
+    UnauthBookingComponent,
+    PaymentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import { UnauthBookingComponent } from './unauth-booking/unauth-booking.componen
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AdminServiceService,BookingService],
+  providers: [AdminServiceService,BookingService,CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
