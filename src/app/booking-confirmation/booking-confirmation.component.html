@@ -1,26 +1,29 @@
-<div class="container border w-50 mx-auto mt-5">
+<div class="container border w-50 mx-auto mt-5 p-3">
 
-    <div>
-        <p>Whole bus : {{booking.wholeBus}}</p>
-    </div>
-    <div *ngIf="!booking.wholeBus">
-        <p>No. of Passengers : {{booking.noOfPassengers}}</p>
-    </div>
-    <div>
-        <p>Total Fare : {{booking.totalFare}}</p>
-    </div>
-    <div>
-        <p>Is a return ticket : {{booking.isReturn}}</p>
-    </div>
-    <div *ngIf="booking.isReturn">
-        <p>Return Date : {{booking.returnDate}}</p>
-    </div>
-    <div *ngIf="booking.wholeBus">
-        <p>Booked with a personal driver : {{booking.withDriver}}</p>
-    </div>
-    <div *ngIf="booking.withDriver">
-        <p>Security Deposit (exclusive of total fare) : {{booking.securityDeposit}}</p>
-    </div>
+        <h2 class="text-center mb-3">Booking Review</h2>
+        <hr>
+        <div>
+            <p><span class="fw-bold">Whole bus :</span>  {{booking.wholeBus}}</p>
+        </div>
+        <div *ngIf="!booking.wholeBus">
+            <p><span class="fw-bold">No. of Passengers :</span> {{booking.noOfPassengers}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">Total Fare :</span> {{booking.totalFare}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">Is a return ticket :</span> {{booking.isReturn}}</p>
+        </div>
+        <div *ngIf="booking.isReturn">
+            <p><span class="fw-bold">Return Date :</span> {{booking.returnDate}}</p>
+        </div>
+        <div *ngIf="booking.wholeBus">
+            <p><span class="fw-bold">Booked with a personal driver :</span> {{booking.withDriver}}</p>
+        </div>
+        <div *ngIf="booking.withDriver">
+            <p><span class="fw-bold">Security Deposit (exclusive of total fare) :</span> {{booking.securityDeposit}}</p>
+        </div>
 
-    <button class="btn btn-primary" (click)="pay()">Confirm & Pay</button>
+    <button class="btn btn-primary mx-2" (click)="pay()">Confirm & Pay</button>
+    <button class="btn btn-danger" routerLink="/cust-dashboard">Cancel</button>
 </div>

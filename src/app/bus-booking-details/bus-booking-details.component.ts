@@ -15,10 +15,13 @@ export class BusBookingDetailsComponent implements OnInit {
 
   constructor(private bookingService:BookingService, private router:Router) {
     this.booking=new Booking();
+    this.returnBusDetails = new BusDetails();
    }
 
   ngOnInit(): void {
     // this.fetchBus(123);
+    this.datevalidation=localStorage.getItem('addedDay');
+    localStorage.removeItem("addedDay");
     this.fetchBuslocal();
   }
 
@@ -26,6 +29,10 @@ export class BusBookingDetailsComponent implements OnInit {
 
   bus: BusDetails;
   returnBusDetails:BusDetails;
+  booking:Booking;
+  isReturn:boolean;
+  custSession:string;
+  datevalidation:any;
 
   fetchBus(id?: number) {
     this.bookingService.getBusbyid(id).subscribe((data) => {
@@ -40,15 +47,17 @@ export class BusBookingDetailsComponent implements OnInit {
   
   fetchBuslocal()
   {
-    this.bus=this.bookingService.busDetails;
+    this.isReturn = this.bookingService.booking.isReturn
+    if(this.isReturn){
+      this.bus=this.bookingService.returnBusDetails;
+      this.returnBusDetails = this.bookingService.returnBusDetails;
+    }
+    else{
+      this.bus=this.bookingService.busDetails;
+    }
     console.log(this.bus);
-    this.returnBusDetails = this.bookingService.returnBusDetails;
     console.log(this.returnBusDetails)
   } 
-
-  booking: Booking;
-
-
 
 
   onWholeBusDeselect() {
@@ -58,15 +67,15 @@ export class BusBookingDetailsComponent implements OnInit {
   }
 
 
-
-
   onReturnDeselect() {
     this.booking.returnDate = "";
   }
 
   onSubmit() {
+    this.custSession= localStorage.getItem('cust')!;
+
     if(this.returnBusDetails.busScId){
-      this.router.navigate(["seat-select"]);
+      this.router.navigate(["cust-dashboard/seat-select"]);
     }
     else{
       this.bookingService.busDetails = this.bus;
@@ -78,14 +87,19 @@ export class BusBookingDetailsComponent implements OnInit {
 
       // this.booking.busId = this.bus.busScId;
       this.booking.status = "Booked";
-
+      this.booking.busScId = this.bus.busScId!;
       this.bookingService.booking = this.booking;
 
       if(this.booking.wholeBus){
-        this.router.navigate(["booking-confirmation"]);
+        if(this.custSession=='zxc'){
+          this.router.navigate(["cust-dashboard/booking-confirmation"]);
+        }
+        else{
+          this.router.navigate(["cust-dashboard/unauth-booking-confirmation"]);
+        }
       }
       else{
-        this.router.navigate(["seat-select"])
+        this.router.navigate(["cust-dashboard/seat-select"])
       }
     }
     

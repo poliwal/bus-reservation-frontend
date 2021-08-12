@@ -1,0 +1,69 @@
+<h2 class="text-center">UnAuthorized Booking</h2>
+<div class="border mx-auto w-50 p-3">
+    <!-- <div class="container border w-50 mx-auto mt-2 mb-2"> -->
+        <h2 class="text-center mb-3">Booking Review</h2>
+        <hr>
+        <div>
+            <p><span class="fw-bold">Whole bus :</span>  {{booking.wholeBus}}</p>
+        </div>
+        <div *ngIf="!booking.wholeBus">
+            <p><span class="fw-bold">No. of Passengers :</span> {{booking.noOfPassengers}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">Total Fare :</span> {{booking.totalFare}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">Is a return ticket :</span> {{booking.isReturn}}</p>
+        </div>
+        <div *ngIf="booking.isReturn">
+            <p><span class="fw-bold">Return Date :</span> {{booking.returnDate}}</p>
+        </div>
+        <div *ngIf="booking.wholeBus">
+            <p><span class="fw-bold">Booked with a personal driver :</span> {{booking.withDriver}}</p>
+        </div>
+        <div *ngIf="booking.withDriver">
+            <p><span class="fw-bold">Security Deposit (exclusive of total fare) :</span> {{booking.securityDeposit}}</p>
+        </div>
+    
+        <!-- <button class="btn btn-primary" (click)="pay()">Confirm & Pay</button> -->
+    <!-- </div> -->
+        <hr>
+    <form #unAuthCustform="ngForm" (ngSubmit)="onRegister()" novalidate>
+
+        <div class="mb-2">
+            <label class="fw-bold" for="phoneno">Enter Mobile no</label>
+            <input class="form-control" type="number" id="phno" name="phoneno" [(ngModel)]="unAuthCust.contactNo" #cphoneno="ngModel" required
+                pattern="^\d{10}$">
+        </div>
+        <div *ngIf="!cphoneno?.valid &&(cphoneno?.dirty || cphoneno?.touched)" class="error">
+            <div *ngIf="cphoneno.errors?.required">
+                <small class="text-danger">phoneno is required</small>
+            </div>
+            <div *ngIf="cphoneno.errors?.pattern">
+                <small class="text-danger">Follow correct pattern(10 digits)</small>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label class="fw-bold" for="mailid">Enter Email</label>
+            <input class="form-control" type="text" id="mailid" name="mailid" [(ngModel)]="unAuthCust.email" #cmailid="ngModel" email required>
+        </div>
+        <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
+            <div *ngIf="cmailid.errors?.required">
+                <small class="text-danger">email is required</small>
+            </div>
+            <div *ngIf="cmailid.errors?.email">
+                <small class="text-danger">Incorrect Email Pattern</small>
+            </div>
+        </div>
+
+        <div class="mt-5 text-center">
+            <button class="btn btn-primary mx-2" type="submit" [disabled]="!unAuthCustform.valid">Confirm & Pay</button>
+            <button class="btn btn-danger" routerLink="/cust-dashboard">Cancel</button>
+        </div>
+        
+        
+
+    </form>
+
+</div>

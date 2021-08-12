@@ -1,6 +1,6 @@
 export class CustLogin
 {
-    mailid?:string;
-    pwd?:string;
+    email?:string;
+    password?:string;
     rememberme?:boolean;
 }

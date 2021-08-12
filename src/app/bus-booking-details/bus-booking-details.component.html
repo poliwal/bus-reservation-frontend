@@ -72,7 +72,7 @@
 
 
 
-<div *ngIf="!returnBusDetails.busScId" class="container NumSeat mb-5">
+<div *ngIf="!isReturn" class="container NumSeat mb-5">
 <!-- <div class="container NumSeat mb-5"> -->
     <div>
         <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Book all seats?</label>
@@ -114,7 +114,7 @@
 
             <div>
                 <label style="font-weight: 600; margin-right: 10px;">Return Date</label> <input style="margin-top:10px"
-                    type="date" [disabled]="!booking.isReturn" [(ngModel)]="booking.returnDate">
+                    type="date" [disabled]="!booking.isReturn" min="{{datevalidation|date:'yyyy-MM-dd'}}" [(ngModel)]="booking.returnDate">
             </div>
 
         </div>

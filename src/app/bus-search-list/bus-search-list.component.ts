@@ -33,7 +33,7 @@ export class BusSearchListComponent implements OnInit {
       this.bookingService.busDetails=busObj;
     }
     
-    this.router.navigate(["bus-booking-details"]);
+    this.router.navigate(["cust-dashboard/bus-booking-details"]);
   }
  
   ngOnInit(): void {

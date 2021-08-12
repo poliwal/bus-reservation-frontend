@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl,FormBuilder,Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Admin } from '../shared/models/admin';
+import { AdminServiceService } from '../shared/services/admin-service.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -12,18 +15,31 @@ export class AdminLoginComponent implements OnInit {
   //to represent form group elements
 
   loginform;
+  admin:Admin;
+  err:string;
+  constructor(private fb: FormBuilder,private router:Router, private adminService:AdminServiceService) {
 
-  constructor(private fb:FormBuilder)
-  {
-
-    this.loginform=this.fb.group({
-      mailid:['',[Validators.required,Validators.email]],
-      pwd:['',[Validators.required]]
+    this.loginform = this.fb.group({
+      adminId: ['', [Validators.required]],
+      adminPass: ['', [Validators.required]]
     })
 
 
-   }
+  }
 
   ngOnInit(): void {
+  }
+
+  doLogin(loginform:FormGroup) {
+    this.admin = loginform.value;
+    // console.log(this.admin)
+    if (this.admin.adminId == "admin" && this.admin.adminPass == "123") {
+      this.router.navigate(['admin-dashboard']);
+      localStorage.setItem('admin','abc');
+    }
+    else {
+      this.err = "Invalid username or password!!";
+
+    }
   }
 }

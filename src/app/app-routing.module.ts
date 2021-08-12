@@ -18,6 +18,7 @@ import { EditBusComponent } from './edit-bus/edit-bus.component';
 import { HomeComponent } from './home/home.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
 import { SeatSelectComponent } from './seat-select/seat-select.component';
+import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"home", pathMatch:'full'},
@@ -31,24 +32,31 @@ const routes: Routes = [
   },
   {path:"cust-dashboard",component:CustomerDashboardComponent,
    children:[
+    {path:"", component:BusSearchComponent},
     {path:"cust-profile", component:CustomerProfileComponent},
-    {path:"change-pass", component:ChangePasswordComponent}
+    {path:"change-pass", component:ChangePasswordComponent},
+    {path:"bus-search-list",component:BusSearchListComponent},
+    {path:"bus-booking-details", component:BusBookingDetailsComponent},
+    {path:"seat-select", component:SeatSelectComponent},
+    {path:"add-passenger-details",component:AddPassengerDetailsComponent},
+    {path:"booking-confirmation",component:BookingConfirmationComponent},
+    {path:"unauth-booking-confirmation",component:UnauthBookingComponent},
     //bookings and wallet component yet to be routed
    ]
   },
   {path:"cust-profile", component:CustomerProfileComponent},
-  {path:"change-pass", component:ChangePasswordComponent},
+  // {path:"change-pass", component:ChangePasswordComponent},
   {path:"cust-login", component:CustomerLoginComponent},
   {path:"cust-register", component:CustomerRegisterComponent},
-  {path:"bus-search", component:BusSearchComponent},
-  {path:"bus-booking-details", component:BusBookingDetailsComponent},
+  
+  
   {path:"add-bus", component:AddBusComponent},
   // {path:"edit-bus", component:EditBusComponent},
   {path:"schedule-bus", component:ScheduleBusComponent},
-  {path:"seat-select", component:SeatSelectComponent},
-  {path:"add-passenger-details",component:AddPassengerDetailsComponent},
-  {path:"booking-confirmation",component:BookingConfirmationComponent},
-  {path:"bus-search-list",component:BusSearchListComponent},
+  
+  
+  
+  
 ];
 
 @NgModule({

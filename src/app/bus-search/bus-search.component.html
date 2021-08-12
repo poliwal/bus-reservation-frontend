@@ -22,7 +22,7 @@
 
         <div>
             <label>From Date</label> &nbsp;
-            <input class="form-control" type="date" formControlName="date" />
+            <input class="form-control" type="date" min="{{currdate | date:'yyyy-MM-dd'}}" formControlName="date" />
         </div>
 
         <!-- <div>

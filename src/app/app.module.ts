@@ -26,6 +26,7 @@ import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-de
 import { AddPassengerDetailsComponent } from './add-passenger-details/add-passenger-details.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { BusSearchListComponent } from './bus-search-list/bus-search-list.component';
+import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BusSearchListComponent } from './bus-search-list/bus-search-list.compon
     BusBookingDetailsComponent,
     AddPassengerDetailsComponent,
     BookingConfirmationComponent,
-    BusSearchListComponent
+    BusSearchListComponent,
+    UnauthBookingComponent
   ],
   imports: [
     BrowserModule,

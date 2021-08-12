@@ -1,4 +1,5 @@
 export class Booking{
+    bookingId:number;
     cid:number;
     busScId:number;
     noOfPassengers:number;

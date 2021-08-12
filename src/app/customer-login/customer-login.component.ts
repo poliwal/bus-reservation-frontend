@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustLogin } from '../shared/models/cust-login';
 
 
@@ -10,18 +11,23 @@ import { CustLogin } from '../shared/models/cust-login';
 })
 export class CustomerLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
   cust:CustLogin={};
-
+  err:string;
   
 
   ngOnInit(): void {
   }
-  onRegister(cformdata:NgForm)
+  onLogin()
   {
-    //ngform data
-    console.log(cformdata.value);
-    //object
     console.log(this.cust);
+    if (this.cust.email == "a@a.com" && this.cust.password == "Aaaaa@111") {
+      this.router.navigate(['cust-dashboard']);
+      localStorage.setItem('cust','zxc');
+    }
+    else {
+      this.err = "Invalid username or password!!";
+
+    }
   }
 }

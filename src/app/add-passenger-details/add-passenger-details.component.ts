@@ -17,6 +17,7 @@ export class AddPassengerDetailsComponent implements OnInit {
   passenger: Passenger;
   passengerList: Passenger[] = [];
   returnBusSearchResult:BusDetails[];
+  custSession:string;
 
   constructor(private bookingService: BookingService, private router: Router) {
     this.passenger = new Passenger();
@@ -55,6 +56,9 @@ export class AddPassengerDetailsComponent implements OnInit {
   }
 
   onFinalize() {
+    this.custSession= localStorage.getItem('cust')!;
+    
+
     this.bookingService.passengerlist = this.passengerList;
     console.log(this.bookingService.passengerlist);
 
@@ -74,14 +78,19 @@ export class AddPassengerDetailsComponent implements OnInit {
       
     }
     else{
-      this.router.navigate(["booking-confirmation"]);
+      if(this.custSession=='zxc'){
+        this.router.navigate(["cust-dashboard/booking-confirmation"]);
+      }
+      else{
+        this.router.navigate(["cust-dashboard/unauth-booking-confirmation"])
+      }
     }
     
   }
 
   navigateToReturnBusSearchList(returnBusSearchResult:BusDetails[]){
     localStorage.setItem("returnBusSearchResult",JSON.stringify(returnBusSearchResult));
-    this.router.navigate(["bus-search-list"]);
+    this.router.navigate(["cust-dashboard/bus-search-list"]);
   }
 
   ngOnInit(): void {

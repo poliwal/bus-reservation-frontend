@@ -24,6 +24,9 @@ export class BusSearchComponent implements OnInit {
     })
   }
 
+  currdate: Date = new Date();
+  addedDay:any;
+
   // changeTrip(e:any) {
   //   this.triptype.setValue(e.target.value, {
   //     onlySelf: true
@@ -36,11 +39,18 @@ export class BusSearchComponent implements OnInit {
   busSearchResult:BusDetails[];
 
   onSearch(bussearchform:FormGroup){
+
+    
     // console.log(bussearchform)
     let source = bussearchform.value.source;
     let destination = bussearchform.value.destination;
     let date = bussearchform.value.date;
     // console.log(source,destination,date)
+
+    this.addedDay=new Date(date).setDate(new Date(date).getDate()+1);
+
+    localStorage.setItem('addedDay',this.addedDay); 
+
     this.bookingService.searchBuses(source,destination,date).subscribe(
       data=>{
         console.log(data);
@@ -55,6 +65,6 @@ export class BusSearchComponent implements OnInit {
 
   navigateToBusSearchList(busSearchResult:BusDetails[]){
     localStorage.setItem("busSearchResult",JSON.stringify(busSearchResult));
-    this.router.navigate(["bus-search-list"]);
+    this.router.navigate(["cust-dashboard/bus-search-list"]);
   } 
 }

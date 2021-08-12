@@ -4,14 +4,14 @@
     <div class="text-center">
         <label>Don't have an account?</label>
         &nbsp;
-        <button class="btn btn-success" type="submit">Register</button>
+        <button class="btn btn-success" type="submit" routerLink="/cust-register">Register</button>
         <hr />
     </div>
 
-    <form #custform="ngForm" (ngSubmit)="onRegister(custform)" novalidate>
+    <form #custform="ngForm" (ngSubmit)="onLogin()" novalidate>
         <div class="mb-2">
-            <label for="mailid">Enter Email</label>
-            <input class="form-control" type="text" id="mailid" name="mailid" [(ngModel)]="cust.mailid" #cmailid="ngModel" email required>
+            <label for="email">Enter Email</label>
+            <input class="form-control" type="text" id="email" name="email" [(ngModel)]="cust.email" #cmailid="ngModel" email required>
         </div>
         <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
             <div *ngIf="cmailid.errors?.required">
@@ -26,7 +26,7 @@
 
         <div class="mb-2">
             <label for="password">Enter password</label>
-            <input class="form-control" type="password" id="pwd" name="password" [(ngModel)]="cust.pwd" #cpassword="ngModel" required
+            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="cust.password" #cpassword="ngModel" required
                 pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
         </div>
         <div *ngIf="!cpassword?.valid &&(cpassword?.dirty || cpassword?.touched)" class="error">
@@ -54,6 +54,6 @@
 
 
     </form>
-
+    <h2 class="text text-danger">{{err}}</h2>
 
 </div>

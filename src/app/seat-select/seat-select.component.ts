@@ -146,14 +146,14 @@ export class SeatSelectComponent implements OnInit {
     this.selectedSeats.forEach((element,index) => {
       this.bookingService.passengerlist[index].returnSeatNo = element+1;
     });
-    this.router.navigate(["booking-confirmation"]);
+    this.router.navigate(["cust-dashboard/booking-confirmation"]);
   }
 
   navigateToAddPassengers(){
     this.bookingService.booking.totalFare = this.bookingService.busDetails.fare * this.selectedSeats.length;
     this.bookingService.bookedseats = this.selectedSeats;
     this.bookingService.booking.noOfPassengers = this.selectedSeats.length;
-    this.router.navigate(["add-passenger-details"]);
+    this.router.navigate(["cust-dashboard/add-passenger-details"]);
   }
 
 }

@@ -1,31 +1,31 @@
 <h2 class="text-center">Admin Login</h2>
 <div class="border mx-auto w-50 p-3">
 
-    <form [formGroup]="loginform">
+    <form [formGroup]="loginform" (submit)="doLogin(loginform)">
         <div class="mb-2">
             <label>Enter Username</label>
-            <input class="form-control" type="text" formControlName="mailid" />
+            <input class="form-control" type="text" formControlName="adminId" />
         </div>
         <div *ngIf="
-        !loginform.get('mailid')?.valid &&
-        (loginform.get('mailid')?.dirty || loginform.get('mailid')?.touched)
+        !loginform.get('adminId')?.valid &&
+        (loginform.get('adminId')?.dirty || loginform.get('adminId')?.touched)
       " class="error">
-            <div *ngIf="loginform.get('mailid')?.errors?.required">
+            <div *ngIf="loginform.get('adminId')?.errors?.required">
                 <small class="text-danger">Email is required</small>
             </div>
-            <div *ngIf="loginform.get('mailid')?.errors?.email">
+            <div *ngIf="loginform.get('adminId')?.errors?.email">
                 <small class="text-danger">Email is invalid</small>
             </div>
         </div>
         <div class="mb-2">
             <label>Enter Password</label>
-            <input class="form-control" type="password" formControlName="pwd" />
+            <input class="form-control" type="password" formControlName="adminPass" />
         </div>
         <div *ngIf="
-        !loginform.get('pwd')?.valid &&
-        (loginform.get('pwd')?.dirty || loginform.get('pwd')?.touched)
+        !loginform.get('adminPass')?.valid &&
+        (loginform.get('adminPass')?.dirty || loginform.get('adminPass')?.touched)
       " class="error">
-            <div *ngIf="loginform.get('pwd')?.errors?.required">
+            <div *ngIf="loginform.get('adminPass')?.errors?.required">
                 <small class="text-danger">password is required</small>
             </div>
         </div>
@@ -37,4 +37,5 @@
         </div>
         
     </form>
+    <h2 class="text text-danger">{{err}}</h2>
 </div>
