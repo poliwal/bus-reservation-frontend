@@ -1,4 +1,5 @@
-<h1>List Of Buses</h1>
+<h1 *ngIf="!isReturn" >List Of Buses</h1>
+<h1 *ngIf="isReturn" >List Of Return Buses</h1>
 <div class="container">
     <div>
         <table class="table table-bordered">
@@ -9,7 +10,7 @@
                     <td>Destination</td>
                     <td>Departure</td>
                     <td>Arrival</td>
-                    <td>Seats Available</td>
+                    <!-- <td>No. of Seats</td> -->
                     <td>Via</td>
                     <td>Fare</td>
                     <td>Book</td>
@@ -23,7 +24,7 @@
                     <td>{{b.destination}}</td>
                     <td>{{b.departureTime}}</td>
                     <td>{{b.arrivalTime}}</td>
-                    <td>{{b.noOfSeats}}</td>
+                    <!-- <td>{{b.noOfSeats}}</td> -->
                     <td>{{b.via}}</td>
                     <td>{{b.fare}}</td>
                     <td><button class="btn btn-primary" (click)="onBook(b)">Book</button></td>

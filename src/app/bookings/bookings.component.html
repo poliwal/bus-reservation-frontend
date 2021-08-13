@@ -1,0 +1,30 @@
+<p>My Booking History</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ticket No</th>
+            <th>Bus Name</th>
+            <th>Date</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Number of passengers</th>
+            <th>Status</th>
+            <th>More Info</th>
+         
+        </tr>
+    </thead>
+    <tbody *ngFor="let b of bookings">
+        <tr>
+            <td>{{b.bookingId}}</td>
+            <td>{{b.busName}}</td>
+            <td>{{b.dateOfBooking.slice(0,10)}}</td>
+            <td>{{b.source}}</td>
+            <td>{{b.destination}}</td>
+            <td>{{b.noOfPassengers}}</td>
+            <td>{{b.status}}</td>
+           
+            <td><a (click)="viewMore(b)" >View more info</a></td>
+
+        </tr>
+    </tbody>
+</table>

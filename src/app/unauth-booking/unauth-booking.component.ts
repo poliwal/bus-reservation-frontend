@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Booking } from '../shared/models/booking';
+import { BusSeats } from '../shared/models/bus-seats';
 import { BusDetails } from '../shared/models/busDetails';
 import { Customer } from '../shared/models/customer';
 import { Passenger } from '../shared/models/Passenger';

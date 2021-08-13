@@ -2,14 +2,14 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Bus Reservation</h3>
+             <a routerLink="/cust-dashboard"><h3>Bus Reservation</h3></a> 
         </div>
 
         <ul *ngIf="custSession=='zxc'" class="list-unstyled components">
-            <p>Hello Username</p>
+            <h3 class="mx-2">Hello, {{custName}}</h3>
             <p>My Dashboard</p>
             <li >
-                <a href="#" >Bookings</a>
+                <a routerLink="cust-bookings" >Bookings</a>
                 
             </li>
             <li>
@@ -20,7 +20,7 @@
                 <a routerLink="change-pass">Change Password</a>
             </li>
             <li>
-                <a href="#">Wallet</a>
+                <a routerLink="cust-wallet">Wallet</a>
             </li>
         </ul>
 

@@ -6,9 +6,11 @@ import { AdminBusListComponent } from './admin-bus-list/admin-bus-list.component
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
+import { BookingsComponent } from './bookings/bookings.component';
 import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
 import { BusSearchListComponent } from './bus-search-list/bus-search-list.component';
 import { BusSearchComponent } from './bus-search/bus-search.component';
+import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { CustomerLoginComponent } from './customer-login/customer-login.component';
@@ -20,6 +22,7 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
 import { SeatSelectComponent } from './seat-select/seat-select.component';
 import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"home", pathMatch:'full'},
@@ -29,6 +32,8 @@ const routes: Routes = [
     children:[
       {path:"",component:AdminBusListComponent},
       {path:"edit-bus", component:EditBusComponent},
+      {path:"add-bus", component:AddBusComponent},
+      {path:"schedule-bus", component:ScheduleBusComponent},
     ]
   },
   {path:"cust-dashboard",component:CustomerDashboardComponent,
@@ -42,6 +47,9 @@ const routes: Routes = [
     {path:"add-passenger-details",component:AddPassengerDetailsComponent},
     {path:"booking-confirmation",component:BookingConfirmationComponent},
     {path:"unauth-booking-confirmation",component:UnauthBookingComponent},
+    {path:"cust-wallet",component:WalletComponent},
+    {path:"cust-bookings",component:BookingsComponent},
+    {path:"cust-booking-info",component:CancelBookingComponent},
     //bookings and wallet component yet to be routed
    ]
   },
@@ -52,13 +60,9 @@ const routes: Routes = [
   
   
   {path:"payment-form", component:PaymentFormComponent},
-  {path:"add-bus", component:AddBusComponent},
+  
   // {path:"edit-bus", component:EditBusComponent},
-  {path:"schedule-bus", component:ScheduleBusComponent},
-  
-  
-  
-  
+ 
 ];
 
 @NgModule({

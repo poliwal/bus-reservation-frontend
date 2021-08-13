@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Register } from '../shared/models/register';
+import { Customer } from '../shared/models/customer';
+import { CustomerService } from '../shared/services/customer.service';
 
 
 @Component({
@@ -10,17 +10,26 @@ import { Register } from '../shared/models/register';
 })
 export class CustomerRegisterComponent implements OnInit {
 
-  constructor() { }
-  cust:Register={};
+  constructor(private custService:CustomerService) { }
+  cust:Customer={};
+  confirmPassword:string;
 
   ngOnInit(): void {
   }
-  onRegister(cformdata:NgForm)
+  onRegister()
   {
-    //ngform data
-    console.log(cformdata.value);
     //object
     console.log(this.cust);
+    console.log(this.confirmPassword);
+    this.cust.isAuthorized = true;
+    this.custService.registerCustomer(this.confirmPassword,this.cust).subscribe(
+      data=>{
+        alert(data);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
   }
 
 }

@@ -8,8 +8,6 @@ import { ReturnBooking } from '../models/return-booking';
 import { Customer } from '../models/customer';
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -113,5 +111,55 @@ export class BookingService {
 
   addCustomer(cust:Customer){
     return this.http.post(this.UrlCustomer,cust);
+  }
+
+
+
+  //get passenger
+  getPassenger(bookingid:number)
+  {
+    return this.http.get(`${this.UrlPassenger}/getPassenger?bookingid=${bookingid}`);
+  }
+
+  //get passengerseatno for a booking id
+  getPassengerSeatNo(bookingid:number)
+  {
+
+    return this.http.get(`${this.UrlPassenger}/getPassengerSeatNo?bookingid=${bookingid}`);
+  }
+
+  //get passenger return seatno for a booking id //check to change the route
+  getPassengerReturnSeatNo(bookingid:number)
+  {
+
+    return this.http.get(`${this.UrlPassenger}/getPassengerReturnSeatNo?bookingid=${bookingid}`);
+  }
+
+  //get BusSeatNo table by busscid
+  getBusSeatNoTable(busscid:number)
+  {
+    return this.http.get(this.UrlBusSeat + "/" + busscid);
+  }
+
+  //put BusSeatNo table 
+  putBusSeatNoTable(busSeatNoTable:BusSeats)
+  {
+    return this.http.put(this.UrlBusSeat + "/" + busSeatNoTable.seatId,busSeatNoTable);
+  }
+//refund wallet amount //check route for this
+  refundWalletAmount(cid:number,totalFare:number)
+  {
+    return this.http.put(`${this.UrlCustomer}/refundFare?cid=${cid}&fare=${totalFare}`,null,{responseType:'text'});
+  }
+//put booking for updating statud
+  putBooking(booking:Booking)
+  {
+    return this.http.put(this.UrlBooking + "/" + booking.bookingId,booking);
+  }
+
+  //get booking
+  getBooking(bookingid:number)
+  {
+    return this.http.get(this.UrlBooking + "/" + bookingid);
   }
 }

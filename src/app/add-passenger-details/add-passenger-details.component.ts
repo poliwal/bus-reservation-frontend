@@ -32,8 +32,8 @@ export class AddPassengerDetailsComponent implements OnInit {
 
   fill() {
 
-    this.passenger.pName = this.pName;
-    this.passenger.pAge = this.pAge;
+    this.passenger.pname = this.pName;
+    this.passenger.page = this.pAge;
 
 
     this.passenger.seatNo = this.bookingService.bookedseats[this.i - 1] + 1;

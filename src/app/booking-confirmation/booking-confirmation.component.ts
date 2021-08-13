@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Booking } from '../shared/models/booking';
 import { Bus } from '../shared/models/bus';
+import { BusSeats } from '../shared/models/bus-seats';
 import { BusDetails } from '../shared/models/busDetails';
 import { Passenger } from '../shared/models/Passenger';
 import { ReturnBooking } from '../shared/models/return-booking';
@@ -20,6 +21,7 @@ export class BookingConfirmationComponent implements OnInit {
   passengerList:Passenger[];
   returnBusDetails:BusDetails;
   returnBooking:ReturnBooking;
+  seatSelect:BusSeats[]=[];
 
   constructor(private bookingService:BookingService, private router:Router) {
     this.booking = new Booking();
@@ -33,7 +35,7 @@ export class BookingConfirmationComponent implements OnInit {
 
   onLoading(){
     this.booking = this.bookingService.booking;
-    this.booking.cid = 1;
+    this.booking.cid = Number(localStorage.getItem('cid')!);
     this.bus = this.bookingService.busDetails;
     this.passengerList = this.bookingService.passengerlist;
     this.returnBusDetails = this.bookingService.returnBusDetails;
@@ -47,6 +49,7 @@ export class BookingConfirmationComponent implements OnInit {
 
   pay(){
     this.addBookingToDb(this.booking);
+    this.updateSeatsInDb();
     alert("Payment Done");
   }
 
@@ -77,6 +80,21 @@ export class BookingConfirmationComponent implements OnInit {
     // }
     
 
+  }
+
+  updateSeatsInDb(){
+    this.seatSelect = JSON.parse(localStorage.getItem("seatSelect")!);
+    localStorage.removeItem("seatSelect");
+    this.seatSelect.forEach(element => {
+      this.bookingService.updateBusSeats(element).subscribe(
+        data=>{
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+    });
   }
 
   addPassengersToDb(bookingId:number){

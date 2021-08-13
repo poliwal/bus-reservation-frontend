@@ -11,6 +11,7 @@ import { AdminServiceService } from '../shared/services/admin-service.service';
 export class AdminBusListComponent implements OnInit {
 
   busList:Bus[];
+  adminSession:string;
 
   constructor(private adminService:AdminServiceService, private router:Router) {
     // this.busList = [
@@ -24,6 +25,11 @@ export class AdminBusListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.adminSession= localStorage.getItem('admin')!
+    // console.log(this.adminSession=='abc');
+    if(this.adminSession!='abc'){
+      this.router.navigate(["admin-login"]);
+    }
     this.getBuses();
   }
 

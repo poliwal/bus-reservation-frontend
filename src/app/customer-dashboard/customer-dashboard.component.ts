@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 export class CustomerDashboardComponent implements OnInit {
 
   custSession:string;
+  custName:string;
 
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.custSession= localStorage.getItem('cust')!
+    this.custSession= localStorage.getItem('cust')!;
+    this.custName = localStorage.getItem('custName')!;
     // if(this.custSession!='zxc'){
     //   this.router.navigate(["cust-login"]);
     // }
@@ -26,6 +28,7 @@ export class CustomerDashboardComponent implements OnInit {
   logOff(){
     localStorage.removeItem("cust");
     localStorage.removeItem("cid");
+    localStorage.removeItem("custName");
     this.router.navigate(["home"]);
   }
 

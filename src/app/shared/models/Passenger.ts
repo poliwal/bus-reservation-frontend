@@ -1,7 +1,7 @@
 export class Passenger{
-    PassId:number;
-    pName:string;
-    pAge:number;
+    passId:number;
+    pname:string;
+    page:number;
     bookingId:number;
     seatNo:number;
     returnSeatNo:number;

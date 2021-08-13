@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Admin</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -44,4 +44,80 @@
 
 <div class="container">
   <router-outlet></router-outlet>
+</div> -->
+
+
+
+
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+           <a routerLink="/admin-dashboard"><h3>Bus Reservation</h3></a> 
+      </div>
+
+      <ul *ngIf="adminSession=='abc'" class="list-unstyled components">
+          <p>Hello, Admin</p>
+          <p>Admin Dashboard</p>
+          <li>
+              <a routerLink="add-bus">Add Bus</a>
+          </li>
+          <li>
+              <a routerLink="schedule-bus">Schedule Bus</a>
+          </li>
+      </ul>
+
+      
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-row-reverse">
+
+          
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Actions
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Frequently Travelled Routes</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Last month record and profits</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Most preferred types of buses</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Customers with no reservation</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <button *ngIf="adminSession=='abc'" class="btn btn-outline-success" type="submit" (click)="logOff()">Logout</button>
+                  <button *ngIf="adminSession!='abc'" class="btn btn-outline-success" type="submit" (click)="goToLogin()">Logout</button>
+                </form>
+              </div>
+            </div>
+
+
+          
+      </nav>
+
+      <router-outlet></router-outlet>
+      
+  </div>
 </div>
+

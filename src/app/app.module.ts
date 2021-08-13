@@ -29,6 +29,9 @@ import { BusSearchListComponent } from './bus-search-list/bus-search-list.compon
 import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { CustomerService } from './shared/services/customer.service';
+import { WalletComponent } from './wallet/wallet.component';
+import { BookingsComponent } from './bookings/bookings.component';
+import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { CustomerService } from './shared/services/customer.service';
     BookingConfirmationComponent,
     BusSearchListComponent,
     UnauthBookingComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    WalletComponent,
+    BookingsComponent,
+    CancelBookingComponent
   ],
   imports: [
     BrowserModule,

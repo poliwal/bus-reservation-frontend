@@ -7,20 +7,20 @@
         <button class="btn btn-success" type="submit">Login</button>
         <hr />
     </div>
-    <form #custform="ngForm" (ngSubmit)="onRegister(custform)" novalidate>
+    <form #custform="ngForm" (ngSubmit)="onRegister()" novalidate>
         <!--novalidate is used to disable browser validation -->
         <div class="mb-2">
             <label for="name">Enter First Name</label>
-            <input class="form-control" type="text" id="name" name="cname" [(ngModel)]="cust.cname" #cname="ngModel" required minlength="5">
+            <input class="form-control" type="text" id="name" name="fname" [(ngModel)]="cust.fname" #fname="ngModel" required minlength="5">
         </div>
-        <div *ngIf="!cname?.valid && (cname?.dirty || cname?.touched)" class="error">
-            <div *ngIf="cname.errors?.required">
+        <div *ngIf="!fname?.valid && (fname?.dirty || fname?.touched)" class="error">
+            <div *ngIf="fname.errors?.required">
                 <small class="text-danger">Customer name is required</small>
             </div>
 
-            <div *ngIf="cname.errors?.minlength">
+            <div *ngIf="fname.errors?.minlength">
                 <small class="text-danger">Customer name should be of
-                    minimumlength:{{cname.errors?.minlength.requiredLength}}</small>
+                    minimumlength:{{fname.errors?.minlength.requiredLength}}</small>
             </div>
         </div>
         
@@ -51,13 +51,13 @@
         </div>
 
         <div class="mb-2">
-            <label for="phoneno">Enter Mobileno</label>
-            <input class="form-control" type="text" id="phno" name="phoneno" [(ngModel)]="cust.phoneno" #cphoneno="ngModel" required
+            <label for="contactNo">Enter Mobileno</label>
+            <input class="form-control" type="text" id="phno" name="contactNo" [(ngModel)]="cust.contactNo" #cphoneno="ngModel" required
                 pattern="^\d{10}$">
         </div>
         <div *ngIf="!cphoneno?.valid &&(cphoneno?.dirty || cphoneno?.touched)" class="error">
             <div *ngIf="cphoneno.errors?.required">
-                <small class="text-danger">phoneno is required</small>
+                <small class="text-danger">ContactNo is required</small>
             </div>
             <div *ngIf="cphoneno.errors?.pattern">
                 <small class="text-danger">Follow correct pattern(10 digits)</small>
@@ -65,8 +65,8 @@
         </div>
 
         <div class="mb-2">
-            <label for="mailid">Enter Email</label>
-            <input class="form-control" type="text" id="mailid" name="mailid" [(ngModel)]="cust.mailid" #cmailid="ngModel" email required>
+            <label for="email">Enter Email</label>
+            <input class="form-control" type="text" id="email" name="email" [(ngModel)]="cust.email" #cmailid="ngModel" email required>
         </div>
         <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
             <div *ngIf="cmailid.errors?.required">
@@ -79,7 +79,7 @@
 
         <div class="mb-2">
             <label for="password">Enter Password</label>
-            <input class="form-control" type="password" id="pwd" name="password" [(ngModel)]="cust.pwd" #cpassword="ngModel" required
+            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="cust.password" #cpassword="ngModel" required
                 pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
         </div>
         <div *ngIf="!cpassword?.valid &&(cpassword?.dirty || cpassword?.touched)" class="error">
@@ -94,7 +94,7 @@
 
         <div class="mb-2">
             <label for="conpassword">Confirm Password</label>
-            <input class="form-control" type="password" id="conpwd" name="conpassword" [(ngModel)]="cust.conpwd" #cconpassword="ngModel"
+            <input class="form-control" type="password" id="conpwd" name="conpassword" [(ngModel)]="confirmPassword" #cconpassword="ngModel"
                 required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
         </div>
         <div *ngIf="!cconpassword?.valid &&(cconpassword?.dirty || cconpassword?.touched)" class="error">
@@ -104,6 +104,9 @@
             <div *ngIf="cconpassword.errors?.pattern">
                 <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
                     special characters</small>
+            </div>
+            <div *ngIf="cconpassword!=cpassword">
+                <small class="text-danger">Password doesn't match</small>
             </div>
         </div>
 

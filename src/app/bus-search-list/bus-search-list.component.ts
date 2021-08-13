@@ -15,8 +15,10 @@ export class BusSearchListComponent implements OnInit {
 
   busList:BusDetails[]=[];
   resultToGet:string;
+  isReturn:boolean;
 
   constructor(private bookingService:BookingService,private router:Router) { 
+    this.isReturn = this.bookingService.booking.isReturn;
     this.resultToGet = this.bookingService.booking.isReturn ? 'returnBusSearchResult' : 'busSearchResult'
     this.busList=JSON.parse(localStorage.getItem(this.resultToGet)!);
   }

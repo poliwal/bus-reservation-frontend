@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Booking } from '../shared/models/booking';
+import { BusSeats } from '../shared/models/bus-seats';
 import { BusDetails } from '../shared/models/busDetails';
 import { CreditCard } from '../shared/models/creditcard';
 import { Customer } from '../shared/models/customer';
@@ -29,6 +30,7 @@ export class PaymentFormComponent implements OnInit {
   passengerList:Passenger[];
   returnBusDetails:BusDetails;
   returnBooking:ReturnBooking;
+  seatSelect:BusSeats[]=[];
 
   ngOnInit(): void {
     this.onLoading()
@@ -51,8 +53,10 @@ export class PaymentFormComponent implements OnInit {
     console.log(this.bookingService.returnBusDetails);
     console.log(this.bookingService.passengerlist);
     this.addUnAuthCustomer(this.unAuthCust);
+    this.updateSeatsInDb();
     // this.addBookingToDb(this.booking);
     alert("Payment Done");
+    this.router.navigate(["cust-dashboard"]);
   }
 
   addUnAuthCustomer(unAuthCust:Customer){
@@ -66,6 +70,21 @@ export class PaymentFormComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  updateSeatsInDb(){
+    this.seatSelect = JSON.parse(localStorage.getItem("seatSelect")!);
+    localStorage.removeItem("seatSelect");
+    this.seatSelect.forEach(element => {
+      this.bookingService.updateBusSeats(element).subscribe(
+        data=>{
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+    });
   }
 
   addBookingToDb(cid:number,booking:Booking){
