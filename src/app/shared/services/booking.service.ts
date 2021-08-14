@@ -14,11 +14,12 @@ import { Customer } from '../models/customer';
 export class BookingService {
 
   readonly UrlBusSeat = "http://localhost:43836/api/BusSeatNoes"
-  readonly UrlBus = "http://localhost:43836/api/buses/reduceSeats"
+  readonly UrlBus = "http://localhost:43836/api/buses"
   readonly UrlBusSearch = "http://localhost:43836/api/BusSchedules"
   readonly UrlBooking = "http://localhost:43836/api/Bookings"
   readonly UrlPassenger = "http://localhost:43836/api/PassengerDetails"
   readonly UrlReturn = "http://localhost:43836/api/ReturnBookings"
+  readonly UrlReturnBookingId = "http://localhost:43836/api/ReturnBookings/byBookingId?bookingId="
   readonly UrlCustomerDeduct = "http://localhost:43836/api/Customers/deductFare"
   readonly UrlCustomer = "http://localhost:43836/api/Customers"
 
@@ -105,9 +106,9 @@ export class BookingService {
     return this.http.put(`${this.UrlCustomerDeduct}?cid=${cid}&fare=${totalFare}`,null,{responseType:'text'});
   }
 
-  reduceAvailableSeats(busNo:number,num:number){
-    return this.http.put(`${this.UrlBus}?busNo=${busNo}&num=${num}`,null,{responseType:'text'});
-  }
+  // reduceAvailableSeats(busNo:number,num:number){
+  //   return this.http.put(`${this.UrlBusReduceSeats}?busNo=${busNo}&num=${num}`,null,{responseType:'text'});
+  // }
 
   addCustomer(cust:Customer){
     return this.http.post(this.UrlCustomer,cust);
@@ -161,5 +162,10 @@ export class BookingService {
   getBooking(bookingid:number)
   {
     return this.http.get(this.UrlBooking + "/" + bookingid);
+  }
+
+  getReturnBusScId(bookingid:number)
+  {
+    return this.http.get(this.UrlReturnBookingId + bookingid);
   }
 }

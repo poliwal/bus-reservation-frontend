@@ -1,4 +1,4 @@
-<h1>Cancel Booking</h1>
+<div class="container" id="htmlData">
 <h2>Booking Details</h2>
 <div class="container-fluid mt-4 mb-5">
 
@@ -89,6 +89,7 @@
                 <td>Passenger Age</td>
                 <td>Booking ID</td>
                 <td>Seat Number</td>
+                <td *ngIf="booking.isReturn" >Return Seat Number</td>
             </tr>
         </thead>
         <tbody *ngFor="let p of passenger">
@@ -98,14 +99,15 @@
                 <td>{{p.page}}</td>
                 <td>{{p.bookingId}}</td>
                 <td>{{p.seatNo}}</td>
-                <td>{{p.returnSeatNo}}</td>
+                <td *ngIf="booking.isReturn" >{{p.returnSeatNo}}</td>
             </tr>
         </tbody>
     </table>
 </div>
-
+</div>
 <div>
-    <button class="btn btn-primary">Return</button>&nbsp;
-    <button class="btn btn-danger" type="submit" (click)="onCancel()">Cancel Booking</button>
+    <button class="btn btn-primary">Go Back</button>&nbsp;
+    <button *ngIf="booking.status!='Cancelled'" class="btn btn-danger" type="submit" (click)="onCancel()">Cancel Booking</button>
+    <button *ngIf="booking.status!='Cancelled'" class="btn btn-success btn-block" (click)="openPDF()">Download Ticket</button>
 </div>
 

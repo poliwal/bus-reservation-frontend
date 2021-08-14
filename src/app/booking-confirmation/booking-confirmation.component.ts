@@ -30,6 +30,8 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.removeItem("returnBusSearchResult");
+    localStorage.removeItem("busSearchResult");
     this.onLoading();
   }
 
@@ -48,9 +50,19 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   pay(){
-    this.addBookingToDb(this.booking);
-    this.updateSeatsInDb();
-    alert("Payment Done");
+    if(confirm("Do you want to proceed?")){
+      this.addBookingToDb(this.booking);
+      if(this.booking.isReturn){
+        this.updateSeatsInDb();
+        this.updateReturnSeatsInDb();
+      }
+      else{
+        this.updateSeatsInDb();
+      }
+      
+      alert("Payment Done");
+    }
+    
   }
 
   addBookingToDb(booking:Booking){
@@ -85,6 +97,21 @@ export class BookingConfirmationComponent implements OnInit {
   updateSeatsInDb(){
     this.seatSelect = JSON.parse(localStorage.getItem("seatSelect")!);
     localStorage.removeItem("seatSelect");
+    this.seatSelect.forEach(element => {
+      this.bookingService.updateBusSeats(element).subscribe(
+        data=>{
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+    });
+  }
+
+  updateReturnSeatsInDb(){
+    this.seatSelect = JSON.parse(localStorage.getItem("returnSeatSelect")!);
+    localStorage.removeItem("returnSeatSelect");
     this.seatSelect.forEach(element => {
       this.bookingService.updateBusSeats(element).subscribe(
         data=>{
@@ -146,22 +173,22 @@ export class BookingConfirmationComponent implements OnInit {
       data=>{
         this.busSch = data;
         console.log(this.busSch);
-        this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
+        // this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
       }
     );
   }
 
-  reduceAvailableSeats(busNo:number,noOfPassengers:number){
-    console.log(busNo,noOfPassengers)
-    this.bookingService.reduceAvailableSeats(busNo,noOfPassengers).subscribe(
-      data=>{
-        console.log(data);
-      },
-      err=>{
-        console.log(err);
-      }
-    );
-  }
+  // reduceAvailableSeats(busNo:number,noOfPassengers:number){
+  //   console.log(busNo,noOfPassengers)
+  //   this.bookingService.reduceAvailableSeats(busNo,noOfPassengers).subscribe(
+  //     data=>{
+  //       console.log(data);
+  //     },
+  //     err=>{
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
 }
 

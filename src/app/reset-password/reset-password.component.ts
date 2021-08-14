@@ -4,11 +4,11 @@ import { ChangePassword } from '../shared/models/change-pass';
 import { CustomerService } from '../shared/services/customer.service';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
 
   changePass:ChangePassword = new ChangePassword();
 
@@ -19,18 +19,18 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit(){
 
-    this.changePass.cid = Number(localStorage.getItem('cid'));
+    this.changePass.cid = Number(localStorage.getItem('resetPassCid'));
+    localStorage.removeItem('resetPassCid');
     console.log(this.changePass);
-    this.custService.changePassword(this.changePass.cid,this.changePass.currentPassword!,this.changePass.newPassword,
+    this.custService.resetPassword(this.changePass.cid,this.changePass.newPassword,
       this.changePass.confirmNewPassword).subscribe(
         data=>{
           alert(data);
-          this.router.navigate(["cust-dashboard"]);
+          this.router.navigate(["cust-login"]);
         },
         err=>{
           console.log(err);
         }
       );
   }
-
 }

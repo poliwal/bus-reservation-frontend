@@ -166,21 +166,21 @@ export class PaymentFormComponent implements OnInit {
       data=>{
         this.busSch = data;
         console.log(this.busSch);
-        this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
+        // this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
       }
     );
   }
 
-  reduceAvailableSeats(busNo:number,noOfPassengers:number){
-    console.log(busNo,noOfPassengers)
-    this.bookingService.reduceAvailableSeats(busNo,noOfPassengers).subscribe(
-      data=>{
-        console.log(data);
-      },
-      err=>{
-        console.log(err);
-      }
-    );
-  }
+  // reduceAvailableSeats(busNo:number,noOfPassengers:number){
+  //   console.log(busNo,noOfPassengers)
+  //   this.bookingService.reduceAvailableSeats(busNo,noOfPassengers).subscribe(
+  //     data=>{
+  //       console.log(data);
+  //     },
+  //     err=>{
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
 }

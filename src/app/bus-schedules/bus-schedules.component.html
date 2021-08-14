@@ -1,0 +1,40 @@
+
+    <h1>Bus List</h1>
+    
+    <!-- <p>
+        <a routerLink="/add-bus">Create New</a>
+    </p> -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    BusNo
+                </th>
+                <th>
+                    Departure Date
+                </th>
+                <th>
+                    Available Seats
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let b of busScList ">
+            <tr>
+                <td>
+                    {{b.busNo}}
+                </td>
+                <td>
+                    {{b.departureDate}}
+                </td>
+                <td>
+                    {{b.availableSeats}}
+                </td>
+                <!-- <td>
+                    <button class="btn btn-primary" (click)="editBus(b)"><i class="fas fa-edit"></i></button> |
+                    <button class="btn btn-danger" (click)="deleteBus(b.busNo)"><i class="fas fa-trash-alt"></i></button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+    
+

@@ -11,6 +11,7 @@ export class BookingsPage{
     withDriver:boolean = false;
     securityDeposit:number;
     departureDate:string;
+    availableSeats:number;
     wholeBus:boolean = false;
     busNo:number;
     busName:string;

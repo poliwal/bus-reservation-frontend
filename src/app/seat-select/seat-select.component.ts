@@ -123,7 +123,13 @@ export class SeatSelectComponent implements OnInit {
   }
 
   updateBusSeats(){
-    localStorage.setItem("seatSelect",JSON.stringify(this.seatSelect));
+    if(this.bookingService.returnBusDetails.busScId){
+      localStorage.setItem("returnSeatSelect",JSON.stringify(this.seatSelect));
+    }
+    else{
+      localStorage.setItem("seatSelect",JSON.stringify(this.seatSelect));
+    }
+    
     // this.seatSelect.forEach(element => {
     //   this.bookingService.updateBusSeats(element).subscribe(
     //     data=>{

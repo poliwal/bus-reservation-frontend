@@ -18,6 +18,9 @@ export class CustomerLoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(localStorage.getItem('cust') == 'zxc'){
+      this.router.navigate(["cust-dashboard"]);
+    }
   }
   // onLogin()
   // {
@@ -48,10 +51,6 @@ export class CustomerLoginComponent implements OnInit {
       err => {
         console.log(err)
       }
-
-
-
     )
-
   }
 }

@@ -28,6 +28,9 @@ export class AdminLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('admin') == 'abc'){
+      this.router.navigate(["admin-dashboard"]);
+    }
   }
 
   doLogin(loginform:FormGroup) {

@@ -54,4 +54,8 @@ export class AdminServiceService {
     return this.http.post(this.UrlSchedule,busSchedule);
   }
   
+  getBusSchedules(){
+    return this.http.get(this.UrlSchedule);
+  }
+  
 }

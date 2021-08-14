@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Customer } from '../shared/models/customer';
 import { CustomerService } from '../shared/services/customer.service';
 
@@ -10,7 +11,7 @@ import { CustomerService } from '../shared/services/customer.service';
 })
 export class CustomerRegisterComponent implements OnInit {
 
-  constructor(private custService:CustomerService) { }
+  constructor(private custService:CustomerService,private router:Router) { }
   cust:Customer={};
   confirmPassword:string;
 
@@ -30,6 +31,7 @@ export class CustomerRegisterComponent implements OnInit {
         console.log(err);
       }
     );
+    this.router.navigate(["cust-login"]);
   }
 
 }

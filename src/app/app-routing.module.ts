@@ -8,6 +8,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
+import { BusSchedulesComponent } from './bus-schedules/bus-schedules.component';
 import { BusSearchListComponent } from './bus-search-list/bus-search-list.component';
 import { BusSearchComponent } from './bus-search/bus-search.component';
 import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
@@ -17,8 +18,10 @@ import { CustomerLoginComponent } from './customer-login/customer-login.componen
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { CustomerRegisterComponent } from './customer-register/customer-register.component';
 import { EditBusComponent } from './edit-bus/edit-bus.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
 import { SeatSelectComponent } from './seat-select/seat-select.component';
 import { UnauthBookingComponent } from './unauth-booking/unauth-booking.component';
@@ -34,6 +37,7 @@ const routes: Routes = [
       {path:"edit-bus", component:EditBusComponent},
       {path:"add-bus", component:AddBusComponent},
       {path:"schedule-bus", component:ScheduleBusComponent},
+      {path:"bus-schedules", component:BusSchedulesComponent},
     ]
   },
   {path:"cust-dashboard",component:CustomerDashboardComponent,
@@ -56,6 +60,8 @@ const routes: Routes = [
   {path:"cust-profile", component:CustomerProfileComponent},
   // {path:"change-pass", component:ChangePasswordComponent},
   {path:"cust-login", component:CustomerLoginComponent},
+  {path:"forgot-password", component:ForgotPasswordComponent},
+  {path:"reset-password", component:ResetPasswordComponent},
   {path:"cust-register", component:CustomerRegisterComponent},
   
   

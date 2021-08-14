@@ -34,15 +34,15 @@ export class BusBookingDetailsComponent implements OnInit {
   custSession:string;
   datevalidation:any;
 
-  fetchBus(id?: number) {
-    this.bookingService.getBusbyid(id).subscribe((data) => {
-      console.log(data);
-      this.bus = data as Bus;
-      // this.bus=this.bus1;
-    }
+  // fetchBus(id?: number) {
+  //   this.bookingService.getBusbyid(id).subscribe((data) => {
+  //     console.log(data);
+  //     this.bus = data as Bus;
+  //     // this.bus=this.bus1;
+  //   }
 
-    );
-  }
+  //   );
+  // }
 
   
   fetchBuslocal()

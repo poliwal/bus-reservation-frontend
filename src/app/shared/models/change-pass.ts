@@ -1,6 +1,6 @@
 export class ChangePassword{
     cid:number;
-    currentPassword:string;
+    currentPassword?:string;
     newPassword:string;
     confirmNewPassword:string;
 }

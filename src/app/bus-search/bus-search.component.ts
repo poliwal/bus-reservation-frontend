@@ -34,6 +34,8 @@ export class BusSearchComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    localStorage.removeItem("returnBusSearchResult");
+    localStorage.removeItem("busSearchResult");
   }
 
   busSearchResult:BusDetails[];

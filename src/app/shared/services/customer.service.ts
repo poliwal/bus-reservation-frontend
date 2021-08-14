@@ -10,11 +10,14 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  readonly UrlCustomerPassword = "http://localhost:43836/api/Customers/change-password";
+  // readonly UrlCustomerCidForEmail = "http://localhost:43836/api/Customers/getCidByEmail?Email=";
+  readonly UrlCustomerChangePassword = "http://localhost:43836/api/Customers/change-password";
+  readonly UrlCustomerResetPassword = "http://localhost:43836/api/Customers/reset-password";
   readonly UrlCustomer = "http://localhost:43836/api/Customers";
   readonly UrlCustomerLogin = "http://localhost:43836/api/Customers/login";
   readonly UrlCustomerRegister = "http://localhost:43836/api/Customers/register";
   readonly UrlCustomerBookings = "http://localhost:43836/api/Bookings/bookingForCid?id=";
+  readonly UrlCustomerForgotPassword = "http://localhost:43836/api/Customers/forgotPassword";
 
 
   cid:number;
@@ -22,8 +25,16 @@ export class CustomerService {
   bookingsList:BookingsPage[];
   bookingDetails:BookingsPage;
 
+  getCidForEmail(email:string){
+    return this.http.get(`${this.UrlCustomer}/getCidByEmail?Email=${email}`);
+  }
+
   changePassword(cid:number,cp:string,np:string,cnp:string){
-    return this.http.put(`${this.UrlCustomerPassword}?cid=${cid}&cp=${cp}&np=${np}&cnp=${cnp}`,null,{responseType:'text'});
+    return this.http.put(`${this.UrlCustomerChangePassword}?cid=${cid}&cp=${cp}&np=${np}&cnp=${cnp}`,null,{responseType:'text'});
+  }
+
+  resetPassword(cid:number,np:string,cnp:string){
+    return this.http.put(`${this.UrlCustomerResetPassword}?cid=${cid}&np=${np}&cnp=${cnp}`,null,{responseType:'text'});
   }
 
   getCustomer(cid:number){
@@ -44,5 +55,9 @@ export class CustomerService {
 
   doLogin(useremail : string, userpassword: string){
     return this.http.get<any>(this.UrlCustomerLogin+"?email="+useremail+"&password="+userpassword);
+  }
+
+  forgotPassword(useremail : string){
+    return this.http.get(this.UrlCustomerForgotPassword+"?email="+useremail,{responseType:'text'});
   }
 }

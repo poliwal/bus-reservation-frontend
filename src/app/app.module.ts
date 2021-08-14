@@ -32,6 +32,9 @@ import { CustomerService } from './shared/services/customer.service';
 import { WalletComponent } from './wallet/wallet.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { CancelBookingComponent } from './cancel-booking/cancel-booking.component';
+import { BusSchedulesComponent } from './bus-schedules/bus-schedules.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { CancelBookingComponent } from './cancel-booking/cancel-booking.componen
     PaymentFormComponent,
     WalletComponent,
     BookingsComponent,
-    CancelBookingComponent
+    CancelBookingComponent,
+    BusSchedulesComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
