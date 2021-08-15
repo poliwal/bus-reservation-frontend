@@ -35,6 +35,7 @@ import { CancelBookingComponent } from './cancel-booking/cancel-booking.componen
 import { BusSchedulesComponent } from './bus-schedules/bus-schedules.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CancelBookingComponent,
     BusSchedulesComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

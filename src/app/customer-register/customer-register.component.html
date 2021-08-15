@@ -4,7 +4,7 @@
     <div class="text-center">
         <label>Already have an account?</label>
         &nbsp;
-        <button class="btn btn-success" type="submit">Login</button>
+        <button class="btn btn-success" routerLink="/cust-login" type="submit">Login</button>
         <hr />
     </div>
     <form #custform="ngForm" (ngSubmit)="onRegister()" novalidate>
@@ -105,9 +105,9 @@
                 <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
                     special characters</small>
             </div>
-            <div *ngIf="cconpassword!=cpassword">
+            <!-- <div *ngIf="cconpassword!=cpassword">
                 <small class="text-danger">Password doesn't match</small>
-            </div>
+            </div> -->
         </div>
 
         <div class="mt-5 text-center">

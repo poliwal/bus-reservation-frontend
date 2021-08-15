@@ -14,15 +14,16 @@ export class AdminLoginComponent implements OnInit {
   [x: string]: any;
   //to represent form group elements
 
-  loginform;
+  // loginform;
   admin:Admin;
   err:string;
-  constructor(private fb: FormBuilder,private router:Router, private adminService:AdminServiceService) {
+  constructor(private router:Router, private adminService:AdminServiceService) {
 
-    this.loginform = this.fb.group({
-      adminId: ['', [Validators.required]],
-      adminPass: ['', [Validators.required]]
-    })
+    this.admin = new Admin();
+    // this.loginform = this.fb.group({
+    //   adminId: ['', [Validators.required]],
+    //   adminPass: ['', [Validators.required]]
+    // })
 
 
   }
@@ -33,16 +34,23 @@ export class AdminLoginComponent implements OnInit {
     }
   }
 
-  doLogin(loginform:FormGroup) {
-    this.admin = loginform.value;
-    // console.log(this.admin)
-    if (this.admin.adminId == "admin" && this.admin.adminPass == "123") {
-      this.router.navigate(['admin-dashboard']);
-      localStorage.setItem('admin','abc');
-    }
-    else {
-      this.err = "Invalid username or password!!";
+  doLogin() {
 
-    }
+    // this.admin = loginform.value;
+    this.adminService.doLogin(this.admin.adminId, this.admin.adminPass).subscribe(
+      data => {
+        if(data == 'Valid'){
+          this.router.navigate(['admin-dashboard']);
+          localStorage.setItem('admin','abc');
+        }
+        
+      },
+      err => {
+        if(err.error ==  "Invalid"){
+          this.err = "Invalid username or password!!";
+        }
+        console.log(err.error)
+      }
+    );
   }
 }

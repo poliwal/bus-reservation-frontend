@@ -1,8 +1,8 @@
 <h2 class="text-center">Admin Login</h2>
 <div class="border mx-auto w-50 p-3">
 
-    <form [formGroup]="loginform" (submit)="doLogin(loginform)">
-        <div class="mb-2">
+    <form #loginform="ngForm" (submit)="doLogin()">
+        <!-- <div class="mb-2">
             <label>Enter Username</label>
             <input class="form-control" type="text" formControlName="adminId" />
         </div>
@@ -17,6 +17,8 @@
                 <small class="text-danger">Email is invalid</small>
             </div>
         </div>
+
+
         <div class="mb-2">
             <label>Enter Password</label>
             <input class="form-control" type="password" formControlName="adminPass" />
@@ -28,7 +30,39 @@
             <div *ngIf="loginform.get('adminPass')?.errors?.required">
                 <small class="text-danger">password is required</small>
             </div>
+        </div> -->
+
+
+
+        <div class="mb-2">
+            <label for="username">Enter Username</label>
+            <input class="form-control" type="text" id="username" name="username" [(ngModel)]="admin.adminId" #adminUsername="ngModel" required>
         </div>
+        <div *ngIf="!adminUsername?.valid &&(adminUsername?.dirty || adminUsername?.touched)" class="error">
+            <div *ngIf="adminUsername.errors?.required">
+                <small class="text-danger">Username is required</small>
+            </div>
+        </div>
+
+
+
+        <div class="mb-2">
+            <label for="password">Enter password</label>
+            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="admin.adminPass" #adminPassword="ngModel" required
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+        </div>
+        <div *ngIf="!adminPassword?.valid &&(adminPassword?.dirty || adminPassword?.touched)" class="error">
+            <div *ngIf="adminPassword.errors?.required">
+                <small class="text-danger">Password is required</small>
+            </div>
+            <div *ngIf="adminPassword.errors?.pattern">
+                <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
+                    special characters</small>
+            </div>
+        </div>
+
+
+
 
         <div class="mt-5 text-center">
             <button class="btn btn-success" type="submit" [disabled]="!loginform.valid">

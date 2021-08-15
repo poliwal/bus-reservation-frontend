@@ -12,6 +12,7 @@ export class AdminServiceService {
   readonly Url = "http://localhost:43836/api/buses"
   readonly UrlSeat = "http://localhost:43836/api/BusSeatNoes"
   readonly UrlSchedule = "http://localhost:43836/api/BusSchedules"
+  readonly UrlAdminLogin = "http://localhost:43836/api/Admins/adminlogin"
 
 
   editBusDetails:Bus;
@@ -58,4 +59,8 @@ export class AdminServiceService {
     return this.http.get(this.UrlSchedule);
   }
   
+  doLogin(username:string,password:string){
+    return this.http.get(`${this.UrlAdminLogin}?username=${username}&password=${password}`,{responseType:'text'});
+  }
+
 }

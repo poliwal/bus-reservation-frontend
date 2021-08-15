@@ -20,6 +20,7 @@ import { CustomerRegisterComponent } from './customer-register/customer-register
 import { EditBusComponent } from './edit-bus/edit-bus.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ScheduleBusComponent } from './schedule-bus/schedule-bus.component';
@@ -67,8 +68,8 @@ const routes: Routes = [
   
   {path:"payment-form", component:PaymentFormComponent},
   
-  // {path:"edit-bus", component:EditBusComponent},
- 
+  {path:"**", component:NotFoundComponent},
+  
 ];
 
 @NgModule({

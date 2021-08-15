@@ -15,7 +15,7 @@ export class CustomerLoginComponent implements OnInit {
   constructor(private router: Router, private custService: CustomerService) { }
   cust: CustLogin = {};
   err: string;
-
+  loginData:any;
 
   ngOnInit(): void {
     if(localStorage.getItem('cust') == 'zxc'){
@@ -38,18 +38,21 @@ export class CustomerLoginComponent implements OnInit {
   onLogin() {
     this.custService.doLogin(this.cust.email!, this.cust.password!).subscribe(
       data => {
+        
+        this.loginData = data;
         console.log(data);
-        if (data != "Invalid") {
+
           localStorage.setItem('cust', 'zxc');
-          localStorage.setItem('cid', data.cid.toString());
-          localStorage.setItem('custName', data.fname)
+          localStorage.setItem('cid', this.loginData.cid.toString());
+          localStorage.setItem('custName', this.loginData.fname)
           this.router.navigate(['cust-dashboard']);
-        } else {
-          this.err = "Invalid username or password!!";
-        }
+
       },
       err => {
-        console.log(err)
+        if(err.error ==  "Invalid"){
+          this.err = "Invalid username or password!!";
+        }
+        console.log(err.error)
       }
     )
   }

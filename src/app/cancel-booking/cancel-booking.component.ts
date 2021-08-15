@@ -8,6 +8,8 @@ import { BookingsPage } from '../shared/models/bookings-page';
 import { CustomerService } from '../shared/services/customer.service';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ReturnBookingDetails } from '../shared/models/return-booking-details';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cancel-booking',
@@ -33,7 +35,8 @@ export class CancelBookingComponent implements OnInit {
     });
   }
 
-  constructor(private bookingservice: BookingService, private custService: CustomerService) { }
+  
+  constructor(private bookingservice: BookingService, private custService: CustomerService, private router:Router) { }
 
   bookingId: number;
 
@@ -42,7 +45,8 @@ export class CancelBookingComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.singleBookingDetails = this.custService.bookingDetails;
+    this.singleBookingDetails = JSON.parse(localStorage.getItem("bookingDetails")!);
+    // this.singleBookingDetails = this.custService.bookingDetails;
     //  this.bookingDetails(8);
     //  this.getPassenger(8);
     //  this.getPassengerSeatNo(8);
@@ -66,7 +70,7 @@ export class CancelBookingComponent implements OnInit {
   singleBookingDetails: BookingsPage;
 
   booking: Booking;
-  returnBusScId: number;
+  returnBookingDetails: ReturnBookingDetails;
 
   passenger: Passenger[];
 
@@ -104,10 +108,10 @@ export class CancelBookingComponent implements OnInit {
   getReturnBusScId(bookingid: number) {
     this.bookingservice.getReturnBusScId(bookingid).subscribe(
       data => {
-        this.returnBusScId = data as number;
-        console.log(this.returnBusScId);
-        this.getReturnBusSeatNoTable(this.returnBusScId);
-        this.getReturnBusDetails(this.returnBusScId);
+        this.returnBookingDetails = data as ReturnBookingDetails;
+        console.log(this.returnBookingDetails);
+        this.getReturnBusSeatNoTable(this.returnBookingDetails.busScId);
+        this.getReturnBusDetails(this.returnBookingDetails.busNo);
       },
       err => {
         console.log(err);
@@ -115,8 +119,8 @@ export class CancelBookingComponent implements OnInit {
     );
   }
 
-  getReturnBusDetails(returnBusScId: number) {
-    this.bookingservice.getBusbyid(returnBusScId).subscribe(
+  getReturnBusDetails(returnBusNo: number) {
+    this.bookingservice.getBusbyid(returnBusNo).subscribe(
       data => {
         this.returnBusDetails = data as BusDetails;
         console.log(this.returnBusDetails);
@@ -260,7 +264,10 @@ export class CancelBookingComponent implements OnInit {
 
 
 
-
+  onBack(){
+    localStorage.removeItem("bookingDetails");
+    this.router.navigate(["cust-dashboard/cust-bookings"]);
+  }
 
 
 }

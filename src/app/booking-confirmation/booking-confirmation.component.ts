@@ -61,6 +61,7 @@ export class BookingConfirmationComponent implements OnInit {
       }
       
       alert("Payment Done");
+      this.router.navigate(["cust-dashboard/cust-bookings"]);
     }
     
   }

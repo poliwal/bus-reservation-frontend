@@ -38,6 +38,7 @@ export class BookingsComponent implements OnInit {
   }
 
   viewMore(booking:BookingsPage){
+    localStorage.setItem("bookingDetails",JSON.stringify(booking));
     this.custService.bookingDetails=booking;
     this.router.navigate(["cust-dashboard/cust-booking-info"])
   }

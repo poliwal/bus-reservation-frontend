@@ -1,113 +1,236 @@
 <div class="container" id="htmlData">
-<h2>Booking Details</h2>
-<div class="container-fluid mt-4 mb-5">
 
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Ticket Number</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.bookingId}}</div>
+    <div class="oneway">
+
+        <h2 style="text-align: center; margin-left: -20px;">Booking Details</h2>
+        <div class="container-fluid mt-4 mb-5" style="text-align: center; margin-left: 130px;">
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Ticket Number</div>
+                <div class="col-sm-6">{{booking.bookingId}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Source</div>
+                <div class="col-sm-6">{{singleBookingDetails.source}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Destination</div>
+                <div class="col-sm-6">{{singleBookingDetails.destination}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Via</div>
+                <div class="col-sm-6">{{singleBookingDetails.via}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Departure Date</div>
+                <div class="col-sm-6">{{singleBookingDetails.departureDate.slice(0,10)}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Departure Time</div>
+                <div class="col-sm-6">{{singleBookingDetails.departureTime}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Arrival Time</div>
+                <div class="col-sm-6">{{singleBookingDetails.arrivalTime}}</div>
+            </div>
+            <br>
+
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">No. of Passengers</div>
+                <div class="col-sm-6">{{booking.noOfPassengers}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Total Fare</div>
+                <div class="col-sm-6">{{booking.totalFare}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Date of Booking</div>
+                <div class="col-sm-6">{{booking.dateOfBooking.slice(0,10)}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-3 h5" style="background-color:lightyellow;">Status</div>
+                <div class="col-sm-6">{{booking.status}}</div>
+            </div>
+            <br>
+
+            <br>
+            <diV style="margin-left: -25px;">
+                <h3 style="margin-left: -280px;">Bus Details</h3>
+                <table class="table table-bordered table-dark" style="width: 940px; margin-left: -10px;">
+                    <thead>
+                        <tr>
+                            <td>Bus Number</td>
+                            <td>Bus Name</td>
+                            <td>Driver Name</td>
+                            <td>Driver Age</td>
+                            <td>Driver Experience</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{singleBookingDetails.busNo}}</td>
+                            <td>{{singleBookingDetails.busName}}</td>
+                            <td>{{singleBookingDetails.driverName}}</td>
+                            <td>{{singleBookingDetails.driverAge}}</td>
+                            <td>{{singleBookingDetails.driverExperience}}</td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+            </diV>
+
+        </div>
+
     </div>
-    <br>
 
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Customer ID</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.cid}}</div>
+    <div *ngIf="booking.isReturn">
+        <!--ngIf over here-->
+
+        <div class="return">
+            <h3 style="margin-left: 430px;">Return Booking Details</h3>
+
+            <div style="margin-left: 230px;">
+
+                <div class="row">
+                    <div class="col-sm-3 h5" style="background-color:lightyellow;">Source</div>
+                    <div class="col-sm-6" style="background-color:lightsalmon;">{{returnBusDetails.source}}</div>
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-3 h5" style="background-color:lightyellow;">Destination</div>
+                    <div class="col-sm-6" style="background-color:lightsalmon;">{{returnBusDetails.destination}}</div>
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-3 h5" style="background-color:lightyellow;">Departure Date</div>
+                    <div class="col-sm-6" style="background-color:lightsalmon;">
+                        {{returnBookingDetails.departureDate.slice(0,10)}}</div>
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-3 h5" style="background-color:lightyellow;">Via</div>
+                    <div class="col-sm-6" style="background-color:lightsalmon;">{{returnBusDetails.via}}</div>
+
+                </div>
+                <br>
+
+
+
+                <div class="row">
+                    <div class="col-sm-3 h5" style="background-color:lightyellow;">Departure Time</div>
+                    <div class="col-sm-6" style="background-color:lightsalmon;">{{returnBusDetails.departureTime}}</div>
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-3 h5" style="background-color:lightyellow;">Arrival Time</div>
+                    <div class="col-sm-6" style="background-color:lightsalmon;">{{returnBusDetails.arrivalTime}}</div>
+
+                </div>
+                <br>
+
+            </div>
+
+            <diV>
+                <h3 style="margin-left: 450px;">Return Bus Details</h3>
+                <table class="table table-bordered table-dark" style="width: 940px; margin-left: 110px;">
+                    <thead>
+                        <tr>
+                            <td>Bus Number</td>
+                            <td>Bus Name</td>
+                            <td>Driver Name</td>
+                            <td>Driver Age</td>
+                            <td>Driver Experience</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{returnBusDetails.busNo}}</td>
+                            <td>{{returnBusDetails.busName}}</td>
+                            <td>{{returnBusDetails.driverName}}</td>
+                            <td>{{returnBusDetails.driverAge}}</td>
+                            <td>{{returnBusDetails.driverExperience}}</td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+            </diV>
+
+        </div>
+
+
+
+
+
     </div>
-    <br>
 
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">No. of Passengers</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.noOfPassengers}}</div>
+
+    <div class="passenger">
+
+        <h3 style="text-align: center; margin-left: -40px;">Passenger Details</h3>
+        <div class="mt-4">
+            <table class="table table-bordered table-dark"
+                style="width: 940px; margin-left: 130px; text-align: center;">
+                <thead>
+                    <tr>
+                        <td>Passenger ID</td>
+                        <td>Passenger Name</td>
+                        <td>Passenger Age</td>
+                        <td>Booking ID</td>
+                        <td>Seat Number</td>
+                        <td *ngIf="booking.isReturn">Return Seat Number</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let p of passenger">
+                    <tr>
+                        <td>{{p.passId}}</td>
+                        <td>{{p.pname}}</td>
+                        <td>{{p.page}}</td>
+                        <td>{{p.bookingId}}</td>
+                        <td>{{p.seatNo}}</td>
+                        <td *ngIf="booking.isReturn">{{p.returnSeatNo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <br>
-
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Total Fare</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.totalFare}}</div>
-    </div>
-    <br>
-
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Date of booking</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.dateOfBooking}}</div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Return?</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.isReturn}}</div>
-
-        
-
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Return Date</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.returnDate}}</div>
-
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">With Driver</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.withDriver}}</div>
-    </div>
-
-    <br>
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Security Deposit</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.securityDeposit}}</div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Whole Bus</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.wholeBus}}</div>
-    </div>
-    <br>
-
-    <!-- <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Driver Name</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.driverName}}</div>
-    </div> -->
-    <br>
-    <!-- <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Driver Age</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.driverAge}}</div>
-    </div> -->
-    <br>
-    <!-- <div class="row">
-        <div class="col-sm-3" style="background-color:lightyellow;">Driver Experience</div>
-        <div class="col-sm-6" style="background-color:lightsalmon;">{{booking.driverExperience}} years</div>
-    </div> -->
-</div>
-
-
-<h2>Passenger Details</h2>
-<div class="mt-4">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td>PassId</td>
-                <td>Passenger Name</td>
-                <td>Passenger Age</td>
-                <td>Booking ID</td>
-                <td>Seat Number</td>
-                <td *ngIf="booking.isReturn" >Return Seat Number</td>
-            </tr>
-        </thead>
-        <tbody *ngFor="let p of passenger">
-            <tr>
-                <td>{{p.passId}}</td>
-                <td>{{p.pname}}</td>
-                <td>{{p.page}}</td>
-                <td>{{p.bookingId}}</td>
-                <td>{{p.seatNo}}</td>
-                <td *ngIf="booking.isReturn" >{{p.returnSeatNo}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 </div>
 <div>
-    <button class="btn btn-primary">Go Back</button>&nbsp;
-    <button *ngIf="booking.status!='Cancelled'" class="btn btn-danger" type="submit" (click)="onCancel()">Cancel Booking</button>
-    <button *ngIf="booking.status!='Cancelled'" class="btn btn-success btn-block" (click)="openPDF()">Download Ticket</button>
+    <button class="btn btn-primary" (click)="onBack()">Go Back</button>&nbsp;
+    <button *ngIf="booking.status!='Cancelled'" class="btn btn-danger" type="submit" (click)="onCancel()">Cancel
+        Booking</button>
+    <button *ngIf="booking.status!='Cancelled'" class="btn btn-success btn-block" (click)="openPDF()">Download
+        Ticket</button>
 </div>
 
+<script>
+    window.onunload = function () { routerLink = "http://localhost:4200" }
+</script>

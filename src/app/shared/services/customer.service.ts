@@ -54,7 +54,7 @@ export class CustomerService {
   }
 
   doLogin(useremail : string, userpassword: string){
-    return this.http.get<any>(this.UrlCustomerLogin+"?email="+useremail+"&password="+userpassword);
+    return this.http.get(this.UrlCustomerLogin+"?email="+useremail+"&password="+userpassword);
   }
 
   forgotPassword(useremail : string){
