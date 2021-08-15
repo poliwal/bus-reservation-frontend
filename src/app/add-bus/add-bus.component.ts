@@ -25,7 +25,7 @@ export class AddBusComponent implements OnInit {
        destination:new FormControl(null,Validators.required),
        departureTime:new FormControl(null,Validators.required),
        arrivalTime:new FormControl(null,Validators.required),
-       noOfSeats:new FormControl(null,Validators.required),
+      //  noOfSeats:new FormControl(null,Validators.required),
        via:new FormControl(null,Validators.required),
        fare:new FormControl(null,Validators.required),
        driverName:new FormControl(null,Validators.required),
@@ -44,6 +44,7 @@ export class AddBusComponent implements OnInit {
 
   addBus(addform:FormGroup){
     this.bus = addform.value;
+    this.bus.noOfSeats = 24;
     // console.log(addform.value.departureTime);
     addform.reset();
     // console.log(this.bus.departureTime);

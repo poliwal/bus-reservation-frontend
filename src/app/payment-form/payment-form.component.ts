@@ -47,34 +47,53 @@ export class PaymentFormComponent implements OnInit {
 
   onSubmit()
   {
-    console.log(this.unAuthCust);
-    console.log(this.bookingService.booking);
-    console.log(this.bookingService.busDetails);
-    console.log(this.bookingService.returnBusDetails);
-    console.log(this.bookingService.passengerlist);
-    this.addUnAuthCustomer(this.unAuthCust);
-    this.updateSeatsInDb();
-    // this.addBookingToDb(this.booking);
-    alert("Payment Done");
-    this.router.navigate(["cust-dashboard"]);
+    if(confirm("Do you want to proceed?")){
+      console.log(this.unAuthCust);
+      console.log(this.bookingService.booking);
+      console.log(this.bookingService.busDetails);
+      console.log(this.bookingService.returnBusDetails);
+      console.log(this.bookingService.passengerlist);
+      // this.addUnAuthCustomer(this.unAuthCust);
+      this.addBookingToDb(this.unAuthCust.cid!, this.booking);
+          if(this.booking.isReturn){
+            this.updateSeatsInDb();
+            this.updateReturnSeatsInDb();
+          }
+          else{
+            this.updateSeatsInDb();
+          }
+      // this.updateSeatsInDb();
+      
+      // this.addBookingToDb(this.booking);
+      alert("Payment Done, Please Register to see your ticket.");
+      this.router.navigate(["cust-dashboard"]);
+    }
+    
   }
 
-  addUnAuthCustomer(unAuthCust:Customer){
-    this.bookingService.addCustomer(unAuthCust).subscribe(
-      data=>{
-        console.log(data);
-        this.unAuthCust = data as Customer;
-        this.addBookingToDb(this.unAuthCust.cid!, this.booking)
-      },
-      err=>{
-        console.log(err);
-      }
-    );
-  }
+  
 
   updateSeatsInDb(){
     this.seatSelect = JSON.parse(localStorage.getItem("seatSelect")!);
     localStorage.removeItem("seatSelect");
+    console.log(this.seatSelect);
+    this.seatSelect.forEach(element => {
+      this.bookingService.updateBusSeats(element).subscribe(
+        data=>{
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+    });
+  }
+
+
+  updateReturnSeatsInDb(){
+    this.seatSelect = JSON.parse(localStorage.getItem("returnSeatSelect")!);
+    localStorage.removeItem("returnSeatSelect");
+    console.log(this.seatSelect);
     this.seatSelect.forEach(element => {
       this.bookingService.updateBusSeats(element).subscribe(
         data=>{
@@ -94,12 +113,13 @@ export class PaymentFormComponent implements OnInit {
         this.booking = data as Booking;
         // console.log(data);
         // console.log(this.booking.bookingId);
-
+        
         this.addPassengersToDb(this.booking.bookingId);
 
         if(this.booking.isReturn){
           // console.log(this.booking.bookingId);
           this.addReturnBookingToDb(this.booking.bookingId);
+          
         }
       },
       err=>{
@@ -109,11 +129,10 @@ export class PaymentFormComponent implements OnInit {
 
     // this.deductFare(this.booking.cid,this.booking.totalFare);
 
-    // this.getBusNoByBusScId(this.booking.busScId,this.booking.noOfPassengers);
-    // if(this.booking.isReturn){
-    //   this.getBusNoByBusScId(this.returnBusDetails.busScId!,this.booking.noOfPassengers);
-    // }
-    
+    this.reduceAvailableSeats(this.booking.busScId,this.booking.noOfPassengers);
+    if(this.booking.isReturn){
+      this.reduceAvailableSeats(this.returnBusDetails.busScId!,this.booking.noOfPassengers);
+    }
 
   }
 
@@ -160,13 +179,14 @@ export class PaymentFormComponent implements OnInit {
   // }
 
 
-  busSch:any;
-  getBusNoByBusScId(busScId:number,noOfPassengers:number){
-    this.bookingService.getBusSchedulebyid(busScId).subscribe(
+  reduceAvailableSeats(busScId:number,noOfPassengers:number){
+    this.bookingService.reduceAvailableSeats(busScId,noOfPassengers).subscribe(
       data=>{
-        this.busSch = data;
-        console.log(this.busSch);
+        console.log(data);
         // this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
+      },
+      err=>{
+        console.log(err);
       }
     );
   }

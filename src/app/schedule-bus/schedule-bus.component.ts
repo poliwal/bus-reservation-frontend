@@ -44,6 +44,9 @@ export class ScheduleBusComponent implements OnInit {
         this.createBusSeatNo(this.addedSchedule);
         alert("Scheduled");
         this.router.navigate(["admin-dashboard"])
+      },
+      err=>{
+        console.log(err);
       }
     );
     

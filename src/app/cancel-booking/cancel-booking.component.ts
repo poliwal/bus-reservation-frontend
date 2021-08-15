@@ -187,6 +187,18 @@ export class CancelBookingComponent implements OnInit {
     );
   }
 
+  addAvailableSeats(busScId:number,noOfPassengers:number){
+    this.bookingservice.addAvailableSeats(busScId,noOfPassengers).subscribe(
+      data=>{
+        console.log(data);
+        // this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
   onCancel() {
     if (this.dayRem <= 2) {
       alert("Cannot cancel booking");
@@ -246,7 +258,7 @@ export class CancelBookingComponent implements OnInit {
           );
         }
 
-
+        this.addAvailableSeats(this.booking.busScId,this.booking.noOfPassengers);
         this.refundFare(this.booking.cid, this.booking.totalFare);
         this.booking.status = "Cancelled";
         this.bookingservice.putBooking(this.booking).subscribe(

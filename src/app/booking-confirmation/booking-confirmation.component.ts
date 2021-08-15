@@ -1,4 +1,3 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Booking } from '../shared/models/booking';
@@ -46,7 +45,6 @@ export class BookingConfirmationComponent implements OnInit {
     // console.log(this.bookingService.returnBusDetails);
     // console.log(this.bookingService.passengerlist);
 
-    
   }
 
   pay(){
@@ -87,10 +85,10 @@ export class BookingConfirmationComponent implements OnInit {
 
     this.deductFare(this.booking.cid,this.booking.totalFare);
 
-    // this.getBusNoByBusScId(this.booking.busScId,this.booking.noOfPassengers);
-    // if(this.booking.isReturn){
-    //   this.getBusNoByBusScId(this.returnBusDetails.busScId!,this.booking.noOfPassengers);
-    // }
+    this.reduceAvailableSeats(this.booking.busScId,this.booking.noOfPassengers);
+    if(this.booking.isReturn){
+      this.reduceAvailableSeats(this.returnBusDetails.busScId!,this.booking.noOfPassengers);
+    }
     
 
   }
@@ -168,13 +166,14 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
 
-  busSch:any;
-  getBusNoByBusScId(busScId:number,noOfPassengers:number){
-    this.bookingService.getBusSchedulebyid(busScId).subscribe(
+  reduceAvailableSeats(busScId:number,noOfPassengers:number){
+    this.bookingService.reduceAvailableSeats(busScId,noOfPassengers).subscribe(
       data=>{
-        this.busSch = data;
-        console.log(this.busSch);
+        console.log(data);
         // this.reduceAvailableSeats(this.busSch.busNo,noOfPassengers);
+      },
+      err=>{
+        console.log(err);
       }
     );
   }

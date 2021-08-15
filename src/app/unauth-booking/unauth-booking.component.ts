@@ -47,7 +47,29 @@ export class UnauthBookingComponent implements OnInit {
     console.log(this.bookingService.busDetails);
     console.log(this.bookingService.returnBusDetails);
     console.log(this.bookingService.passengerlist);
-    this.bookingService.unAuthCust = this.unAuthCust;
-    this.router.navigate(["payment-form"]);
+    // this.bookingService.unAuthCust = this.unAuthCust;
+    this.addUnAuthCustomer(this.unAuthCust);
+    
+  }
+
+  addUnAuthCustomer(unAuthCust:Customer){
+    this.bookingService.addCustomer(unAuthCust).subscribe(
+      data=>{
+        console.log(data);
+        this.unAuthCust = data as Customer;
+        if(this.unAuthCust.isAuthorized){
+          alert("Email is Already Authorized, Kindly login and book.");
+          this.router.navigate(["cust-login"]);
+        }
+        else{
+          this.bookingService.unAuthCust = this.unAuthCust;
+          this.router.navigate(["payment-form"]);
+        }
+        
+      },
+      err=>{
+        console.log(err);
+      }
+    );
   }
 }

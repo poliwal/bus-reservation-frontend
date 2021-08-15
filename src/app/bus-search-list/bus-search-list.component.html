@@ -1,7 +1,23 @@
 <h1 *ngIf="!isReturn" >List Of Buses</h1>
 <h1 *ngIf="isReturn" >List Of Return Buses</h1>
 <div class="container">
-    <div>
+    <div *ngIf="!busList.length">
+        <div *ngIf="isReturn">
+            <h3>No Return Buses Are Available</h3>
+            <div>
+                <!-- <button class="btn btn-success mx-2" routerLink="/cust-dashboard/booking-confirmation" >Proceed</button> -->
+                <button class="btn btn-primary" routerLink="/cust-dashboard" >Go To Search Again</button>
+            </div>
+        </div>
+        <div *ngIf="!isReturn">
+            <h3>No Buses Are Available</h3>
+            <div>
+                <!-- <button class="btn btn-success mx-2" routerLink="/cust-dashboard/booking-confirmation" >Proceed</button> -->
+                <button class="btn btn-primary" routerLink="/cust-dashboard" >Go To Search Again</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="busList.length">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -10,7 +26,7 @@
                     <td>Destination</td>
                     <td>Departure</td>
                     <td>Arrival</td>
-                    <!-- <td>No. of Seats</td> -->
+                    <td>Available Seats</td>
                     <td>Via</td>
                     <td>Fare</td>
                     <td>Book</td>
@@ -24,7 +40,7 @@
                     <td>{{b.destination}}</td>
                     <td>{{b.departureTime}}</td>
                     <td>{{b.arrivalTime}}</td>
-                    <!-- <td>{{b.noOfSeats}}</td> -->
+                    <td>{{b.availableSeats}}</td>
                     <td>{{b.via}}</td>
                     <td>{{b.fare}}</td>
                     <td><button class="btn btn-primary" (click)="onBook(b)">Book</button></td>

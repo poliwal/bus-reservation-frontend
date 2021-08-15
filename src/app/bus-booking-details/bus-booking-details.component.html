@@ -22,10 +22,13 @@
     </div>
     <br>
     <div class="row">
+        <div class="col-sm-3" style="background-color:lavender;">Departure Date</div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.departureDate!.slice(0,10)}}</div>
+    </div>
+    <br>
+    <div class="row">
         <div class="col-sm-3" style="background-color:lavender;">Departure</div>
         <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.departureTime}}</div>
-
-        <!--  -->
 
     </div>
     <br>
@@ -33,13 +36,12 @@
         <div class="col-sm-3" style="background-color:lavender;">Arrival</div>
         <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.arrivalTime}}</div>
 
-        <!--  -->
     </div>
     <br>
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-sm-3" style="background-color:lavender;">Seats Available</div>
-        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.noOfSeats}}</div>
-    </div> -->
+        <div class="col-sm-6" style="background-color:lavenderblush;">{{bus.availableSeats}}</div>
+    </div>
 
     <br>
     <div class="row">

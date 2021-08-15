@@ -22,6 +22,9 @@ export class BookingService {
   readonly UrlReturnBookingId = "http://localhost:43836/api/ReturnBookings/byBookingId?bookingId="
   readonly UrlCustomerDeduct = "http://localhost:43836/api/Customers/deductFare"
   readonly UrlCustomer = "http://localhost:43836/api/Customers"
+  readonly UrlReduceAvailableSeats = "http://localhost:43836/api/BusSchedules/reduceSeats"
+  readonly UrlAddAvailableSeats = "http://localhost:43836/api/BusSchedules/addSeats"
+  readonly UrlReturnBusFare = "http://localhost:43836/api/BusSchedules/getFareOfReturnBus?Id="
 
   constructor(private http: HttpClient) { 
     this.busDetails = new BusDetails();
@@ -82,6 +85,10 @@ export class BookingService {
     return this.http.get(this.UrlBus + "/" + id);
   }
 
+  getReturnFare(id?: number) {
+    return this.http.get(this.UrlReturnBusFare + id);
+  }
+
   getBusSchedulebyid(id?: number) {
     return this.http.get(this.UrlBusSearch + "/" + id);
   }
@@ -106,9 +113,13 @@ export class BookingService {
     return this.http.put(`${this.UrlCustomerDeduct}?cid=${cid}&fare=${totalFare}`,null,{responseType:'text'});
   }
 
-  // reduceAvailableSeats(busNo:number,num:number){
-  //   return this.http.put(`${this.UrlBusReduceSeats}?busNo=${busNo}&num=${num}`,null,{responseType:'text'});
-  // }
+  reduceAvailableSeats(busScId:number,num:number){
+    return this.http.put(`${this.UrlReduceAvailableSeats}?busScId=${busScId}&num=${num}`,null,{responseType:'text'});
+  }
+  
+  addAvailableSeats(busScId:number,num:number){
+    return this.http.put(`${this.UrlAddAvailableSeats}?busScId=${busScId}&num=${num}`,null,{responseType:'text'});
+  }
 
   addCustomer(cust:Customer){
     return this.http.post(this.UrlCustomer,cust);

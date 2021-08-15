@@ -1,6 +1,7 @@
 export class BusDetails{
     busScId?:number;
     departureDate?:string;
+    availableSeats?:number;
     busNo:number;
     busName:string;
     source:string;

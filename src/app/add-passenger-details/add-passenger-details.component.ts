@@ -75,7 +75,7 @@ export class AddPassengerDetailsComponent implements OnInit {
           console.log(err);
         }
       );
-      
+       
     }
     else{
       if(this.custSession=='zxc'){

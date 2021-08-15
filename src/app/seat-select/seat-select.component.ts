@@ -14,7 +14,7 @@ import { BookingService } from '../shared/services/booking.service';
 export class SeatSelectComponent implements OnInit {
 
   seatSelect:BusSeats[]=[];
-
+  custSession:string;
   emptySeat:string;
   filledSeat:string;
   selectedSeats:number[]=[];
@@ -123,6 +123,8 @@ export class SeatSelectComponent implements OnInit {
   }
 
   updateBusSeats(){
+    this.custSession= localStorage.getItem('cust')!;
+
     if(this.bookingService.returnBusDetails.busScId){
       localStorage.setItem("returnSeatSelect",JSON.stringify(this.seatSelect));
     }
@@ -149,11 +151,27 @@ export class SeatSelectComponent implements OnInit {
   }
 
   navigateToBookingConfirmation(){
-    this.bookingService.booking.totalFare = this.bookingService.booking.totalFare * 2;
+    let returnFare:number;
+    this.bookingService.getReturnFare(this.bookingService.returnBusDetails.busScId).subscribe(
+      data=>{
+        returnFare = data as number;
+        console.log(returnFare);
+        this.bookingService.booking.totalFare = this.bookingService.booking.totalFare + (returnFare * this.selectedSeats.length);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+    
     this.selectedSeats.forEach((element,index) => {
       this.bookingService.passengerlist[index].returnSeatNo = element+1;
     });
-    this.router.navigate(["cust-dashboard/booking-confirmation"]);
+    if(this.custSession=='zxc'){
+      this.router.navigate(["cust-dashboard/booking-confirmation"]);
+    }
+    else{
+      this.router.navigate(["cust-dashboard/unauth-booking-confirmation"])
+    }
   }
 
   navigateToAddPassengers(){
