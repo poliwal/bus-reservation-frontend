@@ -36,6 +36,9 @@ export class BusSearchComponent implements OnInit {
   ngOnInit(): void {
     localStorage.removeItem("returnBusSearchResult");
     localStorage.removeItem("busSearchResult");
+    localStorage.removeItem("seatSelect");
+    localStorage.removeItem("returnSeatSelect");
+    localStorage.removeItem("unAuthCust");
   }
 
   busSearchResult:BusDetails[];

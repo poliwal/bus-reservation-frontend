@@ -39,6 +39,7 @@ export class PaymentFormComponent implements OnInit {
   onLoading(){
     this.booking = this.bookingService.booking;
     this.unAuthCust = JSON.parse(localStorage.getItem("unAuthCust")!);
+    localStorage.removeItem("unAuthCust");
     // this.unAuthCust = this.bookingService.unAuthCust;
     // this.booking.cid = 1;
     this.bus = this.bookingService.busDetails;

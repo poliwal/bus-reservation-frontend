@@ -130,5 +130,7 @@
 </div>
 
 <div class="container text-center">
+    <button *ngIf="!isReturn" class="btn btn-outline-primary mx-3" routerLink="/cust-dashboard/bus-search-list">Back</button>
+
     <button id="button" type="submit" (click)="onSubmit()" class="btn btn-success">Proceed</button>
 </div>

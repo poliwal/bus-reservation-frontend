@@ -21,19 +21,19 @@ margin-top: 40px;
 font-size: 30px;
 font-family:Verdana, Geneva, Tahoma, sans-serif}
 
-.button{
+/* .button{
     float: right;
-    margin-top: -20px;
+    margin-top: 20px;
     
        
-}
+} */
 
-#button{
-    margin-top:-45px;
+/* #button{
+    margin-top:45px;
     margin-right:160px;
     font-size: 20px;
     
-}
+} */
 
 .NumSeat{
     margin-top: 20px;
@@ -49,4 +49,4 @@ font-family:Verdana, Geneva, Tahoma, sans-serif}
     margin-left: 135px;
     margin-top:-20px;
     margin-bottom: 20px;
-} */
+} */ 
