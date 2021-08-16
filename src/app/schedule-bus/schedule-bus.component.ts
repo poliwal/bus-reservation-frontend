@@ -14,7 +14,7 @@ import { AdminServiceService } from '../shared/services/admin-service.service';
 export class ScheduleBusComponent implements OnInit {
 
   scheduleform:FormGroup;
-
+  currdate: Date = new Date();
   busSchedule:BusSchedule;
   addedSchedule:BusSchedule;
   busSeats:BusSeats[] = [];
@@ -31,10 +31,12 @@ export class ScheduleBusComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.fetchBusDetails();
   }
 
   addSchedule(scheduleform:FormGroup){
     this.busSchedule = scheduleform.value;
+    this.busSchedule.busNo=this.busNoSelect;
     scheduleform.reset();
     // console.log(this.busSchedule)
     this.adminService.addBusSchedule(this.busSchedule).subscribe(
@@ -65,6 +67,23 @@ export class ScheduleBusComponent implements OnInit {
           console.log(err);
         }
       );
+  }
+
+  bus:Bus[];
+  busNoSelect:number;
+
+  selectedNum()
+  {
+    this.busNoSelect=this.scheduleform.get('busNo')?.value;
+  }
+
+  fetchBusDetails()
+  {
+    this.adminService.getAllBus().subscribe((data)=>
+    {
+      this.bus=data as Bus[];
+
+    });
   }
 
 }

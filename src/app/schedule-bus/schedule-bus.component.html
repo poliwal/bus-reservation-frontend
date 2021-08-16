@@ -1,11 +1,11 @@
 <h2 class="text-center">Schedule Bus</h2>
-<div class="border mx-auto w-50 p-3">
+<div class="border mx-auto w-50 p-3 bg-light">
      
     <form [formGroup]="scheduleform" (submit)="addSchedule(scheduleform)">
 
     <div class="form-group"> 
         <p><label >Date</label>
-            <input class="form-control" type="date" formControlName="departureDate" id="departureDate">
+            <input class="form-control" type="date" min="{{currdate | date:'yyyy-MM-dd'}}" formControlName="departureDate" id="departureDate">
         </p>
       <div *ngIf="!scheduleform.get('departureDate')?.valid && (scheduleform.get('departureDate')?.dirty || scheduleform.get('departureDate')?.touched)" class="error">
         <div *ngIf="scheduleform.get('departureDate')?.errors?.required">
@@ -17,7 +17,14 @@
 
     <div class="form-group">
         <p><label >Bus No.</label>
-            <input class="form-control" type="number" formControlName="busNo" id="busNo">
+            <!-- <input class="form-control" type="number" formControlName="busNo" id="busNo"> -->
+            <select formControlName="busNo" (change)="selectedNum()" class="form-select" required>
+        <ng-container *ngFor="let b of bus">
+            <option value="{{b.busNo}}">
+               {{b.busNo}}     
+            </option>
+        </ng-container>     
+            </select>
         </p>
         <div *ngIf="!scheduleform.get('busNo')?.valid && (scheduleform.get('busNo')?.dirty || scheduleform.get('busNo')?.touched)" class="error">
             <div *ngIf="scheduleform.get('busNo')?.errors?.required">

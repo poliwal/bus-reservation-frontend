@@ -1,5 +1,5 @@
-<p>My Booking History</p>
-<table class="table">
+<h2>My Booking History</h2>
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Ticket No</th>
@@ -23,7 +23,7 @@
             <td>{{b.noOfPassengers}}</td>
             <td>{{b.status}}</td>
            
-            <td><a (click)="viewMore(b)" >View more info</a></td>
+            <td><button (click)="viewMore(b)" class="btn btn-outline-dark">Details</button></td>
 
         </tr>
     </tbody>

@@ -1,59 +1,86 @@
-
-<h2 class="text-center">Login</h2>
-<div class="border mx-auto w-50 p-3">
-    <div class="text-center">
-        <label>Don't have an account?</label>
-        &nbsp;
-        <button class="btn btn-success" type="submit" routerLink="/cust-register">Register</button>
-        <hr />
-    </div>
-
-    <form #custform="ngForm" (ngSubmit)="onLogin()" novalidate>
-        <div class="mb-2">
-            <label for="email">Enter Email</label>
-            <input class="form-control" type="text" id="email" name="email" [(ngModel)]="cust.email" #cmailid="ngModel" email required>
-        </div>
-        <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
-            <div *ngIf="cmailid.errors?.required">
-                <small class="text-danger">email is required</small>
-            </div>
-            <div *ngIf="cmailid.errors?.email">
-                <small class="text-danger">Incorrect email pattern</small>
-            </div>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+             <a><h3>Bus Reservation</h3></a> 
         </div>
 
+    </nav>
 
+    <!-- Page Content  -->
+    <div id="content">
 
-        <div class="mb-2">
-            <label for="password">Enter password</label>
-            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="cust.password" #cpassword="ngModel" required
-                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
-        </div>
-        <div *ngIf="!cpassword?.valid &&(cpassword?.dirty || cpassword?.touched)" class="error">
-            <div *ngIf="cpassword.errors?.required">
-                <small class="text-danger">Password is required</small>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-row-reverse">
+ 
+        </nav>
+
+        <div class="border mx-auto w-50 p-3 bg-light">
+            <h2 class="text-center">Login</h2>
+            <div class="text-center">
+                <label>Don't have an account?</label>
+                &nbsp;
+                <button class="btn btn-success" type="submit" routerLink="/cust-register">Register</button>
+                <hr />
             </div>
-            <div *ngIf="cpassword.errors?.pattern">
-                <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
-                    special characters</small>
-            </div>
-        </div>
-
         
-        <div>
-            <input type="checkbox" id="rememberme" name="rememberme" [(ngModel)]="cust.rememberme">
-            &nbsp;
-            <label for="rememberme">Remember Me</label>
-
-            <a class="float-end" type="submit" routerLink="/forgot-password" >Forgot Password?</a>
+            <form #custform="ngForm" (ngSubmit)="onLogin()" novalidate>
+                <div class="mb-2">
+                    <label for="email">Enter Email</label>
+                    <input class="form-control" type="text" id="email" name="email" [(ngModel)]="cust.email" #cmailid="ngModel" email required>
+                </div>
+                <div *ngIf="!cmailid?.valid &&(cmailid?.dirty || cmailid?.touched)" class="error">
+                    <div *ngIf="cmailid.errors?.required">
+                        <small class="text-danger">email is required</small>
+                    </div>
+                    <div *ngIf="cmailid.errors?.email">
+                        <small class="text-danger">Incorrect email pattern</small>
+                    </div>
+                </div>
+        
+        
+        
+                <div class="mb-2">
+                    <label for="password">Enter password</label>
+                    <input class="form-control" type="password" id="password" name="password" [(ngModel)]="cust.password" #cpassword="ngModel" required
+                        pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+                </div>
+                <div *ngIf="!cpassword?.valid &&(cpassword?.dirty || cpassword?.touched)" class="error">
+                    <div *ngIf="cpassword.errors?.required">
+                        <small class="text-danger">Password is required</small>
+                    </div>
+                    <div *ngIf="cpassword.errors?.pattern">
+                        <small class="text-danger">Password must include 8 characters with lowercase uppercase number and
+                            special characters</small>
+                    </div>
+                </div>
+        
+                
+                <div>
+                    <input type="checkbox" id="rememberme" name="rememberme" [(ngModel)]="cust.rememberme">
+                    &nbsp;
+                    <label for="rememberme">Remember Me</label>
+        
+                    <a class="float-end" type="submit" routerLink="/forgot-password" >Forgot Password?</a>
+                </div>
+        
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary" type="submit" [disabled]="!custform.valid">Submit</button>
+                </div>
+        
+        
+            </form>
+            <h2 class="text text-danger">{{err}}</h2>
+        
         </div>
-
         <div class="mt-5 text-center">
-            <button class="btn btn-primary" type="submit" [disabled]="!custform.valid">Submit</button>
+            <button class="btn btn-outline-primary" routerLink="/home">
+                Go To Home
+            </button>
         </div>
-
-
-    </form>
-    <h2 class="text text-danger">{{err}}</h2>
-
+    </div>
 </div>
+
+
+
+
+

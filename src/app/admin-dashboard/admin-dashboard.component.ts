@@ -11,7 +11,7 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(private router:Router) { }
  
-  adminSession:string;
+  adminSession:string; 
 
   ngOnInit(): void {
     this.adminSession= localStorage.getItem('admin')!

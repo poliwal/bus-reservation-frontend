@@ -1,7 +1,6 @@
 <h1 class="text-center">Edit Bus</h1>
 
-<hr />
-<div class="container border mx-auto w-50 p-3">
+<div class="container border mx-auto w-50 p-3 bg-light">
         <form asp-action="Edit" (ngSubmit)="updateBusDetails()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BusId" />
@@ -67,7 +66,7 @@
 </div>
 
 <div>
-    <a routerLink="/admin-dashboard">Back to List</a>
+    <button class="btn btn-outline-primary" routerLink="/admin-dashboard">Back to List</button>
 </div>
 
 
