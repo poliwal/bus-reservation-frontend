@@ -75,26 +75,30 @@
 
 
 <div *ngIf="!isReturn" class="container NumSeat mb-5">
-<!-- <div class="container NumSeat mb-5"> -->
-    <div>
-        <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Book all seats?</label>
-        <input type="checkbox" (change)="onWholeBusDeselect()" [(ngModel)]="booking.wholeBus">
-    </div>
-
-
-    <div style="margin-top: 3px;">
-        <div *ngIf="booking.wholeBus==true">
-            <label for="checkbox" style="font-weight: 600;margin-right: 5px;">With Driver</label>
-            <input type="checkbox" [(ngModel)]="booking.withDriver">
-
-
-            <div *ngIf="booking.withDriver==true">
-                <small class="text text-danger" for="booking.securityDeposit">*Security Deposit Amount of 30000 INR will
-                    be charged</small> &nbsp;
-                <!-- <input type="number" id="booking.securityDeposit" name="booking.securityDeposit" [(ngModel)]="booking.securityDeposit"> -->
-            </div>
-
+    <!-- <div class="container NumSeat mb-5"> -->
+    <div *ngIf="custSession=='zxc' && bus.availableSeats == 24">
+        <div>
+            <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Book all seats?</label>
+            <input type="checkbox" (change)="onWholeBusDeselect()" [(ngModel)]="booking.wholeBus">
         </div>
+
+
+        <div style="margin-top: 3px;">
+            <div *ngIf="booking.wholeBus==true">
+                <label for="checkbox" style="font-weight: 600;margin-right: 5px;">With Driver</label>
+                <input type="checkbox" [(ngModel)]="booking.withDriver">
+
+
+                <div *ngIf="booking.withDriver==true">
+                    <small class="text text-danger" for="booking.securityDeposit">*Security Deposit Amount of 30000 INR
+                        will
+                        be charged</small> &nbsp;
+                    <!-- <input type="number" id="booking.securityDeposit" name="booking.securityDeposit" [(ngModel)]="booking.securityDeposit"> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
         <!--       
       <div  style="margin-top:10px;">
         <label>Number of passengers : </label>
@@ -110,19 +114,19 @@
         <div style="margin-top: 2px;">
             <div>
                 <label for="checkbox" style="font-weight: 600;margin-right: 5px;">Return Ticket?</label>
-                <input type="checkbox" (change)="onReturnDeselect()"
-                        [(ngModel)]="booking.isReturn">
+                <input type="checkbox" (change)="onReturnDeselect()" [(ngModel)]="booking.isReturn">
             </div>
 
             <div>
                 <label style="font-weight: 600; margin-right: 10px;">Return Date</label> <input style="margin-top:10px"
-                    type="date" [disabled]="!booking.isReturn" min="{{datevalidation|date:'yyyy-MM-dd'}}" [(ngModel)]="booking.returnDate">
+                    type="date" [disabled]="!booking.isReturn" min="{{datevalidation|date:'yyyy-MM-dd'}}"
+                    [(ngModel)]="booking.returnDate">
             </div>
 
         </div>
 
 
-    </div>
+
 </div>
 
 <div class="container text-center">

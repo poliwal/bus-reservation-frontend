@@ -68,27 +68,20 @@
           <li>
               <a routerLink="bus-schedules">Bus Schedules</a>
           </li>
-          <li class="nav-item dropdown">
+          <li><a class="dropdown-item text-light" routerLink="frequently-travelled-routes">Frequently Travelled Routes</a></li>
+          <li><a class="dropdown-item text-light" routerLink="record-and-profits">Last month record and profits</a></li>
+          <li><a class="dropdown-item text-light" routerLink="customer-reservation-details">Customers Reservation Details</a></li>
+          <!-- <li><a class="dropdown-item" href="#">Most preferred types of buses</a></li> -->
+          <li><a class="dropdown-item text-light" routerLink="customers-with-no-reservation">Customers with no reservation</a></li>
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Actions
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Frequently Travelled Routes</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Last month record and profits</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Most preferred types of buses</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Customers with no reservation</a></li>
+              
             </ul>
-          </li>
+          </li> -->
       </ul>
 
       
@@ -107,7 +100,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item dropdown">
+                  <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                       aria-expanded="false">
                       Actions
@@ -127,7 +120,7 @@
                       </li>
                       <li><a class="dropdown-item" href="#">Customers with no reservation</a></li>
                     </ul>
-                  </li>
+                  </li> -->
                 </ul>
                 <form class="d-flex">
                   <button *ngIf="adminSession=='abc'" class="btn btn-outline-success" type="submit" (click)="logOff()">Logout</button>

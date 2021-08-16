@@ -38,7 +38,8 @@ export class PaymentFormComponent implements OnInit {
 
   onLoading(){
     this.booking = this.bookingService.booking;
-    this.unAuthCust = this.bookingService.unAuthCust;
+    this.unAuthCust = JSON.parse(localStorage.getItem("unAuthCust")!);
+    // this.unAuthCust = this.bookingService.unAuthCust;
     // this.booking.cid = 1;
     this.bus = this.bookingService.busDetails;
     this.passengerList = this.bookingService.passengerlist;
@@ -55,17 +56,17 @@ export class PaymentFormComponent implements OnInit {
       console.log(this.bookingService.passengerlist);
       // this.addUnAuthCustomer(this.unAuthCust);
       this.addBookingToDb(this.unAuthCust.cid!, this.booking);
-          if(this.booking.isReturn){
-            this.updateSeatsInDb();
-            this.updateReturnSeatsInDb();
-          }
-          else{
-            this.updateSeatsInDb();
-          }
+      if(this.booking.isReturn){
+        this.updateSeatsInDb();
+        this.updateReturnSeatsInDb();
+      }
+      else{
+        this.updateSeatsInDb();
+      }
       // this.updateSeatsInDb();
       
       // this.addBookingToDb(this.booking);
-      alert("Payment Done, Please Register to see your ticket.");
+      alert("Payment Done, Check Your Email");
       this.router.navigate(["cust-dashboard"]);
     }
     
@@ -115,26 +116,35 @@ export class PaymentFormComponent implements OnInit {
         // console.log(this.booking.bookingId);
         
         this.addPassengersToDb(this.booking.bookingId);
-
+        this.sendTicket(this.booking.cid,this.booking.bookingId,this.bus.busNo,this.bus.source,this.bus.destination,this.bus.departureDate!.slice(0,10));
         if(this.booking.isReturn){
           // console.log(this.booking.bookingId);
           this.addReturnBookingToDb(this.booking.bookingId);
-          
         }
       },
       err=>{
         console.log(err);
       }
     );
-
     // this.deductFare(this.booking.cid,this.booking.totalFare);
-
+    
     this.reduceAvailableSeats(this.booking.busScId,this.booking.noOfPassengers);
     if(this.booking.isReturn){
       this.reduceAvailableSeats(this.returnBusDetails.busScId!,this.booking.noOfPassengers);
     }
-
   }
+
+  sendTicket(cid:number,bookingId:number,busNo:number,source:string,destination:string,date:string){
+    this.bookingService.sendTicket(cid,bookingId,busNo,source,destination,date).subscribe(
+      data=>{
+        alert(data);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
 
   addPassengersToDb(bookingId:number){
     // let bookingId = this.booking.bookingId;

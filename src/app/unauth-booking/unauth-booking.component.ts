@@ -62,7 +62,9 @@ export class UnauthBookingComponent implements OnInit {
           this.router.navigate(["cust-login"]);
         }
         else{
-          this.bookingService.unAuthCust = this.unAuthCust;
+          localStorage.setItem("unAuthCust",JSON.stringify(this.unAuthCust));
+          // this.bookingService.unAuthCust = this.unAuthCust;
+          console.log(this.unAuthCust)
           this.router.navigate(["payment-form"]);
         }
         

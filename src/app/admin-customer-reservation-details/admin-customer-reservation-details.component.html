@@ -1,0 +1,36 @@
+<div style="margin-left: 10px;">
+    <h3>Get Reservation Details</h3><br>
+    <button class="btn btn-primary" (click)="getReservationOfToday()">By Today</button>&nbsp;
+    <button class="btn btn-primary" (click)="getReservationOfWeek()">By Week</button>&nbsp;
+    <button class="btn btn-primary" (click)="getReservationOfMonth()">By Month</button>&nbsp;
+</div>
+
+<br>
+<div class="container">
+
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <td>Customer ID</td>
+                <td>Booking ID</td>
+                <td>Total Fare</td>
+                <td>Status</td>
+                <td>Date of Booking</td>
+                <td>No. of Passengers</td>
+                
+            </tr>
+        </thead>
+        <tbody *ngFor="let c of customerReservationDetails">
+            <tr>
+                <td>{{c.cid}}</td>
+                <td>{{c.bookingId}}</td>
+                <td>{{c.totalFare}}</td>
+                <td>{{c.status}}</td>
+                <td>{{c.dateOfBooking}}</td>
+                <td>{{c.noOfPassengers}}</td>
+               
+            </tr>
+        </tbody>
+    </table>
+
+</div>

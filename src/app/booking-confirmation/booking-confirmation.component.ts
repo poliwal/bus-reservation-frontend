@@ -70,9 +70,15 @@ export class BookingConfirmationComponent implements OnInit {
         this.booking = data as Booking;
         // console.log(data);
         // console.log(this.booking.bookingId);
-
-        this.addPassengersToDb(this.booking.bookingId);
-
+        if(!this.booking.wholeBus){
+          this.addPassengersToDb(this.booking.bookingId);
+          this.reduceAvailableSeats(this.booking.busScId,this.booking.noOfPassengers);
+        }
+        else{
+          this.reduceAvailableSeats(this.booking.busScId,24);
+          
+        }
+        this.sendTicket(this.booking.cid,this.booking.bookingId,this.bus.busNo,this.bus.source,this.bus.destination,this.bus.departureDate!.slice(0,10));
         if(this.booking.isReturn){
           // console.log(this.booking.bookingId);
           this.addReturnBookingToDb(this.booking.bookingId);
@@ -84,14 +90,24 @@ export class BookingConfirmationComponent implements OnInit {
     );
 
     this.deductFare(this.booking.cid,this.booking.totalFare);
-
-    this.reduceAvailableSeats(this.booking.busScId,this.booking.noOfPassengers);
+    
+    
     if(this.booking.isReturn){
       this.reduceAvailableSeats(this.returnBusDetails.busScId!,this.booking.noOfPassengers);
     }
-    
-
   }
+
+  sendTicket(cid:number,bookingId:number,busNo:number,source:string,destination:string,date:string){
+    this.bookingService.sendTicket(cid,bookingId,busNo,source,destination,date).subscribe(
+      data=>{
+        alert(data);
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
 
   updateSeatsInDb(){
     this.seatSelect = JSON.parse(localStorage.getItem("seatSelect")!);

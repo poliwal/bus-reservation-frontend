@@ -1,0 +1,16 @@
+<div class="conatiner mt-5">
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <td>Route</td>
+                <td>Frequency</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let f of routeFrequency">
+            <tr>
+                <td>{{f.via}}</td>
+                <td>{{f.frequency}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

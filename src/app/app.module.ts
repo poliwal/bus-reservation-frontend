@@ -36,6 +36,11 @@ import { BusSchedulesComponent } from './bus-schedules/bus-schedules.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AdminRecordAndProfitsComponent } from './admin-record-and-profits/admin-record-and-profits.component';
+import { DatePipe } from '@angular/common';
+import { AdminCustomersWithNoReservationComponent } from './admin-customers-with-no-reservation/admin-customers-with-no-reservation.component';
+import { AdminCustomerReservationDetailsComponent } from './admin-customer-reservation-details/admin-customer-reservation-details.component';
+import { AdminFrequentlyTravelledRoutesComponent } from './admin-frequently-travelled-routes/admin-frequently-travelled-routes.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +71,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BusSchedulesComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AdminRecordAndProfitsComponent,
+    AdminCustomersWithNoReservationComponent,
+    AdminCustomerReservationDetailsComponent,
+    AdminFrequentlyTravelledRoutesComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +84,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AdminServiceService,BookingService,CustomerService],
+  providers: [AdminServiceService,BookingService,CustomerService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

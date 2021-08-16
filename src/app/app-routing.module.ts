@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddBusComponent } from './add-bus/add-bus.component';
 import { AddPassengerDetailsComponent } from './add-passenger-details/add-passenger-details.component';
 import { AdminBusListComponent } from './admin-bus-list/admin-bus-list.component';
+import { AdminCustomerReservationDetailsComponent } from './admin-customer-reservation-details/admin-customer-reservation-details.component';
+import { AdminCustomersWithNoReservationComponent } from './admin-customers-with-no-reservation/admin-customers-with-no-reservation.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminFrequentlyTravelledRoutesComponent } from './admin-frequently-travelled-routes/admin-frequently-travelled-routes.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminRecordAndProfitsComponent } from './admin-record-and-profits/admin-record-and-profits.component';
 import { BookingConfirmationComponent } from './booking-confirmation/booking-confirmation.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { BusBookingDetailsComponent } from './bus-booking-details/bus-booking-details.component';
@@ -39,6 +43,10 @@ const routes: Routes = [
       {path:"add-bus", component:AddBusComponent},
       {path:"schedule-bus", component:ScheduleBusComponent},
       {path:"bus-schedules", component:BusSchedulesComponent},
+      {path:"record-and-profits",component:AdminRecordAndProfitsComponent},
+      {path:"customers-with-no-reservation",component:AdminCustomersWithNoReservationComponent},
+      {path:"customer-reservation-details",component:AdminCustomerReservationDetailsComponent},
+      {path:"frequently-travelled-routes",component:AdminFrequentlyTravelledRoutesComponent}
     ]
   },
   {path:"cust-dashboard",component:CustomerDashboardComponent,

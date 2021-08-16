@@ -11,14 +11,14 @@
                 <label for="">Enter First Name<span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="fName" name="fName" [(ngModel)]="customer.fname"
                  #fName="ngModel" required minlength="5">
-                <!-- <div *ngIf="!cname?.valid && (cname?.dirty||cname?.touched)" class="error">
-                    <div *ngIf="cname.errors?.required">
+                <div *ngIf="!fName?.valid && (fName?.dirty||fName?.touched)" class="error">
+                    <div *ngIf="fName.errors?.required">
                         <small class="text-danger">Customer Name is Required</small>
                     </div>
-                    <div *ngIf="cname.errors?.minlength">
-                        <small class="text-danger">Customer Name should be of minimumlength:{{cname.errors?.minlength.requiredLength}}</small>
+                    <div *ngIf="fName.errors?.minlength">
+                        <small class="text-danger">Customer Name should be of minimumlength:{{fName.errors?.minlength.requiredLength}}</small>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <!-- Lname -->
@@ -26,14 +26,14 @@
                 <label for="">Enter Last Name<span class="text-danger">*</span></label>
                 <input class="form-control" type="text" id="lName" name="lName" [(ngModel)]="customer.lname" 
                 #lName="ngModel" required minlength="5">
-                <!-- <div *ngIf="!cname?.valid && (cname?.dirty||cname?.touched)" class="error">
-                    <div *ngIf="cname.errors?.required">
+                <div *ngIf="!lName?.valid && (lName?.dirty||lName?.touched)" class="error">
+                    <div *ngIf="lName.errors?.required">
                         <small class="text-danger">Customer Name is Required</small>
                     </div>
-                    <div *ngIf="cname.errors?.minlength">
-                        <small class="text-danger">Customer Name should be of minimumlength:{{cname.errors?.minlength.requiredLength}}</small>
+                    <div *ngIf="lName.errors?.minlength">
+                        <small class="text-danger">Customer Name should be of minimumlength:{{lName.errors?.minlength.requiredLength}}</small>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <!-- dob -->
@@ -57,15 +57,15 @@
             <div class="mb-2">
                 <label for="">Phone Number<span class="text-danger">*</span></label>
                 <input class="form-control" name="contactNo" #contactNo="ngModel" [(ngModel)]="customer.contactNo" type="text" 
-                placeholder="Phone Number" required min=7000000000 max=9999999999>
-                <!-- <div *ngIf="!contactNo?.valid && (contactNo?.dirty || contactNo?.touched)" class="error">
+                placeholder="Phone Number" required pattern="^\d{10}$">
+                <div *ngIf="!contactNo?.valid && (contactNo?.dirty || contactNo?.touched)" class="error">
                     <div *ngIf="contactNo.errors?.required">
                         <small class="text-danger">Phone Number required</small>
                     </div>
-                    <div *ngIf="contactNo.errors?.min || contactNo.errors?.max">
-                        <small class="text-danger">Phone Number must be 10 digit number</small>
+                    <div *ngIf="contactNo.errors?.pattern">
+                        <small class="text-danger">Follow correct pattern(10 digits)</small>
                     </div>
-                </div> -->
+                </div>
 
             </div>
 
@@ -74,14 +74,14 @@
                 <label for="">Email address<span class="text-danger">*</span></label>
                 <input class="form-control" type="email" name="email" #email="ngModel" [(ngModel)]="customer.email" 
                 aria-describedby="emailHelp" placeholder="Enter valid email" required email>
-                <!-- <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+                <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
                     <div *ngIf="email.errors?.required">
                         <small class="text-danger">Email required</small>
                     </div>
                     <div *ngIf="email.errors?.email">
                         <small class="text-danger">Invalid email format</small>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             
@@ -98,4 +98,10 @@
             <button [disabled]="custProfile.invalid" type="submit" class="btn btn-success">Submit</button>
         </div>
     </form>
+</div>
+<br>
+<div class="container mb-5 p-5">
+    <label style="font-weight: 500;">Give us a feedback rating from 1-5 :</label>&nbsp;
+    <input type="number" [(ngModel)]="rating" min=1 max=5>&nbsp; <br>
+    <button class="btn btn-primary" (click)="feedback()">Submit feedback</button>
 </div>

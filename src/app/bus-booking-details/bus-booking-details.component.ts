@@ -20,6 +20,7 @@ export class BusBookingDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.fetchBus(123);
+    this.custSession= localStorage.getItem('cust')!;
     this.datevalidation=localStorage.getItem('addedDay');
     localStorage.removeItem("addedDay");
     this.fetchBuslocal();

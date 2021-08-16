@@ -1,6 +1,6 @@
-<h2 class="text-center">Admin Login</h2>
-<div class="border mx-auto w-50 p-3">
 
+<div class="border mx-auto w-50 p-3 mt-5">
+    <h2 class="text-center">Admin Login</h2>
     <form #loginform="ngForm" (submit)="doLogin()">
         <!-- <div class="mb-2">
             <label>Enter Username</label>
@@ -72,4 +72,10 @@
         
     </form>
     <h2 class="text text-danger">{{err}}</h2>
+</div>
+
+<div class="mt-5 text-center">
+    <button class="btn btn-primary" routerLink="/home">
+        Go To Home
+    </button>
 </div>

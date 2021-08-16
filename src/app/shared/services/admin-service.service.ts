@@ -14,6 +14,8 @@ export class AdminServiceService {
   readonly UrlSchedule = "http://localhost:43836/api/BusSchedules"
   readonly UrlAdminLogin = "http://localhost:43836/api/Admins/adminlogin"
 
+  readonly UrlBooking = "http://localhost:43836/api/Bookings"
+  readonly UrlCustomer = "http://localhost:43836/api/Customers"
 
   editBusDetails:Bus;
   
@@ -63,4 +65,39 @@ export class AdminServiceService {
     return this.http.get(`${this.UrlAdminLogin}?username=${username}&password=${password}`,{responseType:'text'});
   }
 
+  //last month record and profits
+  getLastMonthRecordAndProfits(lastMonthDate:string,currentDate:string)
+  {
+    return this.http.get(`${this.UrlBooking}/lastMonthRecordAndProfits?lastMonthDate=${lastMonthDate}&currentDate=${currentDate}`);
+  }
+
+  //get customers with no reservation
+  getCustomersWithNoReservation()
+  {
+    return this.http.get(`${this.UrlCustomer}/getCustomersWithNoReservation`);
+  }
+
+  //get customer reservation details of today
+  getCustomerReservationDetailsOfToday(currentDate:string)
+  {
+    return this.http.get(`${this.UrlBooking}/getCustomerReservationDetailsOfToday?currentDate=${currentDate}`);
+  }
+
+  //get customer reservation details of week
+  getCustomerReservationDetailsOfWeek(weekDate:string,currentDate:string)
+  {
+    return this.http.get(`${this.UrlBooking}/getCustomerReservationDetailsOfWeek?weekDate=${weekDate}&currentDate=${currentDate}`);
+  }
+
+  //get customer reservation details of month
+  getCustomerReservationDetailsOfMonth(monthDate:string,currentDate:string)
+  {
+    return this.http.get(`${this.UrlBooking}/getCustomerReservationDetailsOfMonth?monthDate=${monthDate}&currentDate=${currentDate}`);
+  }
+
+  //get frquently travelled routes
+  getFrequentlyTravelledRoutes()
+  {
+    return this.http.get(`${this.Url}/getFrequentlyTravelledRoutes`);
+  }
 }

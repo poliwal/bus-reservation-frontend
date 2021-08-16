@@ -1,0 +1,25 @@
+<div class="mb-3 mt-3 text-center">
+    <button class="btn btn-primary" (click)="getLastMonthDetails()">Get Last Month Records and Profits</button>
+</div>
+<div class="container">
+    <table class="table table table-bordered table-dark">
+        <thead>
+            <tr>
+                <td>Booking ID</td>
+                <td>Customer ID</td>
+                <td>Total Fare</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let r of lastMonthRecord">
+            <tr>
+                <td>{{r.bookingId}}</td>
+                <td>{{r.cid}}</td>
+                <td>{{r.totalFare}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <h3>Total Profits : INR {{ profits }}</h3> 
+    </div>
+</div>

@@ -53,4 +53,18 @@ export class CustomerProfileComponent implements OnInit {
     );
   }
 
+  rating:number;
+  feedback()
+  {
+    this.customer.feedback=this.rating;
+    this.custService.updateCustomer(this.customer.cid!,this.customer).subscribe(
+      data=>{
+        alert("Feedback submitted");
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+    this.rating=null!;
+  }
 }

@@ -1,0 +1,31 @@
+<div *ngIf="customersWithNoReservation.length ==0">
+    <h3>No such Customers exists.</h3>
+</div>
+<div *ngIf="customersWithNoReservation.length !=0" class="container">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Email</td>
+                <td>Contact Number</td>
+                <td>DOB</td>
+                <td>Gender</td>
+                <td>Address</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let c of customersWithNoReservation">
+            <tr>
+                <td>{{c.fname}}</td>
+                <td>{{c.lname}}</td>
+                <td>{{c.email}}</td>
+                <td>{{c.contactNo}}</td>
+                <td>{{c.dob}}</td>
+                <td>{{c.gender}}</td>
+                <td>{{c.address}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

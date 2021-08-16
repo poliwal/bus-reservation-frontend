@@ -125,7 +125,9 @@ export class BookingService {
     return this.http.post(this.UrlCustomer,cust);
   }
 
-
+  sendTicket(cid:number,bookingId:number,busNo:number,source:string,destination:string,date:string){
+    return this.http.get(`${this.UrlBooking}/sendTicket?cid=${cid}&bookingId=${bookingId}&busNo=${busNo}&source=${source}&dest=${destination}&date=${date}`,{responseType:'text'});
+  }
 
   //get passenger
   getPassenger(bookingid:number)
