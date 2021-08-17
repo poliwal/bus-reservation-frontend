@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Booking } from '../shared/models/booking';
 import { BusDetails } from '../shared/models/busDetails';
+import { Passenger } from '../shared/models/Passenger';
 import { BookingService } from '../shared/services/booking.service';
 
 @Component({
@@ -13,6 +15,9 @@ export class BusSearchComponent implements OnInit {
 
   bussearchform;
   // triptype:any=['one way','round trip']
+  sources:string[]=[];
+  destinations:string[]=[];
+  busSearchResult:BusDetails[];
 
   constructor(private fb:FormBuilder, private bookingService:BookingService, private router:Router) { 
 
@@ -39,9 +44,37 @@ export class BusSearchComponent implements OnInit {
     localStorage.removeItem("seatSelect");
     localStorage.removeItem("returnSeatSelect");
     localStorage.removeItem("unAuthCust");
+    this.bookingService.booking = new Booking();
+    this.bookingService.returnBusDetails = new BusDetails();
+    this.bookingService.busDetails = new BusDetails();
+    this.bookingService.bookedseats = [];
+    this.bookingService.passengerlist = [];
+    this.getSources();
+    this.getDestinations();
   }
 
-  busSearchResult:BusDetails[];
+  
+  getSources(){
+    this.bookingService.getSources().subscribe(
+      data=>{
+        this.sources = data as string[];
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+
+  getDestinations(){
+    this.bookingService.getDestination().subscribe(
+      data=>{
+        this.destinations = data as string[];
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
 
   onSearch(bussearchform:FormGroup){
 
@@ -50,7 +83,7 @@ export class BusSearchComponent implements OnInit {
     let source = bussearchform.value.source;
     let destination = bussearchform.value.destination;
     let date = bussearchform.value.date;
-    // console.log(source,destination,date)
+    console.log(source,destination,date)
 
     this.addedDay=new Date(date).setDate(new Date(date).getDate()+1);
 

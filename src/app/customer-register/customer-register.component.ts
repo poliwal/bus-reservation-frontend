@@ -19,9 +19,8 @@ export class CustomerRegisterComponent implements OnInit {
   }
   onRegister()
   {
-    //object
-    console.log(this.cust);
-    console.log(this.confirmPassword);
+    // console.log(this.cust);
+    // console.log(this.confirmPassword);
     this.cust.isAuthorized = true;
     this.custService.registerCustomer(this.confirmPassword,this.cust).subscribe(
       data=>{

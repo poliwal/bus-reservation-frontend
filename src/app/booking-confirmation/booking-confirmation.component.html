@@ -3,6 +3,18 @@
         <h2 class="text-center mb-3">Booking Review</h2>
         <hr>
         <div>
+            <p><span class="fw-bold">Bus Name :</span>  {{bus.busName}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">From :</span>  {{bus.source}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">To :</span>  {{bus.destination}}</p>
+        </div>
+        <div>
+            <p><span class="fw-bold">Departure Date :</span>  {{bus.departureDate!.slice(0,10)}}</p>
+        </div>
+        <div *ngIf="booking.wholeBus">
             <p><span class="fw-bold">Whole bus :</span>  {{booking.wholeBus}}</p>
         </div>
         <div *ngIf="!booking.wholeBus">
@@ -11,7 +23,7 @@
         <div>
             <p><span class="fw-bold">Total Fare :</span> {{booking.totalFare}}</p>
         </div>
-        <div>
+        <div *ngIf="booking.isReturn">
             <p><span class="fw-bold">Is a return ticket :</span> {{booking.isReturn}}</p>
         </div>
         <div *ngIf="booking.isReturn">

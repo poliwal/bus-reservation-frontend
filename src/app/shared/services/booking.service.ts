@@ -97,6 +97,14 @@ export class BookingService {
     return this.http.get(`${this.UrlBusSearch}/searchBuses?source=${source}&destination=${destination}&date=${date}`)
   }
 
+  getSources(){
+    return this.http.get(`${this.UrlBus}/getSources`);
+  }
+
+  getDestination(){
+    return this.http.get(`${this.UrlBus}/getDestination`);
+  }
+
   addBooking(booking:Booking){
     return this.http.post(this.UrlBooking,booking);
   }

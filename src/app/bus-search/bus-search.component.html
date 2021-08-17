@@ -12,12 +12,26 @@
 
         <div>
             <label>From</label>&nbsp;
-            <input class="form-control" type="text" formControlName="source" />
+            <!-- <input class="form-control" type="text" formControlName="source" /> -->
+            <select formControlName="source" class="form-select" required>
+                <ng-container *ngFor="let s of sources">
+                    <option value="{{s}}">
+                       {{s}}     
+                    </option>
+                </ng-container>     
+                    </select>
         </div>
 
         <div>
             <label>To</label> &nbsp;
-            <input class="form-control" type="text" formControlName="destination" />
+            <!-- <input class="form-control" type="text" formControlName="destination" /> -->
+            <select formControlName="destination" class="form-select" required>
+                <ng-container *ngFor="let d of destinations">
+                    <option value="{{d}}">
+                       {{d}}     
+                    </option>
+                </ng-container>     
+                    </select>
         </div>
 
         <div>
